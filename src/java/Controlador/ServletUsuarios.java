@@ -5,9 +5,7 @@
  */
 package Controlador;
 
-import Modelo.Imagenes;
-import Modelo.PacienteBD;
-import Modelo.Presupuesto;
+
 import Modelo.Usuarios;
 import Modelo.UsuariosBD;
 import java.io.IOException;

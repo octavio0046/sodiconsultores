@@ -1,17 +1,43 @@
 <%-- 
     Document   : index
-    Created on : 4/01/2019, 12:33:19 PM
-    Author     : OCTAVIOH
+    Created on : 9/05/2018, 09:51:48 PM
+    Author     : Octavio Herrera
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+  response.setHeader("Pragma", "no-cache");
+  response.addHeader("Cache-control", "must-revalidate");
+  response.addHeader("Cache-control", "no-cache");
+  response.addHeader("Cache-control", "no-store");
+  response.setDateHeader("Expires", 0);
+
+%>
+
 <!DOCTYPE html>
+
 <html>
-    <head>
+    <div class="cabecera">
+        
+    
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
+        <%@include file="template1.jsp" %>
+     </div>
+        <div class="contenido">
+            
+            
+            <center>
+                
+            
+            <h1>BIENVENIDOS</h1>
+            <h2>SODI CONSULTORES</h2>
+            </center>
+        </div>          
+                 
+                  
+
+  
+    
+    
+  
 </html>
