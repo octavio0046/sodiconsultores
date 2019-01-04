@@ -42,18 +42,11 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
- 
-   
-      
-    
-              <%                   if (sesionOK.getAttribute("perfil") != null && sesionOK.getAttribute("perfil").equals("ADMIN")) {
+
+   <% if (sesionOK.getAttribute("perfil") != null && sesionOK.getAttribute("perfil").equals("ADMIN")) {
 
 
-                    %>
-      
-      
-      
-      
+  %>
         <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             CONSULTAS
@@ -65,23 +58,9 @@
           <a class="dropdown-item" href="#">#</a>
         </div>
       </li>
-      
-      
-      
-               
-                    <%                }
-
-                        
-                    %>
-
-         
-                 
-
-                <%        if (sesionOK.getAttribute("perfil") != null && sesionOK.getAttribute("perfil").equals("ADMIN")) {
-
-
-                %>
-      
+    
+ 
+ 
           <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
    PACIENTES A
@@ -107,16 +86,9 @@
         </div>
       </li>
 
-      
-      
-             <%                    }
-
-                if (sesionOK.getAttribute("perfil") != null && sesionOK.getAttribute("perfil").equals("ASISTENTE")) {
-
-
-
-                %>
-      
+ <% }if (sesionOK.getAttribute("perfil") != null && sesionOK.getAttribute("perfil").equals("EMPRESARIAL")) {
+  
+ %>
       
       
         <li class="nav-item dropdown">
@@ -131,13 +103,12 @@
         </div>
       </li>
      
-      
           
-                      <%                    }
+       <%                    }
 
 
 
-                %>
+       %>
                 
                 
                 <%if (sesionOK.getAttribute("perfil") != null) {
@@ -169,23 +140,18 @@
 
 
                 %>
-     
-                
                 <li class="nav-item">
-        <a class="nav-link" data-toggle="modal" data-target="#exampleModalLong" >INICIAR SESION</a>
-      </li>
-      
-      
-   
-      
+                    <a class="nav-link" data-toggle="modal" data-target="#exampleModalLong">INICIAR SESION</a>
+                </li>
+       
   </div>
 </nav>
-             <%                }
-                    %>
-      
- 
+<%                }
+%>
+
+
     </div>
-                    
+
                     
     <body>      
         
