@@ -3,6 +3,130 @@ USE BD_SODI_CONSULTORES;
 
 DROP DATABASE SODI_CONSULTORES;
 
+
+
+create table tb_enlaces(
+id_enlace int auto_increment,
+nombre_enlace varchar(50),
+link varchar(100),
+primary key (id_enlace)
+);
+
+drop table tb_enlaces;
+
+insert into tb_enlaces values(default,'facebook','www.octavio.facebook.com');
+insert into tb_enlaces values(default,'instagram','octavioherrera');
+
+
+create table tb_estudios (
+id_estudio int auto_increment,
+nombre_nivel_estudio varchar(50),
+primary key (id_estudio)
+);
+
+create table tb_formaciones(
+id_formacion int auto_increment,
+nombre_formacion varchar(50),
+primary key (id_formacion)
+);
+
+
+create table tb_campos(
+id_campo int auto_increment,
+nombre_campo varchar(50),
+primary key(id_campo)
+);
+
+create table tb_estados(
+id_estado int auto_increment,
+nombre_estado varchar(50),
+fecha_colocacion varchar(50),
+primary key (id_estado)
+);
+
+create table tb_info(
+id_info int auto_increment,
+num_empleos int,
+duracion_promedio varchar(50),
+primary key (id_info)
+);
+
+
+create table tb_usuario_cliente(
+id_usu_clie int ,
+correo  varchar(50),
+contrasena varchar (50),
+fecha_creacion varchar(50),
+estado int ,
+primary key (id_usu_clie) 
+);
+
+drop table tb_usuario_cliente;
+
+DELIMITER &&
+CREATE PROCEDURE insertar_usuario_cliente (inout cod int,
+correo varchar(50),contrasena varchar(50))
+BEGIN
+select ifnull(max(id_usu_clie),0)+1 into cod from tb_usuario_cliente;
+INSERT INTO tb_usuario_cliente VALUES(cod,correo,contrasena,now(),1);
+END&&
+
+
+
+drop procedure insertar_usuario_cliente;
+
+SELECT * from tb_usuario_cliente;
+
+set @id:=0;
+call insertar_usuario_cliente(@id,'asdf','afsd');
+select @id;
+
+
+
+create table tb_clientes(
+id_cliente int auto_increment,
+id_enlace int not null,
+id_estudio int not null,
+id_formacion int not null,
+id_info int not null,
+id_estado int not null,
+id_campo int not null,
+id_usu_cliente int not null,
+cod_usuario int not null,
+nombre1 varchar(50),
+nombre2 varchar(50),
+apellido1 varchar(50),
+apellido2 varchar(50),
+nacimiento varchar(50),
+edad varchar(50),
+pais varchar(50),
+departamento varchar(50),
+recidencia varchar(50),
+direccion varchar(50),
+tel1 int,
+tel2 int,
+recidencial int,
+correo varchar(50),
+fechaRegistro varchar(50),
+fecha_final varchar(50),
+primary key (id_cliente),
+foreign key (id_enlace) references tb_enlaces(id_enlace),
+foreign key (id_estudio) references tb_estudios(id_estudio),
+foreign key (id_estudio) references tb_estudios(id_estudio),
+foreign key (id_formacion) references tb_formaciones(id_formacion),
+foreign key (id_info) references tb_info(id_info),
+foreign key (id_estado) references tb_estados(id_estado),
+foreign key (id_campo) references tb_campos(id_compo),
+foreign key (id_usuario_cliente) references tb_usuario_cliente(id_usu_clie)
+);
+
+
+
+
+
+
+
+
 CREATE TABLE TB_USUARIOS (
   COD_USUARIO INT AUTO_INCREMENT,
   APELLIDO_USUARIO varchar(30) DEFAULT NULL,

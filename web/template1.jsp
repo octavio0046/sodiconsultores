@@ -63,11 +63,11 @@
  
           <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-   PACIENTES A
+      USUARIO DE CLIENTES
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="ServletPacientes?accion=BuscarPaciente">Buscar Paciente</a>
-          <a class="dropdown-item" href="formRegistrarPaciente.jsp">Registrar Paciente</a>
+          <a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalLong2" >Registrar Cliente</a>
           <div class="dropdown-divider"></div>
           
         </div>
@@ -77,7 +77,7 @@
       
          <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-       USUARIOS
+      USUARIOS
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="registrarUsuario.jsp">Registrar Usuario</a>
@@ -166,10 +166,11 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+        
       <div class="modal-body">
         
           
-          
+        
              <center>
           <form class="login" action="ServletLogueo" method="post" >
                 <input type="hidden" name="accion" value="loguin"/>
@@ -184,8 +185,49 @@
              </center>
        
       </div>
+        
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      
+      </div>
+    </div>
+  </div>
+</div>
+        
+        
+        
+         <!-- Modal para registro de cliente -->
+<div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h5  class="modal-title" id="exampleModalLongTitle">REGISTRO DE CLIENTE</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        
+      <div class="modal-body">
+        
+          
+        
+             <center>
+          <form class="login" action="ServletUsuarioCliente" method="post" >
+                <input type="hidden" name="accion" value="insertar"/>
+           
+                <label>Correo</label>
+                <input type="text" placeholder="Usuario" name="txtCorreo"  >
+                 <br><br>
+                   <label>Contraseña</label>
+                  <input type="password" placeholder="Password" name="txtPass" required="">
+                  <br><br> <input type="submit"  class="btn btn-success"  value="Registrar Cliente" >  
+            </form>
+             </center>
+       
+      </div>
+        
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
       
       </div>
     </div>
