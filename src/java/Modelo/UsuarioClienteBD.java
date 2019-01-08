@@ -43,29 +43,24 @@ public class UsuarioClienteBD {
    
     //este metodo trae todo los datos de la tabla tb_usuario_cliente
     //muestra en formFichaUsuarioCliente
-public static ArrayList<UsuarioCliente> obtenerUsuarioCliente(int num)
-  {
-    ArrayList<UsuarioCliente> lista = new ArrayList();
-    try
-    {
-      CallableStatement cl = Conexion.getConexion().prepareCall("SELECT * FROM tb_usuario_cliente where id_usu_clie = ?");
-      
-      cl.setInt(1, num);
-      ResultSet rs = cl.executeQuery();
-      while (rs.next())
-      {
-        UsuarioCliente v = new UsuarioCliente(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5));
-        lista.add(v);
-      }
+
+ public static UsuarioCliente obtenerUsuarioCliente(int num) {
+        UsuarioCliente a=null;
+        try {
+            CallableStatement  cl = Conexion.getConexion().prepareCall("SELECT * FROM tb_usuario_cliente where id_usu_clie = ?");
+            cl.setInt(1, num);
+            ResultSet rs = cl.executeQuery();
+            while (rs.next()) {
+                a=new UsuarioCliente(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5)); 
+                        
+            }
+        }catch (Exception e) {}
+        return a;
     }
-    catch (Exception e)
-    {
-      System.out.println(e);
-    }
-    return lista;
-  }    
-    
-    
+ 
+
+
+
     
     
     

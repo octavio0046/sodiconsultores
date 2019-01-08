@@ -8,6 +8,8 @@ package Modelo;
 import Utils.Conexion;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 
 public class ClienteBD {
@@ -49,6 +51,49 @@ public class ClienteBD {
     catch (Exception localException) {}
     return rpta;
   }
+    
+    
+     
+    public static ArrayList<Cliente> obtenerCodCliente(int num)
+  {
+    ArrayList<Cliente> lista2 = new ArrayList();
+    try
+    {
+      CallableStatement cl = Conexion.getConexion().prepareCall(" select  * from tb_clientes where id_cliente=? ");
+      cl.setInt(1, num);
+      ResultSet rs = cl.executeQuery();
+      while (rs.next())
+      {
+        Cliente v = new Cliente(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getInt(13),rs.getInt(14),rs.getInt(15),rs.getString(16),rs.getString(17),rs.getString(18),rs.getString(19),rs.getInt(20));
+        lista2.add(v);
+      }
+    }
+    catch (Exception e)
+    {
+      System.out.println(e);
+    }
+    return lista2;
+  }
+    
+    
+ public static Cliente obtenerClientePrueba(int codigo) {
+        Cliente p=null;
+        try {
+            CallableStatement  cl = Conexion.getConexion().prepareCall("select * from tb_clientes where id_cliente = ?");
+            cl.setInt(1, codigo);
+            ResultSet rs = cl.executeQuery();
+            while (rs.next()) {
+                p=new Cliente(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getInt(13),rs.getInt(14),rs.getInt(15),rs.getString(16),rs.getString(17),rs.getString(18),rs.getString(19),rs.getInt(20)); 
+                        
+            }
+        }catch (Exception e) {}
+        return p;
+    }
+ 
+    
+    
+    
+    
     
     
     

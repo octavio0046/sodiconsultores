@@ -11,7 +11,6 @@ package Modelo;
  */
 public class Cliente {
    private int id_cliente;
-   private String nombre_usuario;
    private int id_usu_clie;
    private String nombre1;
    private String nombre2;
@@ -29,6 +28,11 @@ public class Cliente {
    private String correo;
    private String fechaIngreso;
    private String fecha_final;
+   private String nombre_usuario;
+  //nuevo
+   private int estado;
+
+   
 
    //constructor para ingresar los datos del cliente en la tabla tb_clientes para la clase 
    //ClienteBD y para el sevlet Cliente
@@ -53,6 +57,50 @@ public class Cliente {
         this.correo = correo;
     }
 
+    //constructor que obtiene todos los campos de la tabla tb_clientes en la base de datos 
+    //lo utilizaré en la vista formfichaUsuarioCliente para mostrar los datos en las tablas
+
+    public Cliente(int id_cliente, int id_usu_clie, String nombre1, String nombre2, String apellido1, String apellido2, String nacimiento, int edad, String pais, String departamento, String recidencia, String direccion, int tel1, int tel2, int recidencial, String correo, String fechaIngreso, String fecha_final, String nombre_usuario, int estado) {
+        this.id_cliente = id_cliente;
+        this.id_usu_clie = id_usu_clie;
+        this.nombre1 = nombre1;
+        this.nombre2 = nombre2;
+        this.apellido1 = apellido1;
+        this.apellido2 = apellido2;
+        this.nacimiento = nacimiento;
+        this.edad = edad;
+        this.pais = pais;
+        this.departamento = departamento;
+        this.recidencia = recidencia;
+        this.direccion = direccion;
+        this.tel1 = tel1;
+        this.tel2 = tel2;
+        this.recidencial = recidencial;
+        this.correo = correo;
+        this.fechaIngreso = fechaIngreso;
+        this.fecha_final = fecha_final;
+        this.nombre_usuario = nombre_usuario;
+        this.estado = estado;
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+
+ 
+   
     public int getId_cliente() {
         return id_cliente;
     }

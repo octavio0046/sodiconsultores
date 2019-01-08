@@ -4,11 +4,10 @@
     Author     : OctavioHerrera
 --%>
 
+<%@page import="Modelo.UsuariosBD"%>
 <%@page import="Modelo.Usuarios"%>
 <%@page import="Modelo.Usuarios"%>
-<%@page import="Modelo.DetallePaciente"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="Modelo.Paciente"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page session="true"%>
 <!DOCTYPE html>
@@ -42,7 +41,7 @@
   
  
             <%
-                ArrayList<Usuarios> lista = DetallePaciente.obtenerCodUsuario(Integer.parseInt(request.getParameter("cod")));
+                ArrayList<Usuarios> lista = UsuariosBD.obtenerCodUsuario(Integer.parseInt(request.getParameter("cod")));
 
                 for (int i = 0; i < lista.size(); i++) {
                     Usuarios d = lista.get(i);
