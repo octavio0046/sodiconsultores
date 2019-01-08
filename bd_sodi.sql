@@ -84,15 +84,8 @@ select @id;
 
 
 create table tb_clientes(
-id_cliente int auto_increment,
-id_enlace int not null,
-id_estudio int not null,
-id_formacion int not null,
-id_info int not null,
-id_estado int not null,
-id_campo int not null,
-id_usu_cliente int not null,
-cod_usuario int not null,
+id_cliente int ,
+id_usu_clie int not null,
 nombre1 varchar(50),
 nombre2 varchar(50),
 apellido1 varchar(50),
@@ -109,16 +102,23 @@ recidencial int,
 correo varchar(50),
 fechaRegistro varchar(50),
 fecha_final varchar(50),
+nombre_usuario varchar(50),
+estado int,
 primary key (id_cliente),
-foreign key (id_enlace) references tb_enlaces(id_enlace),
-foreign key (id_estudio) references tb_estudios(id_estudio),
-foreign key (id_estudio) references tb_estudios(id_estudio),
-foreign key (id_formacion) references tb_formaciones(id_formacion),
-foreign key (id_info) references tb_info(id_info),
-foreign key (id_estado) references tb_estados(id_estado),
-foreign key (id_campo) references tb_campos(id_compo),
-foreign key (id_usuario_cliente) references tb_usuario_cliente(id_usu_clie)
+foreign key (id_usu_clie) references tb_usuario_cliente(id_usu_clie)
 );
+
+DELIMITER &&
+CREATE PROCEDURE insertar_usuario_cliente (id_cliente int ,nombre_usuario varchar(50),id_usu_clie int,
+nombre1 varchar(50),nombre2 varchar(50),apellido1 varchar(50),apellido2 varchar(50),
+nacimiento varchar(50),edad varchar(50),pais varchar(50),departamento varchar(50),
+recidencia varchar(50),direccion varchar(50),tel1 int,tel2 int,recidencial int,
+correo varchar(50))
+BEGIN
+INSERT INTO tb_clientes VALUES(id_cliente,id_usu_clie,nombre1,nombre2 ,
+apellido1,apellido2,nacimiento,edad,pais,departamento,recidencia,direccion,
+tel1,tel2 ,recidencial ,correo,now(),'aun no',nombre_usuario,1);
+END&&
 
 
 
