@@ -149,6 +149,10 @@
 
                                            <label for="exampleFormControlInput1">Email address</label>
                                     <input type="email" name="txtCorreo" value="<%=p.getCorreo()%>" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                                   
+                                    
+                                    <label for="exampleFormControlInput1">Estados</label>
+                                    <input type="number" name="txtEstado" value="<%=p.getEstado()%>" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
                               
                                
                                  
@@ -156,7 +160,7 @@
                                 </div>
                                         
                                <input type="submit" class="btn btn-outline-success" value="Registrar"  name="Registrarse" />
-                           <input type="hidden"  name="accion" value="RegistrarCliente"/>
+                           <input type="hidden"  name="accion" value="ActualizarCliente"/>
                            
  
                             </form>

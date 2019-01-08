@@ -57,9 +57,30 @@ public class Cliente {
         this.correo = correo;
     }
 
-    //constructor que obtiene todos los campos de la tabla tb_clientes en la base de datos 
-    //lo utilizaré en la vista formfichaUsuarioCliente para mostrar los datos en las tablas
+    //este construcor sera para la actualizacion se usara en el metodo actualizar en servletClientes
 
+    public Cliente(int id_cliente, String nombre1, String nombre2, String apellido1, String apellido2, String nacimiento, int edad, String pais, String departamento, String recidencia, String direccion, int tel1, int tel2, int recidencial, String correo, String nombre_usuario, int estado) {
+        this.id_cliente = id_cliente;
+        this.nombre1 = nombre1;
+        this.nombre2 = nombre2;
+        this.apellido1 = apellido1;
+        this.apellido2 = apellido2;
+        this.nacimiento = nacimiento;
+        this.edad = edad;
+        this.pais = pais;
+        this.departamento = departamento;
+        this.recidencia = recidencia;
+        this.direccion = direccion;
+        this.tel1 = tel1;
+        this.tel2 = tel2;
+        this.recidencial = recidencial;
+        this.correo = correo;
+        this.nombre_usuario = nombre_usuario;
+        this.estado = estado;
+    }
+
+    
+    //construcor para obtner todos los campos de la tabla
     public Cliente(int id_cliente, int id_usu_clie, String nombre1, String nombre2, String apellido1, String apellido2, String nacimiento, int edad, String pais, String departamento, String recidencia, String direccion, int tel1, int tel2, int recidencial, String correo, String fechaIngreso, String fecha_final, String nombre_usuario, int estado) {
         this.id_cliente = id_cliente;
         this.id_usu_clie = id_usu_clie;
@@ -83,6 +104,10 @@ public class Cliente {
         this.estado = estado;
     }
 
+  
+
+    
+    
     
     
     

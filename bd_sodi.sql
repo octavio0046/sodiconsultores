@@ -62,6 +62,7 @@ primary key (id_usu_clie)
 );
 
 drop table tb_usuario_cliente;
+drop table tb_clientes;
 
 DELIMITER &&
 CREATE PROCEDURE insertar_usuario_cliente (inout cod int,
@@ -69,12 +70,13 @@ correo varchar(50),contrasena varchar(50))
 BEGIN
 select ifnull(max(id_usu_clie),0)+1 into cod from tb_usuario_cliente;
 INSERT INTO tb_usuario_cliente VALUES(cod,correo,contrasena,now(),1);
+insert into tb_clientes values(cod,cod,'null','null','null','null','null',0,'null'
+,'null','null','null',0,0,0,'null','null','null','null',1);
 END&&
-
-
 
 drop procedure insertar_usuario_cliente;
 
+select * from tb_clientes;
 SELECT * from tb_usuario_cliente;
 
 set @id:=0;
@@ -109,7 +111,7 @@ foreign key (id_usu_clie) references tb_usuario_cliente(id_usu_clie)
 );
 
 DELIMITER &&
-CREATE PROCEDURE insertar_usuario_cliente (id_cliente int ,nombre_usuario varchar(50),id_usu_clie int,
+CREATE PROCEDURE insertar_cliente (id_cliente int ,nombre_usuario varchar(50),id_usu_clie int,
 nombre1 varchar(50),nombre2 varchar(50),apellido1 varchar(50),apellido2 varchar(50),
 nacimiento varchar(50),edad varchar(50),pais varchar(50),departamento varchar(50),
 recidencia varchar(50),direccion varchar(50),tel1 int,tel2 int,recidencial int,
@@ -120,11 +122,34 @@ apellido1,apellido2,nacimiento,edad,pais,departamento,recidencia,direccion,
 tel1,tel2 ,recidencial ,correo,now(),'aun no',nombre_usuario,1);
 END&&
 
+DELIMITER &&
+CREATE PROCEDURE actualizar_cliente (id int ,
+nombre1 varchar(50),nombre2 varchar(50),apellido1 varchar(50),apellido2 varchar(50),
+nacimiento varchar(50),edad varchar(50),pais varchar(50),departamento varchar(50),
+recidencia varchar(50),direccion varchar(50),tel1 int,tel2 int,recidencial int,
+correo varchar(50),nombre_usuario varchar(50),estado int)
+BEGIN
+update tb_clientes set 
+nombre1=nombre1,
+nombre2=nombre2 ,
+apellido1=apellido1,
+apellido2=apellido2,
+nacimiento=nacimiento,
+edad=edad,
+pais=pais,
+departamento=departamento,
+recidencia=recidencia,
+direccion=direccion,
+tel1=tel1,
+tel2=tel2 ,
+recidencial=recidencial2 ,
+correo=correo,
+nombre_usuario=nombre_usuario,
+estado=estado where id=id_cliente;
+END&&
 
-
-
-
-
+select * from tb_clientes ;
+select  * from tb_clientes where id_cliente=17;
 
 
 CREATE TABLE TB_USUARIOS (

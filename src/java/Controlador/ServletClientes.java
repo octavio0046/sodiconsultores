@@ -40,8 +40,8 @@ public class ServletClientes extends HttpServlet {
      // mostrarUsuarios(request, response);
     } else if (accion.equals("EliminarUsuario")) {
       //eliminarUsuarios(request, response);
-    } else if (accion.equals("ModificarUsuario")) {
-      //actualizarUsuario(request, response);
+    } else if (accion.equals("ActualizarCliente")) {
+      actualizarCliente(request, response);
     } else if (accion.equals("RegistrarUsuario")) {
       //registrarUsuario(request, response);
     
@@ -51,14 +51,46 @@ public class ServletClientes extends HttpServlet {
     }
   }
   
-  
+   private void actualizarCliente(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException
+  {
+   
+        int id_cliente = Integer.parseInt(request.getParameter("txtId_cliente"));
+        String nombre1 = request.getParameter("txtNombre1");
+        String nombre2 = request.getParameter("txtNombre2");
+        String apellido1 = request.getParameter("txtApellido1");
+        String apellido2 = request.getParameter("txtApellido2");
+        String nacimiento = request.getParameter("txtNacimiento");
+        int edad = Integer.parseInt(request.getParameter("txtEdad"));
+        String pais = request.getParameter("txtPais");
+        String departamento = request.getParameter("txtDepartamento");
+        String recidencia = request.getParameter("txtRecidencia");
+        String direccion = request.getParameter("txtDireccion");
+        int tel1 = Integer.parseInt(request.getParameter("txtTelefono1"));
+        int tel2 = Integer.parseInt(request.getParameter("txtTelefono2"));
+        int recidencial = Integer.parseInt(request.getParameter("txtRecidencial"));
+        String correo = request.getParameter("txtCorreo"); 
+        String nombre_usuario = request.getParameter("txtNombreUsuario");
+        int estado = Integer.parseInt(request.getParameter("txtEstado"));
+        
+        Cliente p = new Cliente(id_cliente, nombre1, nombre2, apellido1, 
+                apellido2, nacimiento, edad, pais, departamento, recidencia, direccion,
+                tel1, tel2, recidencial, correo, nombre_usuario,estado);
+      
+         boolean rpta = ClienteBD.actualizarCliente(p);
+    if (rpta) {
+      response.sendRedirect("mensaje2.jsp?men=Se actualizo de manera correcta");
+    } else {
+      response.sendRedirect("mensaje2.jsp?men=No se actualizo ");
+    }
+  }
 
   
-  
+  //por el momento este metodo no se utiliza
     private void registrarCliente(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException
   {
-     int id_cliente = Integer.parseInt(request.getParameter("txtId_cliente"));
+        int id_cliente = Integer.parseInt(request.getParameter("txtId_cliente"));
         String nombre_usuario = request.getParameter("txtNombreUsuario");
         int id_usuario_cliente = Integer.parseInt(request.getParameter("txtId_cliente"));
         String nombre1 = request.getParameter("txtNombre1");
