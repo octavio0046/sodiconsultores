@@ -23,9 +23,11 @@ public class EstudioBD {
     {
       Connection cn = Conexion.getConexion();
       
-      CallableStatement cl = cn.prepareCall("{call actualizar_estudio(?,?)}");
+      CallableStatement cl = cn.prepareCall("{call actualizar_estudio(?,?,?,?)}");
       cl.setInt(1, e.getId_cliente());
       cl.setString(2, e.getNombre_nivel_estudio());
+      cl.setString(3, e.getNombre_formacion());
+      cl.setString(4, e.getNombre_campo_estudio());
       int i = cl.executeUpdate();
       if (i == 1) {
         rpta = true;
@@ -46,7 +48,7 @@ public class EstudioBD {
             cl.setInt(1, codigo);
             ResultSet rs = cl.executeQuery();
             while (rs.next()) {
-                e=new Estudio(rs.getInt(1), rs.getString(2));
+                e=new Estudio(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4));
                         
             }
         }catch (Exception a) {}

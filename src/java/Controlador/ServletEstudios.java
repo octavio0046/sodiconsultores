@@ -59,10 +59,11 @@ public class ServletEstudios extends HttpServlet {
    
         int id_cliente = Integer.parseInt(request.getParameter("txtId_cliente"));
         String nombre1 = request.getParameter("txtNombre_nivel_estudio");
+        String nombreformacion = request.getParameter("txtNombre_formacion");
+        String nombrecampoestudio = request.getParameter("txtNombre_campo_estudio");
 
         
-        Estudio e = new Estudio(id_cliente, nombre1);
-      
+        Estudio e = new Estudio(id_cliente, nombre1, nombreformacion, nombrecampoestudio);
          boolean rpta = EstudioBD.actualizarEstudio(e);
     if (rpta) {
       response.sendRedirect("mensaje2.jsp?men=Se actualizo de manera correcta");

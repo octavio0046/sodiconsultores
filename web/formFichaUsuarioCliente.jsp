@@ -14,7 +14,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-     
+
     <div class="encabezado">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
@@ -22,20 +22,19 @@
     </div>
     <div class="contenido">
 
-    <%
-        UsuarioCliente a = UsuarioClienteBD.obtenerUsuarioCliente(Integer.parseInt(request.getParameter("cod")));
+        <%        UsuarioCliente a = UsuarioClienteBD.obtenerUsuarioCliente(Integer.parseInt(request.getParameter("cod")));
 
-    %>  
-        
-        
-     <%-- 
- <%   ArrayList<UsuarioCliente> lista = UsuarioClienteBD.obtenerUsuarioCliente(Integer.parseInt(request.getParameter("cod")));
+        %>  
+
+
+        <%-- 
+    <%   ArrayList<UsuarioCliente> lista = UsuarioClienteBD.obtenerUsuarioCliente(Integer.parseInt(request.getParameter("cod")));
 
        for (int i = 0; i < lista.size(); i++) {
                 UsuarioCliente d = lista.get(i);
      %> 
---%>
-   
+        --%>
+
 
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -44,10 +43,10 @@
                 <li class="breadcrumb-item active" aria-current="page">Fecha Creacion: <%=a.getFecha_creacion()%></li>
             </ol>
         </nav>
-            
-    
-    
-     
+
+
+
+
 
         <%-- 
      aqui empiezan los menus desplegables
@@ -68,7 +67,7 @@
                         <center>
                             <%-- Inicio de formualario--%>
                             <form action="ServletClientes" method="get">
-                              
+
                                 <div class="form-group">
                                     <input type="text"   name="txtId_cliente"  hidden="" value="<%=a.getId_usu_clie()%>">
                                     <%if (sesionOK.getAttribute("perfil") != null) {
@@ -80,40 +79,40 @@
                                         %>
 
 
-                                   <%
-                                        Cliente p = ClienteBD.obtenerClientePrueba(Integer.parseInt(request.getParameter("cod")));       
+                                    <%
+                                        Cliente p = ClienteBD.obtenerClientePrueba(Integer.parseInt(request.getParameter("cod")));
                                     %>
-                                    
 
-                                   <label for="exampleFormControlInput1">PRIMER NOMBRE</label>
+
+                                    <label for="exampleFormControlInput1">PRIMER NOMBRE</label>
                                     <input type="text" name="txtNombre1" value="<%=p.getNombre1()%>" class="form-control" id="exampleFormControlInput1" >
-   
-                                    
+
+
                                     <label for="exampleFormControlInput1">SEGUNDO NOMBRE</label>
                                     <input type="text" name="txtNombre2" value="<%=p.getNombre2()%>"  class="form-control" id="exampleFormControlInput1" >
 
 
-                                    
+
                                     <label for="exampleFormControlInput1">PRIMER APELLIDO</label>
                                     <input type="text" name="txtApellido1" value="<%=p.getApellido1()%>" class="form-control" id="exampleFormControlInput1" >
 
-                                  
+
                                     <label for="exampleFormControlInput1">SEGUNDO APELLIDO</label>
                                     <input type="text" name="txtApellido2" value="<%=p.getApellido2()%>" class="form-control" id="exampleFormControlInput1" >
 
-                                     
+
                                     <label for="exampleFormControlInput1">FECHA NACIMIENTO</label>
                                     <input type="date" name="txtNacimiento" value="<%=p.getNacimiento()%>" class="form-control" id="exampleFormControlInput1" >
 
-                                    
-                                    
-                                    
+
+
+
                                     <label for="exampleFormControlInput1">EDAD</label>
                                     <input type="int" name="txtEdad" value="<%=p.getEdad()%>" class="form-control" id="exampleFormControlInput1" >
 
-                                     
-                                    
-                                    
+
+
+
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1">PAIS</label>
                                         <select class="form-control" value="<%=p.getPais()%>"  name="txtPais" id="exampleFormControlSelect1">
@@ -148,23 +147,23 @@
 
                                            <label for="exampleFormControlInput1">Email address</label>
                                     <input type="email" name="txtCorreo" value="<%=p.getCorreo()%>" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-                                   
-                                    
+
+
                                     <label for="exampleFormControlInput1">Estados</label>
                                     <input type="number" readonly="" name="txtEstado" value="<%=p.getEstado()%>" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-                              
-                               
-                                 
-  
+
+
+
+
                                 </div>
-                                        
-                               <input type="submit" class="btn btn-outline-success" value="Registrar"  name="Registrarse" />
-                           <input type="hidden"  name="accion" value="ActualizarCliente"/>
-                           
- 
+
+                                <input type="submit" class="btn btn-outline-success" value="Registrar"  name="Registrarse" />
+                                <input type="hidden"  name="accion" value="ActualizarCliente"/>
+
+
                             </form>
-                                  
-                               
+
+
 
                         </center>
                         <%-- Fin de formualario--%>
@@ -181,50 +180,78 @@
                 </div>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                     <div class="card-body">
- <%-- 
-     anicia el formuario2
-        --%>
-        <center>
-            <form action="ServletEstudios" method="get">
-  
-                
-                <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_usu_clie()%>">
-                
-         <%
-               Estudio e = EstudioBD.obtenerEstudio(Integer.parseInt(request.getParameter("cod")));       
-        %>  
-                
-             
-        
-        
-  <div class="form-group">    
-    <select name="txtNombre_nivel_estudio" class="form-control" id="exampleFormControlSelect1">
-      <option>Primaria</option>
-      <option>Básico</option>
-      <option>Diversificado</option>
-      <option>Doctorado</option>
-      <option>Postgrado</option>
-    </select>
-  </div>
-  
-        
-   <input type="submit" class="btn btn-outline-success" value="ACTUALIZAR"  name="Registrarse" />
-   <input type="hidden"  name="accion" value="ActualizarEstudio"/>
-   <br>
-   <br>
-   <div class="form-group">
-    <label for="exampleFormControlInput1">Nivel de estudio actual</label>
-  <input type="text" readonly=""  value="<%=e.getNombre_nivel_estudio()%>" class="form-control" id="exampleFormControlInput1" >
-         
+                        <%-- 
+                            anicia el formuario2
+                        --%>
+                        <center>
+                            <form action="ServletEstudios" method="get">
 
-  </div>
 
-  
-</form>
-            </center>
-             <%-- 
-     termina  el formuario2
-        --%>            
+                                <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_usu_clie()%>">
+
+                                <%
+                                    Estudio e = EstudioBD.obtenerEstudio(Integer.parseInt(request.getParameter("cod")));
+                                %>  
+
+                                
+                                <label for="exampleFormControlSelect1">NIVEL DE ESTUDIO</label>
+                                <div class="form-group">    
+                                    <select name="txtNombre_nivel_estudio" class="form-control" id="exampleFormControlSelect1">
+                                        <option>PRIMARIA</option>
+                                        <option>BÁSICO</option>
+                                        <option>DIVERSIFICADO</option>
+                                        <option>DOCTORADO</option>
+                                        <option>POST-GRADO</option>
+                                    </select>
+                                </div>   
+                                
+                                  
+                            <label for="exampleFormControlSelect1">CARRERA EN CURSO</label>
+                                <div class="form-group">    
+                                    <select name="txtNombre_formacion" class="form-control" id="exampleFormControlSelect1">
+                                        <option>INGENIERIA</option>
+                                        <option>LICENCIATURA</option>
+                                        <option></option>
+                                        <option></option>
+                                        <option></option>
+                                    </select>
+                                </div>   
+                                
+                            
+                                       <label for="exampleFormControlSelect1">CAMPO DE ESTUDIO</label>
+                                <div class="form-group">    
+                                    <select name="txtNombre_campo_estudio" class="form-control" id="exampleFormControlSelect1">
+                                        <option>INFORMATICA</option>
+                                        <option>AGRICULA</option>
+                                        <option></option>
+                                        <option></option>
+                                        <option></option>
+                                    </select>
+                                </div>   
+                            
+                                
+                                <input type="submit" class="btn btn-outline-success" value="ACTUALIZAR"  name="Registrarse" />
+                                <input type="hidden"  name="accion" value="ActualizarEstudio"/>
+                                <br>
+                                <br>
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Nivel de estudio ACTUAL</label>
+                                    <input type="text" readonly=""  value="<%=e.getNombre_nivel_estudio()%>" class="form-control" id="exampleFormControlInput1" >
+                                </div>  
+                              
+                             <label for="exampleFormControlInput1">Formacion Academica ACTUAL</label>
+                            <input type="text" readonly="" name="" value="<%=e.getNombre_formacion()%>" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+
+                              <label for="exampleFormControlInput1">Campo de Estudio ACTUAL</label>
+                            <input type="text" readonly="" name="" value="<%=e.getNombre_campo_estudio()%>" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+
+                            
+                                
+                            </form>
+                        </center>
+                        <%-- 
+                termina  el formuario2
+                        --%>            
                     </div>
                 </div>
             </div>
@@ -242,13 +269,35 @@
                     </div>
                 </div>
             </div>
+                    
+                    
+                                <div class="card">
+                <div class="card-header" id="headingThree2">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree2" aria-expanded="false" aria-controls="collapseThree2">
+                            #4
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseThree2" class="collapse" aria-labelledby="headingThree2" data-parent="#accordionExample">
+                    <div class="card-body">
+                        contenido para #4 
+                    </div>
+                </div>
+            </div>
+                    
+                         
+                    
+                    
+                    
+                    
         </div>
- 
 
-         
-        
-      
-     
+
+
+
+
+
 
     </div>
 </html>

@@ -6,22 +6,25 @@ DROP DATABASE SODI_CONSULTORES;
 create table tb_estudios (
 id_cliente int not null,
 nombre_nivel_estudio varchar(50),
+nombre_formacion varchar(50),
+nombre_campo_estudio varchar(50),
 primary key (id_cliente)
 );
 
+drop table tb_estudios;
+
+
 
 DELIMITER &&
-CREATE PROCEDURE insertar_estudio (id_cliente int,nombre_nivel_estudio varchar(50))
+CREATE PROCEDURE actualizar_estudio (id int,nombre varchar(50),formacion varchar(50)
+,campo_estudio varchar(50))
 BEGIN
-INSERT INTO tb_estudios VALUES(id_cliente,nombre_nivel_estudio);
+update tb_estudios set 
+nombre_nivel_estudio =nombre ,
+nombre_formacion=formacion,
+nombre_campo_estudio=campo_estudio
+where id_cliente=id;
 END&&
-
-DELIMITER &&
-CREATE PROCEDURE actualizar_estudio (id int,nombre varchar(50))
-BEGIN
-update tb_estudios set nombre_nivel_estudio =nombre where id_cliente=id;
-END&&
-
 
 
 
@@ -42,19 +45,6 @@ END&&
 drop procedure insertar_enlace;
 
 
-
-create table tb_formaciones(
-id_formacion int auto_increment,
-nombre_formacion varchar(50),
-primary key (id_formacion)
-);
-
-
-create table tb_campos(
-id_campo int auto_increment,
-nombre_campo varchar(50),
-primary key(id_campo)
-);
 
 create table tb_estados(
 id_estado int auto_increment,
@@ -80,8 +70,6 @@ estado int ,
 primary key (id_usu_clie) 
 );
 
-drop table tb_usuario_cliente;
-drop table tb_clientes;
 
 DELIMITER &&
 CREATE PROCEDURE insertar_usuario_cliente (inout cod int,
@@ -92,13 +80,9 @@ INSERT INTO tb_usuario_cliente VALUES(cod,correo,contrasena,now(),1);
 insert into tb_clientes values(cod,cod,'Primer Nombre','Segundo Nombre','Primer Apellido',
 'segundo apellido','Nacimiento',0,'pais'
 ,'Departamento','recidencia','direccion',0,0,0,'correo',now(),'','',1);
-insert into tb_estudios values(cod,'NINGUNO');
+insert into tb_estudios values(cod,'NINGUNO','NINGUNO','NINGUNO');
 END&&
 
-drop procedure insertar_usuario_cliente;
-
-select * from tb_clientes;
-SELECT * from tb_usuario_cliente;
 
 set @id:=0;
 call insertar_usuario_cliente(@id,'asdf','afsd');
@@ -192,11 +176,6 @@ correo=corre,
 nombre_usuario=nombre_usu,
 estado=es where id_cliente=id;
 END&&
-
-DROP procedure actualizar_cliente;
-
-select * from tb_clientes ;
-select  * from tb_clientes where id_cliente=17;
 
 
 CREATE TABLE TB_USUARIOS (
