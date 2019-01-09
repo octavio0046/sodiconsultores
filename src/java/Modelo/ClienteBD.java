@@ -120,7 +120,7 @@ public class ClienteBD {
     ArrayList<Cliente> lista = new ArrayList();
     try
     {
-      CallableStatement cl = Conexion.getConexion().prepareCall(" select * from tb_clientes and estado=1");
+      CallableStatement cl = Conexion.getConexion().prepareCall(" select * from tb_clientes ");
       
       ResultSet rs = cl.executeQuery();
       while (rs.next())
@@ -143,8 +143,9 @@ public class ClienteBD {
     ArrayList<Cliente> lista = new ArrayList();
     try
     {
-      CallableStatement cl = Conexion.getConexion().prepareCall("select * from tb_clientes where nombre1=?  and estado=1");
+      CallableStatement cl = Conexion.getConexion().prepareCall("select * from tb_clientes where nombre1=? and estado=1");
       cl.setString(1, nom);
+ 
       ResultSet rs = cl.executeQuery();
       while (rs.next())
       {

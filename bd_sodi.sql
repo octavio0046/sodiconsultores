@@ -3,26 +3,45 @@ USE BD_SODI_CONSULTORES;
 
 DROP DATABASE SODI_CONSULTORES;
 
+create table tb_estudios (
+id_cliente int not null,
+nombre_nivel_estudio varchar(50),
+primary key (id_cliente)
+);
+
+
+DELIMITER &&
+CREATE PROCEDURE insertar_estudio (id_cliente int,nombre_nivel_estudio varchar(50))
+BEGIN
+INSERT INTO tb_estudios VALUES(id_cliente,nombre_nivel_estudio);
+END&&
+
+DELIMITER &&
+CREATE PROCEDURE actualizar_estudio (id int,nombre varchar(50))
+BEGIN
+update tb_estudios set nombre_nivel_estudio =nombre where id_cliente=id;
+END&&
+
+
 
 
 create table tb_enlaces(
-id_enlace int auto_increment,
+id_cliente int not null,
 nombre_enlace varchar(50),
 link varchar(100),
-primary key (id_enlace)
+foreign key (id_cliente) references tb_clientes (id_cliente)
 );
 
 drop table tb_enlaces;
 
-insert into tb_enlaces values(default,'facebook','www.octavio.facebook.com');
-insert into tb_enlaces values(default,'instagram','octavioherrera');
+DELIMITER &&
+CREATE PROCEDURE insertar_enlace (id_cliente int,nombre_enlace varchar(50),link varchar(100))
+BEGIN
+INSERT INTO tb_enlaces VALUES(id_cliente,nombre_enlace,link);
+END&&
+drop procedure insertar_enlace;
 
 
-create table tb_estudios (
-id_estudio int auto_increment,
-nombre_nivel_estudio varchar(50),
-primary key (id_estudio)
-);
 
 create table tb_formaciones(
 id_formacion int auto_increment,
@@ -73,6 +92,7 @@ INSERT INTO tb_usuario_cliente VALUES(cod,correo,contrasena,now(),1);
 insert into tb_clientes values(cod,cod,'Primer Nombre','Segundo Nombre','Primer Apellido',
 'segundo apellido','Nacimiento',0,'pais'
 ,'Departamento','recidencia','direccion',0,0,0,'correo',now(),'','',1);
+insert into tb_estudios values(cod,'NINGUNO');
 END&&
 
 drop procedure insertar_usuario_cliente;
@@ -110,6 +130,8 @@ estado int,
 primary key (id_cliente),
 foreign key (id_usu_clie) references tb_usuario_cliente(id_usu_clie)
 );
+
+
 
 DELIMITER &&
 CREATE PROCEDURE insertar_cliente (

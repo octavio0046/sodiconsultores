@@ -4,6 +4,8 @@
     Author     : OCTAVIOH
 --%>
 
+<%@page import="Modelo.Estudio"%>
+<%@page import="Modelo.EstudioBD"%>
 <%@page import="Modelo.ClienteBD"%>
 <%@page import="Modelo.Cliente"%>
 <%@page import="Modelo.UsuarioClienteBD"%>
@@ -56,7 +58,7 @@
                 <div class="card-header" id="headingOne">
                     <h2 class="mb-0">
                         <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            Personal #1
+                            INFOMACION PERSONAL
                         </button>
                     </h2>
                 </div>
@@ -79,10 +81,7 @@
 
 
                                    <%
-                                       
-                                        Cliente p = ClienteBD.obtenerClientePrueba(Integer.parseInt(request.getParameter("cod")));
-                                             
-                           
+                                        Cliente p = ClienteBD.obtenerClientePrueba(Integer.parseInt(request.getParameter("cod")));       
                                     %>
                                     
 
@@ -152,7 +151,7 @@
                                    
                                     
                                     <label for="exampleFormControlInput1">Estados</label>
-                                    <input type="number" name="txtEstado" value="<%=p.getEstado()%>" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                                    <input type="number" readonly="" name="txtEstado" value="<%=p.getEstado()%>" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
                               
                                
                                  
@@ -176,13 +175,56 @@
                 <div class="card-header" id="headingTwo">
                     <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            #2
+                            ESTUDIOS
                         </button>
                     </h2>
                 </div>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                     <div class="card-body">
-                        contendio para el #2 
+ <%-- 
+     anicia el formuario2
+        --%>
+        <center>
+            <form action="ServletEstudios" method="get">
+  
+                
+                <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_usu_clie()%>">
+                
+         <%
+               Estudio e = EstudioBD.obtenerEstudio(Integer.parseInt(request.getParameter("cod")));       
+        %>  
+                
+             
+        
+        
+  <div class="form-group">    
+    <select name="txtNombre_nivel_estudio" class="form-control" id="exampleFormControlSelect1">
+      <option>Primaria</option>
+      <option>Básico</option>
+      <option>Diversificado</option>
+      <option>Doctorado</option>
+      <option>Postgrado</option>
+    </select>
+  </div>
+  
+        
+   <input type="submit" class="btn btn-outline-success" value="ACTUALIZAR"  name="Registrarse" />
+   <input type="hidden"  name="accion" value="ActualizarEstudio"/>
+   <br>
+   <br>
+   <div class="form-group">
+    <label for="exampleFormControlInput1">Nivel de estudio actual</label>
+  <input type="text" readonly=""  value="<%=e.getNombre_nivel_estudio()%>" class="form-control" id="exampleFormControlInput1" >
+         
+
+  </div>
+
+  
+</form>
+            </center>
+             <%-- 
+     termina  el formuario2
+        --%>            
                     </div>
                 </div>
             </div>

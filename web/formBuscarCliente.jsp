@@ -33,17 +33,10 @@
 
             <form action="ServletClientes" method="get">
                 <input type="hidden" name="accion" value="BuscarUnCliente" />
-
-
-
                 <label>Busque por Nombre</label>
                 <input type="text" placeholder="Nombre Paciente" name="txtNombre" style=" width: 250px; height: 50px;text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" >
-
                 <br> <br>  <input type="submit"  class="btn btn-success"  value="Buscar" >    
-              
-
             </form>
-
         </center>   
 
         <h2 align="center">Lista de Pacientes</h2>  
@@ -79,12 +72,10 @@
                         <td><%=v.getFechaIngreso()%></td>
                
                         <td>
-                               <a href="fichaPaciente.jsp?cod=<%=v.getId_cliente()%>">
+                               <a href="formFichaUsuarioCliente.jsp?cod=<%=v.getId_cliente()%>">
                                 <img src="ficha.png" whit="30" height="30">
                             </a>
                         </td>
-
-       
 
                         <%        if (sesionOK.getAttribute("perfil") != null && sesionOK.getAttribute("perfil").equals("ADMIN")) {
 
@@ -102,26 +93,16 @@
                         
                         </td>
 
-
-                       
                             <%                    }
 
                             %>
-
-
                     </tr>
-
-
                     <%                  }
 
 
                     %>
 
                 </tbody>
-
-
-
-
 
             </table>
         </div>
