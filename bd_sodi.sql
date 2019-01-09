@@ -70,8 +70,9 @@ correo varchar(50),contrasena varchar(50))
 BEGIN
 select ifnull(max(id_usu_clie),0)+1 into cod from tb_usuario_cliente;
 INSERT INTO tb_usuario_cliente VALUES(cod,correo,contrasena,now(),1);
-insert into tb_clientes values(cod,cod,'null','null','null','null','null',0,'null'
-,'null','null','null',0,0,0,'null','null','null','null',1);
+insert into tb_clientes values(cod,cod,'Primer Nombre','Segundo Nombre','Primer Apellido',
+'segundo apellido','Nacimiento',0,'pais'
+,'Departamento','recidencia','direccion',0,0,0,'correo',now(),'','',1);
 END&&
 
 drop procedure insertar_usuario_cliente;
@@ -111,10 +112,21 @@ foreign key (id_usu_clie) references tb_usuario_cliente(id_usu_clie)
 );
 
 DELIMITER &&
-CREATE PROCEDURE insertar_cliente (id_cliente int ,nombre_usuario varchar(50),id_usu_clie int,
-nombre1 varchar(50),nombre2 varchar(50),apellido1 varchar(50),apellido2 varchar(50),
-nacimiento varchar(50),edad varchar(50),pais varchar(50),departamento varchar(50),
-recidencia varchar(50),direccion varchar(50),tel1 int,tel2 int,recidencial int,
+CREATE PROCEDURE insertar_cliente (
+id_cliente int ,
+nombre_usuario varchar(50),
+id_usu_clie int,
+nombre1 varchar(50),
+nombre2 varchar(50),
+apellido1 varchar(50),
+apellido2 varchar(50),
+nacimiento varchar(50),
+edad varchar(50),
+pais varchar(50),
+departamento varchar(50),
+recidencia varchar(50),
+direccion varchar(50),
+tel1 int,tel2 int,recidencial int,
 correo varchar(50))
 BEGIN
 INSERT INTO tb_clientes VALUES(id_cliente,id_usu_clie,nombre1,nombre2 ,
@@ -123,30 +135,43 @@ tel1,tel2 ,recidencial ,correo,now(),'aun no',nombre_usuario,1);
 END&&
 
 DELIMITER &&
-CREATE PROCEDURE actualizar_cliente (id int ,
-nombre1 varchar(50),nombre2 varchar(50),apellido1 varchar(50),apellido2 varchar(50),
-nacimiento varchar(50),edad varchar(50),pais varchar(50),departamento varchar(50),
-recidencia varchar(50),direccion varchar(50),tel1 int,tel2 int,recidencial int,
-correo varchar(50),nombre_usuario varchar(50),estado int)
+CREATE PROCEDURE actualizar_cliente (
+id int ,
+nom1 varchar(50),
+nom2 varchar(50),
+ape1 varchar(50),
+ape2 varchar(50),
+naci varchar(50),
+ed varchar(50),
+pa varchar(50),
+dep varchar(50),
+reci varchar(50),
+dire varchar(50),
+te1 int,te2 int,recide int,
+corre varchar(50),
+nombre_usu varchar(50),
+es int)
 BEGIN
 update tb_clientes set 
-nombre1=nombre1,
-nombre2=nombre2 ,
-apellido1=apellido1,
-apellido2=apellido2,
-nacimiento=nacimiento,
-edad=edad,
-pais=pais,
-departamento=departamento,
-recidencia=recidencia,
-direccion=direccion,
-tel1=tel1,
-tel2=tel2 ,
-recidencial=recidencial2 ,
-correo=correo,
-nombre_usuario=nombre_usuario,
-estado=estado where id=id_cliente;
+nombre1=nom1,
+nombre2=nom2 ,
+apellido1=ape1,
+apellido2=ape2,
+nacimiento=naci,
+edad=ed,
+pais=pa,
+departamento=dep,
+recidencia=reci,
+direccion=dire,
+tel1=te1,
+tel2=te2 ,
+recidencial=recide ,
+correo=corre,
+nombre_usuario=nombre_usu,
+estado=es where id_cliente=id;
 END&&
+
+DROP procedure actualizar_cliente;
 
 select * from tb_clientes ;
 select  * from tb_clientes where id_cliente=17;
