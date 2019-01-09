@@ -51,20 +51,7 @@ public class ClienteBD {
     return rpta;
   }
   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     
      public static boolean insertarCliente(Cliente p)
@@ -107,7 +94,8 @@ public class ClienteBD {
      
    
     
-    
+    //metodo para obtener los campos de un cliente por medio de su codigo 
+     //este lo utiliza el primer formulario de la vista formfichaUsuarioCliente
  public static Cliente obtenerClientePrueba(int codigo) {
         Cliente p=null;
         try {
@@ -123,9 +111,82 @@ public class ClienteBD {
     }
  
     
+ //metodo que servira como entrada para obtener todos los clientes en el formulario formBuscarUsuarioCliente.jsp
+ 
+ 
+ 
+  public static ArrayList<Cliente> obtenerClientes()
+  {
+    ArrayList<Cliente> lista = new ArrayList();
+    try
+    {
+      CallableStatement cl = Conexion.getConexion().prepareCall(" select * from tb_clientes and estado=1");
+      
+      ResultSet rs = cl.executeQuery();
+      while (rs.next())
+      {
+        Cliente v = new Cliente(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getInt(13),rs.getInt(14),rs.getInt(15),rs.getString(16),rs.getString(17),rs.getString(18),rs.getString(19),rs.getInt(20)); 
+         lista.add(v);
+      }
+    }
+    catch (Exception e)
+    {
+      System.out.println("ventas-->" + e);
+    }
+    return lista;
+  }
+ 
+ 
+  // metodo que actua en el formulario vista formBuscarcliente para buscar un cliente en especifico con todos los atributos
+    public static ArrayList<Cliente> obtenerUnCliente(String nom)
+  {
+    ArrayList<Cliente> lista = new ArrayList();
+    try
+    {
+      CallableStatement cl = Conexion.getConexion().prepareCall("select * from tb_clientes where nombre1=?  and estado=1");
+      cl.setString(1, nom);
+      ResultSet rs = cl.executeQuery();
+      while (rs.next())
+      {
+        Cliente v = new Cliente(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getInt(13),rs.getInt(14),rs.getInt(15),rs.getString(16),rs.getString(17),rs.getString(18),rs.getString(19),rs.getInt(20));
+        lista.add(v);
+      }
+    }
+    catch (Exception e)
+    {
+      System.out.println(e);
+    }
+    return lista;
+  }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ /* este metodo se utiliza para mostrar sin necesidad de solicitar
+ public static ArrayList<Cliente> obtenerClientes(){
+      ArrayList<Cliente> lista = new ArrayList<Cliente>();
+     
+      try {
+         CallableStatement cl = Conexion.getConexion().prepareCall("select * from tb_clientes");
+         ResultSet rs = cl.executeQuery();
+         while (rs.next()){
+            Cliente o = new Cliente(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getInt(13),rs.getInt(14),rs.getInt(15),rs.getString(16),rs.getString(17),rs.getString(18),rs.getString(19),rs.getInt(20));
+             lista.add(o);
+         }
+     } catch (Exception e) {}
+     return lista;
+ }
     
-    
-    
+   */ 
     
     
     

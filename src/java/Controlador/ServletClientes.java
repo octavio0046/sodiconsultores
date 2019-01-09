@@ -9,6 +9,7 @@ import Modelo.Cliente;
 import Modelo.ClienteBD;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,10 +37,10 @@ public class ServletClientes extends HttpServlet {
     throws ServletException, IOException
   {
     String accion = request.getParameter("accion");
-    if  (accion.equals("MostrarUsuarios")) {
-     // mostrarUsuarios(request, response);
-    } else if (accion.equals("EliminarUsuario")) {
-      //eliminarUsuarios(request, response);
+    if  (accion.equals("BuscarCliente")) {
+     buscarCliente(request, response);
+    } else if (accion.equals("BuscarUnCliente")) {
+      buscarUnCliente(request, response);
     } else if (accion.equals("ActualizarCliente")) {
       actualizarCliente(request, response);
     } else if (accion.equals("RegistrarUsuario")) {
@@ -50,6 +51,42 @@ public class ServletClientes extends HttpServlet {
     
     }
   }
+  
+  
+  private void buscarUnCliente(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException
+  {
+    ArrayList<Cliente> lista = new ArrayList();
+    lista = ClienteBD.obtenerUnCliente(request.getParameter("txtNombre"));
+    request.setAttribute("lista", lista);
+    request.getRequestDispatcher("formBuscarCliente.jsp").forward(request, response);
+  }
+  
+  
+  private void buscarCliente(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException
+  {
+    ArrayList<Cliente> lista = new ArrayList();
+    lista = ClienteBD.obtenerClientes();
+    request.setAttribute("lista", lista);
+    request.getRequestDispatcher("formBuscarCliente.jsp").forward(request, response);
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
    private void actualizarCliente(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException

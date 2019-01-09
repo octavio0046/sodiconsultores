@@ -62,19 +62,31 @@
         </div>
       </li>
     
- 
+  
+            <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      CLIENTES
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="ServletClientes?accion=BuscarCliente">Buscar Clientes</a>
+          <a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalLong2" >#</a>
+          <div class="dropdown-divider"></div>
+          
+        </div>
+      </li>
  
           <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       USUARIO CLIENTES
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="ServletPacientes?accion=BuscarPaciente">BuscarCliente</a>
+          <a class="dropdown-item" href="">#</a>
           <a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalLong2" >Registrar Cliente</a>
           <div class="dropdown-divider"></div>
           
         </div>
       </li>
+     
       
       
       
