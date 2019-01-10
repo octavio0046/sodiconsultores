@@ -25,8 +25,8 @@ public class EnlaceBD {
       Connection cn = Conexion.getConexion();
       
       CallableStatement cl = cn.prepareCall("{call actualizar_enlace(?,?,?)}");
-      cl.setInt(1, p.getCorrelativo());
-      cl.setInt(2, p.getId_cliente());
+      cl.setInt(1, p.getId_cliente());
+      cl.setString(2, p.getNombre_enlace());
       cl.setString(3, p.getLink());
 ;
       int i = cl.executeUpdate();
@@ -54,15 +54,15 @@ public class EnlaceBD {
     
     
     //metodo para mostrar la table informacion en la ficha usuariocliente.jsp para el formulario 3
-          public static Enlace obtenerEnlace(int codigo,int codigo2) {
+          public static Enlace obtenerEnlace(int codigo,String codigo2) {
         Enlace e=null;
         try {
-            CallableStatement  cl = Conexion.getConexion().prepareCall("select * from tb_enlaces where id_cliente=? and correlativo=?");
+            CallableStatement  cl = Conexion.getConexion().prepareCall("select * from tb_enlaces where id_cliente=? and nombre_enlace=?");
             cl.setInt(1, codigo);
-            cl.setInt(2, codigo2);
+            cl.setString(2, codigo2);
             ResultSet rs = cl.executeQuery();
             while (rs.next()) {
-                e=new Enlace(rs.getInt(1),rs.getInt(2), rs.getString(3),rs.getString(4));
+                e=new Enlace(rs.getInt(1), rs.getString(2),rs.getString(3));
                         
             }
         }catch (Exception a) {}

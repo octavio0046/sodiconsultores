@@ -58,11 +58,11 @@ public class ServletEnlaces extends HttpServlet {
   {
    
         int id_cliente = Integer.parseInt(request.getParameter("txtId_cliente"));
-        int correlativo = Integer.parseInt(request.getParameter("txtVariable"));
+        String nombre_enlace = request.getParameter("txtNombre_enlace");
         String link = request.getParameter("txtLink");
    
         
-        Enlace p = new Enlace(correlativo,id_cliente , link);
+        Enlace p = new Enlace(id_cliente, nombre_enlace, link);
       
          boolean rpta = EnlaceBD.actualizarEnlace(p);
     if (rpta) {

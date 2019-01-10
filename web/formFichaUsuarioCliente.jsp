@@ -108,14 +108,8 @@
                                     <label for="exampleFormControlInput1">FECHA NACIMIENTO</label>
                                     <input type="date" name="txtNacimiento" value="<%=p.getNacimiento()%>" class="form-control" id="exampleFormControlInput1" >
 
-
-
-
                                     <label for="exampleFormControlInput1">EDAD</label>
                                     <input type="int" name="txtEdad" value="<%=p.getEdad()%>" class="form-control" id="exampleFormControlInput1" >
-
-
-
 
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1">PAIS</label>
@@ -156,19 +150,11 @@
                                     <label for="exampleFormControlInput1">Estados</label>
                                     <input type="number" readonly="" name="txtEstado" value="<%=p.getEstado()%>" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
 
-
-
-
                                 </div>
 
                                 <input type="submit" class="btn btn-outline-success" value="Registrar"  name="Registrarse" />
                                 <input type="hidden"  name="accion" value="ActualizarCliente"/>
-
-
                             </form>
-
-
-
                         </center>
                         <%-- Fin de formualario--%>
                     </div>
@@ -189,15 +175,10 @@
                         --%>
                         <center>
                             <form action="ServletEstudios" method="get">
-
-
                                 <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_usu_clie()%>">
-
                                 <%
                                     Estudio e = EstudioBD.obtenerEstudio(Integer.parseInt(request.getParameter("cod")));
                                 %>  
-
-
                                 <label for="exampleFormControlSelect1">NIVEL DE ESTUDIO</label>
                                 <div class="form-group">    
                                     <select name="txtNombre_nivel_estudio" class="form-control" id="exampleFormControlSelect1">
@@ -347,14 +328,14 @@
 
                                     <%
                                         //la variable es el coorrelativo
-                                        int variable = 1;
+                                        String variable = "FACEBOOK";
                                         Enlace en = EnlaceBD.obtenerEnlace(Integer.parseInt(request.getParameter("cod")), variable);
                                     %>
 
                                     <form action="ServletEnlaces" method="get">
 
                                         <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_usu_clie()%>">
-                                        <input type="text" hidden=""  name="txtVariable"   value="<%=variable%>">
+                                        <input type="text" hidden=""  name="txtNombre_enlace"   value="<%=variable%>">
                                         <div class="form-group">
                                             <label for="exampleFormControlInput1"><%=en.getNombre_enlace()%></label>
                                             <input type="text" name="txtLink"  value="<%=en.getLink()%>" class="form-control" id="exampleFormControlInput1" >
@@ -373,13 +354,16 @@
 
                                     <form action="ServletEnlaces" method="get">
 
-                                        <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_usu_clie()%>">
-                                        <input type="text" hidden=""  name="txtVariable"   value="<%=variable%>">
+
 
                                         <%
-                                            int variable2 = 2;
+                                            String variable2 = "INSTAGRAM";
                                             Enlace en2 = EnlaceBD.obtenerEnlace(Integer.parseInt(request.getParameter("cod")), variable2);
                                         %>
+
+                                        <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_usu_clie()%>">
+                                        <input type="text" hidden=""  name="txtNombre_enlace"   value="<%=variable2%>">
+
                                         <div class="form-group">
                                             <label for="exampleFormControlInput1"><%=en2.getNombre_enlace()%></label>
                                             <input type="text" name="txtLink"  value="<%=en2.getLink()%>" class="form-control" id="exampleFormControlInput1" >
@@ -396,17 +380,20 @@
 
                                     <form action="ServletEnlaces" method="get">
 
-                                        <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_usu_clie()%>">
-                                        <input type="text" hidden=""  name="txtVariable"   value="<%=variable%>">
 
 
                                         <%
-                                            int variable3 = 3;
+                                            String variable3 = "LINKIN";
                                             Enlace en3 = EnlaceBD.obtenerEnlace(Integer.parseInt(request.getParameter("cod")), variable3);
                                         %>
+
+                                        <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_usu_clie()%>">
+                                        <input type="text" hidden=""  name="txtNombre_enlace"   value="<%=variable3%>">
+
+
                                         <div class="form-group">
                                             <label for="exampleFormControlInput1"><%=en3.getNombre_enlace()%></label>
-                                            <input type="text" name="txtNombre"  value="<%=en3.getLink()%>" class="form-control" id="exampleFormControlInput1" >
+                                            <input type="text" name="txtLink"  value="<%=en3.getLink()%>" class="form-control" id="exampleFormControlInput1" >
                                         </div>  
 
 
@@ -425,17 +412,20 @@
 
                                     <form action="ServletEnlaces" method="get">
 
-                                        <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_usu_clie()%>">
-                                        <input type="text" hidden=""  name="txtVariable"   value="<%=variable%>">
 
 
                                         <%
-                                            int variable4 = 4;
+                                            String variable4 = "OTRO";
                                             Enlace en4 = EnlaceBD.obtenerEnlace(Integer.parseInt(request.getParameter("cod")), variable4);
                                         %>
+
+                                        <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_usu_clie()%>">
+                                        <input type="text" hidden=""  name="txtNombre_enlace"   value="<%=variable4%>">
+
+
                                         <div class="form-group">
                                             <label for="exampleFormControlInput1"><%=en4.getNombre_enlace()%></label>
-                                            <input type="text" name="txtNombre"  value="<%=en4.getLink()%>" class="form-control" id="exampleFormControlInput1" >
+                                            <input type="text" name="txtLink"  value="<%=en4.getLink()%>" class="form-control" id="exampleFormControlInput1" >
                                         </div>
 
                                         <input type="submit" class="btn btn-outline-success" value="ACTUALIZAR"  name="Registrarse" />
@@ -457,16 +447,87 @@
 
 
 
+            <div class="card">
+                <div class="card-header" id="headingThreeEstados">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThreeEstados" aria-expanded="false" aria-controls="collapseThreeEstados">
+                            ESTADOS
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseThreeEstados" class="collapse" aria-labelledby="headingThreeEstados" data-parent="#accordionExample">
+                    <div class="card-body">
 
+                        <%------ inicia el formulario de estados----%>     
+                        <center>    
+                            <form>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputState">Estado de la Persona</label>
+                                        <select id="inputState" name="txtEstado" class="form-control">
+                                            <option selected>Choose...</option>
+                                            <option>DESEMPLEADO</option>
+                                            <option>EMPLEADO</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputState">Status Actual</label>
+                                        <select id="inputState" name="txtEstado" class="form-control">
+                                            <option selected>Choose...</option>
+                                            <option>COLOCADO</option>
+                                            <option>SIN COLOCAR</option>
+                                            <option>PROCESADO SIN COLOCAR</option>
+                                        </select>
+                                    </div>
+
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputAddress">Fecha Colocación</label>
+                                    <input type="date" class="form-control" id="inputAddress" >
+                                </div>
+
+
+
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputState">ENTREVISTA</label>
+                                        <select id="inputState" name="txtEstado" class="form-control">
+                                            <option selected>Choose...</option>
+                                            <option>SI</option>
+                                            <option>NO</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputState">PRUEBA PSICOMÉTRICA</label>
+                                        <select id="inputState" name="txtEstado" class="form-control">
+                                            <option selected>Choose...</option>
+                                            <option>SI</option>
+                                            <option>NO</option>
+                                        </select>
+                                    </div>
+
+
+                                </div>        
+
+
+
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Sign in</button>
+                            </form>
+                        </center>
+
+
+                        <%------ TERMINA el formulario de estados----%>     
+                    </div>
+                </div>          
+
+
+
+            </div>
 
         </div>
-
-
-
-
-
-
-
-    </div>
 </html>
 
