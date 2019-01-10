@@ -4,6 +4,10 @@
     Author     : OCTAVIOH
 --%>
 
+<%@page import="Modelo.EnlaceBD"%>
+<%@page import="Modelo.Enlace"%>
+<%@page import="Modelo.InformacionBD"%>
+<%@page import="Modelo.Informacion"%>
 <%@page import="Modelo.Estudio"%>
 <%@page import="Modelo.EstudioBD"%>
 <%@page import="Modelo.ClienteBD"%>
@@ -266,42 +270,36 @@
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                     <div class="card-body">
 
-                        <%-- 
-                  EMPIEZA FORMULARIO 3
-                        --%>               
-                        <form>
-                            <div class="form-group">
-                                <label for="exampleFormControlInput1">Email address</label>
-                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleFormControlSelect1">Example select</label>
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleFormControlSelect2">Example multiple select</label>
-                                <select multiple class="form-control" id="exampleFormControlSelect2">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleFormControlTextarea1">Example textarea</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                            </div>
-                        </form>             
+                        <%-- inicio formulario informacion--%>
+                        <center>
+                            <form action="ServletInformacion" method="get">
+                                <%
+                                    Informacion i = InformacionBD.obtenerInformacion(Integer.parseInt(request.getParameter("cod")));
+                                %> 
 
-                        <%-- TERMINA FORMULARIO 4
-                        --%>
+                                <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_usu_clie()%>">
+
+
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Numbero de Empleos</label>
+                                    <input type="number" name="txtNumero"  value="<%=i.getNumero()%>" class="form-control" id="exampleFormControlInput1" >
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Duracion Promedio en Empleos EN MESES</label>
+                                    <input type="number" name="txtDuracion" value="<%=i.getDuracion_promedio()%>" class="form-control" id="exampleFormControlInput1" >
+                                </div>
+
+                                <input type="submit" class="btn btn-outline-success" value="ACTUALIZAR"  name="Registrarse" />
+                                <input type="hidden"  name="accion" value="ActualizarInformacion"/>
+
+
+                            </form>
+                        </center>
+
+                        <%-- FIN formulario informacion--%>     
+
+
 
                     </div>
                 </div>
@@ -312,13 +310,146 @@
                 <div class="card-header" id="headingThree2">
                     <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree2" aria-expanded="false" aria-controls="collapseThree2">
-                            #4
+                            REDES SOCIALES
                         </button>
                     </h2>
                 </div>
+
+
+
                 <div id="collapseThree2" class="collapse" aria-labelledby="headingThree2" data-parent="#accordionExample">
+                    <center>
+                        <h1>Haz click en los botones para agregar la informacion</h1>
+                    </center>
                     <div class="card-body">
-                        contenido para #4 
+                        <%-- 
+                EMPIEZA FORMULARIO 3
+                        --%>
+                        <center>
+
+                            <p>
+                                <a class="btn btn-primary" data-toggle="collapse" href="#collapseExamplefacebook" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    Facebook
+                                </a>
+                                <button class="btn btn-danger" type="button" data-toggle="collapse" data-target="#collapseExampleinstagram" aria-expanded="false" aria-controls="collapseExample">
+                                    Instagram
+                                </button>
+                                <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseExamplelinkin" aria-expanded="false" aria-controls="collapseExample">
+                                    Linked In
+                                </button>
+                                <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#collapseExampleotro" aria-expanded="false" aria-controls="collapseExample">
+                                    Otro
+                                </button>
+                            </p>
+
+                            <div class="collapse" id="collapseExamplefacebook">
+                                <div class="card card-body">
+
+                                    <%
+                                        //la variable es el coorrelativo
+                                        int variable = 1;
+                                        Enlace en = EnlaceBD.obtenerEnlace(Integer.parseInt(request.getParameter("cod")), variable);
+                                    %>
+
+                                    <form action="ServletEnlaces" method="get">
+
+                                        <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_usu_clie()%>">
+                                        <input type="text" hidden=""  name="txtVariable"   value="<%=variable%>">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1"><%=en.getNombre_enlace()%></label>
+                                            <input type="text" name="txtLink"  value="<%=en.getLink()%>" class="form-control" id="exampleFormControlInput1" >
+                                        </div>
+                                        <input type="submit" class="btn btn-outline-success" value="ACTUALIZAR"  name="Registrarse" />
+                                        <input type="hidden"  name="accion" value="actualizarEnlace"/>
+                                    </form>
+
+                                </div>
+                            </div>
+
+
+
+                            <div class="collapse" id="collapseExampleinstagram">
+                                <div class="card card-body">
+
+                                    <form action="ServletEnlaces" method="get">
+
+                                        <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_usu_clie()%>">
+                                        <input type="text" hidden=""  name="txtVariable"   value="<%=variable%>">
+
+                                        <%
+                                            int variable2 = 2;
+                                            Enlace en2 = EnlaceBD.obtenerEnlace(Integer.parseInt(request.getParameter("cod")), variable2);
+                                        %>
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1"><%=en2.getNombre_enlace()%></label>
+                                            <input type="text" name="txtLink"  value="<%=en2.getLink()%>" class="form-control" id="exampleFormControlInput1" >
+
+                                        </div>
+                                        <input type="submit" class="btn btn-outline-success" value="ACTUALIZAR"  name="Registrarse" />
+                                        <input type="hidden"  name="accion" value="actualizarEnlace"/>
+                                    </form>
+
+                                </div>
+                            </div>
+                            <div class="collapse" id="collapseExamplelinkin">
+                                <div class="card card-body">
+
+                                    <form action="ServletEnlaces" method="get">
+
+                                        <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_usu_clie()%>">
+                                        <input type="text" hidden=""  name="txtVariable"   value="<%=variable%>">
+
+
+                                        <%
+                                            int variable3 = 3;
+                                            Enlace en3 = EnlaceBD.obtenerEnlace(Integer.parseInt(request.getParameter("cod")), variable3);
+                                        %>
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1"><%=en3.getNombre_enlace()%></label>
+                                            <input type="text" name="txtNombre"  value="<%=en3.getLink()%>" class="form-control" id="exampleFormControlInput1" >
+                                        </div>  
+
+
+                                        <input type="submit" class="btn btn-outline-success" value="ACTUALIZAR"  name="Registrarse" />
+                                        <input type="hidden"  name="accion" value="actualizarEnlace"/>
+                                    </form>
+
+
+
+                                </div>
+                            </div>
+
+
+                            <div class="collapse" id="collapseExampleotro">
+                                <div class="card card-body">
+
+                                    <form action="ServletEnlaces" method="get">
+
+                                        <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_usu_clie()%>">
+                                        <input type="text" hidden=""  name="txtVariable"   value="<%=variable%>">
+
+
+                                        <%
+                                            int variable4 = 4;
+                                            Enlace en4 = EnlaceBD.obtenerEnlace(Integer.parseInt(request.getParameter("cod")), variable4);
+                                        %>
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1"><%=en4.getNombre_enlace()%></label>
+                                            <input type="text" name="txtNombre"  value="<%=en4.getLink()%>" class="form-control" id="exampleFormControlInput1" >
+                                        </div>
+
+                                        <input type="submit" class="btn btn-outline-success" value="ACTUALIZAR"  name="Registrarse" />
+                                        <input type="hidden"  name="accion" value="actualizarEnlace"/>
+                                    </form>
+                                </div>
+                            </div>    
+
+
+
+
+                        </center>
+                        <%-- TERMINA FORMULARIO 4
+                        --%> 
                     </div>
                 </div>
             </div>
