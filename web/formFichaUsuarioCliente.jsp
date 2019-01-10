@@ -193,7 +193,7 @@
                                     Estudio e = EstudioBD.obtenerEstudio(Integer.parseInt(request.getParameter("cod")));
                                 %>  
 
-                                
+
                                 <label for="exampleFormControlSelect1">NIVEL DE ESTUDIO</label>
                                 <div class="form-group">    
                                     <select name="txtNombre_nivel_estudio" class="form-control" id="exampleFormControlSelect1">
@@ -204,9 +204,9 @@
                                         <option>POST-GRADO</option>
                                     </select>
                                 </div>   
-                                
-                                  
-                            <label for="exampleFormControlSelect1">CARRERA EN CURSO</label>
+
+
+                                <label for="exampleFormControlSelect1">CARRERA EN CURSO</label>
                                 <div class="form-group">    
                                     <select name="txtNombre_formacion" class="form-control" id="exampleFormControlSelect1">
                                         <option>INGENIERIA</option>
@@ -216,9 +216,9 @@
                                         <option></option>
                                     </select>
                                 </div>   
-                                
-                            
-                                       <label for="exampleFormControlSelect1">CAMPO DE ESTUDIO</label>
+
+
+                                <label for="exampleFormControlSelect1">CAMPO DE ESTUDIO</label>
                                 <div class="form-group">    
                                     <select name="txtNombre_campo_estudio" class="form-control" id="exampleFormControlSelect1">
                                         <option>INFORMATICA</option>
@@ -228,8 +228,8 @@
                                         <option></option>
                                     </select>
                                 </div>   
-                            
-                                
+
+
                                 <input type="submit" class="btn btn-outline-success" value="ACTUALIZAR"  name="Registrarse" />
                                 <input type="hidden"  name="accion" value="ActualizarEstudio"/>
                                 <br>
@@ -238,15 +238,15 @@
                                     <label for="exampleFormControlInput1">Nivel de estudio ACTUAL</label>
                                     <input type="text" readonly=""  value="<%=e.getNombre_nivel_estudio()%>" class="form-control" id="exampleFormControlInput1" >
                                 </div>  
-                              
-                             <label for="exampleFormControlInput1">Formacion Academica ACTUAL</label>
-                            <input type="text" readonly="" name="" value="<%=e.getNombre_formacion()%>" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
 
-                              <label for="exampleFormControlInput1">Campo de Estudio ACTUAL</label>
-                            <input type="text" readonly="" name="" value="<%=e.getNombre_campo_estudio()%>" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                                <label for="exampleFormControlInput1">Formacion Academica ACTUAL</label>
+                                <input type="text" readonly="" name="" value="<%=e.getNombre_formacion()%>" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
 
-                            
-                                
+                                <label for="exampleFormControlInput1">Campo de Estudio ACTUAL</label>
+                                <input type="text" readonly="" name="" value="<%=e.getNombre_campo_estudio()%>" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+
+
+
                             </form>
                         </center>
                         <%-- 
@@ -259,19 +259,56 @@
                 <div class="card-header" id="headingThree">
                     <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            #3
+                            INFORMACION GENERAL
                         </button>
                     </h2>
                 </div>
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                     <div class="card-body">
-                        contenido para #3 
+
+                        <%-- 
+                  EMPIEZA FORMULARIO 3
+                        --%>               
+                        <form>
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">Email address</label>
+                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Example select</label>
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect2">Example multiple select</label>
+                                <select multiple class="form-control" id="exampleFormControlSelect2">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Example textarea</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+                        </form>             
+
+                        <%-- TERMINA FORMULARIO 4
+                        --%>
+
                     </div>
                 </div>
             </div>
-                    
-                    
-                                <div class="card">
+
+
+            <div class="card">
                 <div class="card-header" id="headingThree2">
                     <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree2" aria-expanded="false" aria-controls="collapseThree2">
@@ -285,12 +322,12 @@
                     </div>
                 </div>
             </div>
-                    
-                         
-                    
-                    
-                    
-                    
+
+
+
+
+
+
         </div>
 
 
