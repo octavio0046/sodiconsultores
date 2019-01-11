@@ -448,7 +448,7 @@
 
 
 
-
+            <%------ Empieza el collapse de estados----%> 
             <div class="card">
                 <div class="card-header" id="headingThreeEstados">
                     <h2 class="mb-0">
@@ -457,6 +457,7 @@
                         </button>
                     </h2>
                 </div>
+
                 <div id="collapseThreeEstados" class="collapse" aria-labelledby="headingThreeEstados" data-parent="#accordionExample">
                     <div class="card-body">
 
@@ -469,9 +470,9 @@
                         <%------ inicia el formulario de estados----%>     
                         <center>    
                             <form action="ServletEstados" method="get">
-             
-                                 <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_usu_clie()%>">
-                                 
+
+                                <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_usu_clie()%>">
+
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="inputState">Estado de la Persona</label>
@@ -531,12 +532,59 @@
 
                     <%------ TERMINA el formulario de estados----%>     
                 </div>
-            </div>          
 
+                <%------ termina el collapse de estados----%> 
+
+
+
+
+
+            </div>
+
+            <%------ empieza el collapse de subircurriculum----%>  
+
+            <%------ Empieza el collapse de estados----%> 
+            <div class="card">
+                <div class="card-header" id="headingThreePDF">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThreePDF" aria-expanded="false" aria-controls="collapseThreePDF">
+                            CURRICULUM
+                        </button>
+                    </h2>
+                </div>
+
+                <div id="collapseThreePDF" class="collapse" aria-labelledby="headingThreePDF" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <center>
+                            
+                        <form>
+                            <div class="form-group">
+                                <label for="exampleFormControlFile1">Curriculum</label>
+                                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                            </div>
+                        </form>
+
+                        </center>
+
+                    </div>
+
+
+
+
+                    <%------ TERMINA el formulario de estados----%>     
+                </div>
+
+                <%------ termina el collapse de estados----%> 
+
+
+
+
+
+            </div>
+
+            <%------ empieza el collapse de subircurriculum----%>         
 
 
         </div>
-
-    </div>
 </html>
 

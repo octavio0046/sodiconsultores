@@ -1,6 +1,10 @@
 CREATE DATABASE BD_SODI_CONSULTORES;
 USE BD_SODI_CONSULTORES;
 
+DROP DATABASE SODI_CONSULTORES;
+
+
+
 create table tb_usuario_cliente(
 id_usu_clie int ,
 correo  varchar(50),
@@ -22,23 +26,17 @@ insert into tb_clientes values(cod,cod,'Primer Nombre','Segundo Nombre','Primer 
 ,'Departamento','recidencia','direccion',0,0,0,'correo',now(),'','',1);
 insert into tb_estudios values(cod,'NINGUNO','NINGUNO','NINGUNO');
 insert into tb_info values(cod,0,0);
-insert into tb_enlaces values(cod,'FACEBOOK','');
-insert into tb_enlaces values(cod,'INSTAGRAM','');
-insert into tb_enlaces values(cod,'LINKIN','');
-insert into tb_enlaces values(cod,'OTRO','');
-insert into tb_estados values(cod,'NINGUNO','PROCESADO SIN COLOCACION','0-0-0','NO','NO');
+insert into tb_enlaces values(cod,'Facebook','');
+insert into tb_enlaces values(cod,'Instagram','');
+insert into tb_enlaces values(cod,'LinkIn','');
+insert into tb_enlaces values(cod,'otro','');
+insert into tb_estados values(cod,'','','','','');
 END&&
 
 
-
-drop procedure insertar_usuario_cliente;
 set @id:=0;
 call insertar_usuario_cliente(@id,'asdf','afsd');
 select @id;
-
-
-
-
 
 
 CREATE TABLE TB_USUARIOS (
@@ -53,8 +51,6 @@ CREATE TABLE TB_USUARIOS (
   ESTADO varchar(10) DEFAULT NULL,
   PRIMARY KEY (COD_USUARIO)
 ); 
-
-
 
 DELIMITER &&
 CREATE PROCEDURE INSERTAR_USUARIOS (
@@ -79,7 +75,6 @@ PERFIL=_PERFIL ,CORREO=_CORREO  ,CLAVE_USUARIO=_CLAVE_USUARIO,FECHA_CREACION=_FE
   END&&
 
 
-
 DELIMITER &&
 CREATE PROCEDURE ELIMINAR_USUARIOS (_COD_USUARIO int)
 BEGIN 
@@ -89,10 +84,6 @@ END&&
 
 INSERT INTO TB_USUARIOS VALUES (DEFAULT,'HERRERA','OCTAVIO','HUEHUE','EMPRESARIAL','OCTAVIO@GMAIL.COM','ABC','2018-09-24 21:55:34','ACTIVO');
 INSERT INTO TB_USUARIOS VALUES (DEFAULT,'HERRERA','OCTAVIO','HUEHUE','ADMIN','OCTAVIO@GMAIL.COM','ABC.123','2018-09-24 21:55:34','ACTIVO');
-
-
-
-
 
 create table tb_clientes(
 id_cliente int ,
@@ -203,31 +194,19 @@ nombre_campo_estudio=campo_estudio
 where id_cliente=id;
 END&&
 
-select * from tb_estudios a,tb_clientes b where a.id_cliente=1 and a.id_cliente=b.id_cliente ;
 
 select * from tb_estudios;
 select * from tb_clientes;
 select * from tb_usuario_cliente;
 select * from tb_info;
 select * from tb_enlaces;
-SELECT * FROM tb_estados;
+select * from tb_estados;
 
-delete from tb_estados where id_cliente=1;
 delete from tb_info where id_cliente=1;
 delete from tb_estudios where id_cliente=1;
 delete from tb_enlaces where id_cliente=1;
 delete from tb_clientes where id_usu_clie=1;
 delete from tb_usuario_cliente where id_usu_clie=1;
-
-
-delete from tb_estados where id_cliente=2;
-delete from tb_info where id_cliente=2;
-delete from tb_estudios where id_cliente=2;
-delete from tb_enlaces where id_cliente=2;
-delete from tb_clientes where id_usu_clie=2;
-delete from tb_usuario_cliente where id_usu_clie=2;
-
-
 
 
 create table tb_info(
@@ -236,10 +215,7 @@ num_empleos int,
 duracion_promedio int,
 foreign key (id_cliente) references tb_clientes(id_cliente)
 );
- 
- select * from tb_info where id_cliente=2;
- select * from tb_info;
- 
+  
  
  DELIMITER &&
 CREATE PROCEDURE actualizar_info (id int,num int,duracion int)
@@ -259,34 +235,31 @@ link varchar(250),
 foreign key (id_cliente) references tb_clientes (id_cliente)
 );
 
-drop table tb_enlaces;
 
+
+select * from tb_enlaces;
 DELIMITER &&
 CREATE PROCEDURE actualizar_enlace (id int,nombre varchar(50),lin varchar(250))
 BEGIN
 update tb_enlaces set link=lin where id_cliente=id and  nombre_enlace=nombre;
 END&&
 
-drop procedure actualizar_enlace;
-
 create table tb_estados(
-id_cliente int not null,
-estado_persona varchar(50),
-estadus varchar(50),
+id_cliente int auto_increment,
+nombre_estado varchar(50),
+estatus_actual varchar(50),
 fecha_colocacion varchar(50),
 entrevista varchar(50),
 prueba_psico varchar(50),
-foreign key (id_cliente) references tb_clientes (id_cliente)
+primary key (id_cliente)
 );
 
-drop table tb_estados;
-select * from tb_estados;
 
-
-drop table tb_estados;
 DELIMITER &&
-CREATE PROCEDURE actualizar_estados (id int,lin varchar(250))
+CREATE PROCEDURE actualizar_estado (id int,nombre_es varchar(50),estatus_act varchar(50),
+fecha varchar(50),entre varchar(50),prueba_p varchar(50))
 BEGIN
-update tb_enlaces set link=lin where id_cliente=id and  correlativo=corre;
+update tb_estados set nombre_estado=nombre_es, estatus_actual=estatus_act,
+fecha_colocacion=fecha,entrevista=entre,prueba_psico=prueba_p where id_cliente=id;
 END&&
 
