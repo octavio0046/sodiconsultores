@@ -4,6 +4,8 @@
     Author     : OCTAVIOH
 --%>
 
+<%@page import="Modelo.EstadoBD"%>
+<%@page import="Modelo.Estado"%>
 <%@page import="Modelo.EnlaceBD"%>
 <%@page import="Modelo.Enlace"%>
 <%@page import="Modelo.InformacionBD"%>
@@ -458,22 +460,31 @@
                 <div id="collapseThreeEstados" class="collapse" aria-labelledby="headingThreeEstados" data-parent="#accordionExample">
                     <div class="card-body">
 
+
+                        <%
+
+                            Estado es = EstadoBD.obtenerEstado(Integer.parseInt(request.getParameter("cod")));
+                        %>
+
                         <%------ inicia el formulario de estados----%>     
                         <center>    
-                            <form>
+                            <form action="ServletEstados" method="get">
+             
+                                 <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_usu_clie()%>">
+                                 
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="inputState">Estado de la Persona</label>
-                                        <select id="inputState" name="txtEstado" class="form-control">
-                                            <option selected>Choose...</option>
+                                        <select id="inputState" name="txtEstadoPersona" class="form-control">
+                                            <option selected><%=es.getNombre_estado()%></option>
                                             <option>DESEMPLEADO</option>
                                             <option>EMPLEADO</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputState">Status Actual</label>
-                                        <select id="inputState" name="txtEstado" class="form-control">
-                                            <option selected>Choose...</option>
+                                        <select id="inputState" name="txtEstatusActual" class="form-control">
+                                            <option selected><%=es.getStaus_actual()%></option>
                                             <option>COLOCADO</option>
                                             <option>SIN COLOCAR</option>
                                             <option>PROCESADO SIN COLOCAR</option>
@@ -484,7 +495,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="inputAddress">Fecha Colocación</label>
-                                    <input type="date" class="form-control" id="inputAddress" >
+                                    <input type="date" name="txtFechaColocacion" value="<%=es.getFecha_colocacion()%>" class="form-control" id="inputAddress" >
                                 </div>
 
 
@@ -493,41 +504,39 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="inputState">ENTREVISTA</label>
-                                        <select id="inputState" name="txtEstado" class="form-control">
-                                            <option selected>Choose...</option>
+                                        <select id="inputState" name="txtEntrevista" class="form-control">
+                                            <option selected><%=es.getEntrevista()%></option>
                                             <option>SI</option>
                                             <option>NO</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputState">PRUEBA PSICOMÉTRICA</label>
-                                        <select id="inputState" name="txtEstado" class="form-control">
-                                            <option selected>Choose...</option>
+                                        <select id="inputState" name="txtPruebaPsico" class="form-control">
+                                            <option selected><%=es.getPrueba_psico()%></option>
                                             <option>SI</option>
                                             <option>NO</option>
                                         </select>
                                     </div>
+                                </div>  
+                                <input type="submit" class="btn btn-outline-success" value="ACTUALIZAR"  name="Registrarse" />
+                                <input type="hidden"  name="accion" value="actualizarEstado"/>
 
-
-                                </div>        
-
-
-
-                                </div>
-
-                                <button type="submit" class="btn btn-primary">Sign in</button>
                             </form>
                         </center>
-
-
-                        <%------ TERMINA el formulario de estados----%>     
                     </div>
-                </div>          
 
 
 
-            </div>
+
+                    <%------ TERMINA el formulario de estados----%>     
+                </div>
+            </div>          
+
+
 
         </div>
+
+    </div>
 </html>
 

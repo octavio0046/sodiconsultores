@@ -230,7 +230,6 @@ delete from tb_usuario_cliente where id_usu_clie=2;
 
 
 
-
 create table tb_info(
 id_cliente int not null,
 num_empleos int,
@@ -263,10 +262,12 @@ foreign key (id_cliente) references tb_clientes (id_cliente)
 drop table tb_enlaces;
 
 DELIMITER &&
-CREATE PROCEDURE actualizar_enlace (id int,nombre int,lin varchar(250))
+CREATE PROCEDURE actualizar_enlace (id int,nombre varchar(50),lin varchar(250))
 BEGIN
 update tb_enlaces set link=lin where id_cliente=id and  nombre_enlace=nombre;
 END&&
+
+drop procedure actualizar_enlace;
 
 create table tb_estados(
 id_cliente int not null,
