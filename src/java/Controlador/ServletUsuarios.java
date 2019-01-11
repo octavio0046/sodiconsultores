@@ -68,7 +68,7 @@ public class ServletUsuarios extends HttpServlet {
     
     boolean rpta = UsuariosBD.EliminarUsuario(cod);
     if (rpta) {
-      response.sendRedirect("mensaje2.jsp?men = Se elimino el Usuario correctamente");
+      response.sendRedirect("formFichaUsuarioCliente.jsp?cod="+cod+"");
     } else {
       response.sendRedirect("mensaje2.jsp?men = No se elimino el Usuario correctamente");
     }

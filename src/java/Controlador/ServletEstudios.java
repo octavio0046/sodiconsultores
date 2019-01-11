@@ -66,7 +66,7 @@ public class ServletEstudios extends HttpServlet {
         Estudio e = new Estudio(id_cliente, nombre1, nombreformacion, nombrecampoestudio);
          boolean rpta = EstudioBD.actualizarEstudio(e);
     if (rpta) {
-      response.sendRedirect("mensaje2.jsp?men=Se actualizo de manera correcta");
+      response.sendRedirect("formFichaUsuarioCliente.jsp?cod="+id_cliente+"");
     } else {
       response.sendRedirect("mensaje2.jsp?men=No se actualizo ");
     }

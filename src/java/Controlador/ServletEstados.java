@@ -69,7 +69,7 @@ public class ServletEstados extends HttpServlet {
       
          boolean rpta = EstadoBD.actualizarEstado(p);
     if (rpta) {
-      response.sendRedirect("mensaje2.jsp?men=Se actualizo de manera correcta");
+      response.sendRedirect("formFichaUsuarioCliente.jsp?cod="+id_cliente+"");
     } else {
       response.sendRedirect("mensaje2.jsp?men=No se actualizo ");
     }

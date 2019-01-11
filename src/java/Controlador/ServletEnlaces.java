@@ -66,7 +66,7 @@ public class ServletEnlaces extends HttpServlet {
       
          boolean rpta = EnlaceBD.actualizarEnlace(p);
     if (rpta) {
-      response.sendRedirect("mensaje2.jsp?men=Se actualizo de manera correcta");
+      response.sendRedirect("formFichaUsuarioCliente.jsp?cod="+id_cliente+"");
     } else {
       response.sendRedirect("mensaje2.jsp?men=No se actualizo ");
     }
