@@ -1,42 +1,7 @@
 CREATE DATABASE BD_SODI_CONSULTORES;
 USE BD_SODI_CONSULTORES;
 
-DROP DATABASE SODI_CONSULTORES;
-
-create table tb_usuario_cliente(
-id_usu_clie int ,
-correo  varchar(50),
-contrasena varchar (50),
-fecha_creacion varchar(50),
-estado int ,
-primary key (id_usu_clie) 
-);
-
-
-DELIMITER &&
-CREATE PROCEDURE insertar_usuario_cliente (inout cod int,
-correo varchar(50),contrasena varchar(50))
-BEGIN
-select ifnull(max(id_usu_clie),0)+1 into cod from tb_usuario_cliente;
-INSERT INTO tb_usuario_cliente VALUES(cod,correo,contrasena,now(),1);
-insert into tb_clientes values(cod,cod,'Primer Nombre','Segundo Nombre','Primer Apellido',
-'segundo apellido','Nacimiento',0,'pais'
-,'Departamento','recidencia','direccion',0,0,0,'correo',now(),'','',1);
-insert into tb_estudios values(cod,'NINGUNO','NINGUNO','NINGUNO');
-insert into tb_info values(cod,0,0);
-insert into tb_enlaces values(cod,'Facebook','');
-insert into tb_enlaces values(cod,'Instagram','');
-insert into tb_enlaces values(cod,'LinkIn','');
-insert into tb_enlaces values(cod,'otro','');
-insert into tb_estados values(cod,'','','','','');
-insert into tb_pdf values(cod,'');
-END&&
-
-drop procedure insertar_usuario_cliente;
-set @id:=0;
-call insertar_usuario_cliente(@id,'asdf','afsd');
-select @id;
-
+DROP DATABASE BD_SODI_CONSULTORES;
 
 CREATE TABLE TB_USUARIOS (
   COD_USUARIO INT AUTO_INCREMENT,
@@ -83,6 +48,44 @@ END&&
 
 INSERT INTO TB_USUARIOS VALUES (DEFAULT,'HERRERA','OCTAVIO','HUEHUE','EMPRESARIAL','OCTAVIO@GMAIL.COM','ABC','2018-09-24 21:55:34','ACTIVO');
 INSERT INTO TB_USUARIOS VALUES (DEFAULT,'HERRERA','OCTAVIO','HUEHUE','ADMIN','OCTAVIO@GMAIL.COM','ABC.123','2018-09-24 21:55:34','ACTIVO');
+
+
+create table tb_usuario_cliente(
+id_usu_clie int ,
+correo  varchar(50),
+contrasena varchar (50),
+fecha_creacion varchar(50),
+estado int ,
+primary key (id_usu_clie) 
+);
+
+
+DELIMITER &&
+CREATE PROCEDURE insertar_usuario_cliente (inout cod int,
+correo varchar(50),contrasena varchar(50))
+BEGIN
+select ifnull(max(id_usu_clie),0)+1 into cod from tb_usuario_cliente;
+INSERT INTO tb_usuario_cliente VALUES(cod,correo,contrasena,now(),1);
+insert into tb_clientes values(cod,cod,'Primer Nombre','Segundo Nombre','Primer Apellido',
+'segundo apellido','Nacimiento',0,'pais'
+,'Departamento','recidencia','direccion',0,0,0,'correo',now(),'','',1);
+insert into tb_estudios values(cod,'NINGUNO','NINGUNO','NINGUNO');
+insert into tb_info values(cod,0,0);
+insert into tb_enlaces values(cod,'Facebook','');
+insert into tb_enlaces values(cod,'Instagram','');
+insert into tb_enlaces values(cod,'LinkIn','');
+insert into tb_enlaces values(cod,'otro','');
+insert into tb_estados values(cod,'','','','','');
+insert into tb_pdf values(cod,'');
+END&&
+
+drop procedure insertar_usuario_cliente;
+set @id:=0;
+call insertar_usuario_cliente(@id,'asdf','afsd');
+select @id;
+
+
+
 
 create table tb_clientes(
 id_cliente int ,
