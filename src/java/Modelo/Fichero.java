@@ -13,10 +13,54 @@ import java.io.InputStream;
  */
 public class Fichero {
     
+    private int codigo_cliente;
+    private String nombrepdf;
+   private  InputStream archivopdf;
+    private byte[] archivopdf2;
 
-    
+    //para actualizar
 
-    
+    public Fichero(int codigo_cliente, String nombrepdf) {
+        this.codigo_cliente = codigo_cliente;
+        this.nombrepdf = nombrepdf;
+        
+        
+        
+    }
+
+    public int getCodigo_cliente() {
+        return codigo_cliente;
+    }
+
+    public void setCodigo_cliente(int codigo_cliente) {
+        this.codigo_cliente = codigo_cliente;
+    }
+
+    public String getNombrepdf() {
+        return nombrepdf;
+    }
+
+    public void setNombrepdf(String nombrepdf) {
+        this.nombrepdf = nombrepdf;
+    }
+
+    public InputStream getArchivopdf() {
+        return archivopdf;
+    }
+
+    public void setArchivopdf(InputStream archivopdf) {
+        this.archivopdf = archivopdf;
+    }
+
+    public byte[] getArchivopdf2() {
+        return archivopdf2;
+    }
+
+    public void setArchivopdf2(byte[] archivopdf2) {
+        this.archivopdf2 = archivopdf2;
+    }
+
+   
     
     
     

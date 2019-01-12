@@ -202,11 +202,13 @@ select * from tb_info;
 select * from tb_enlaces;
 select * from tb_estados;
 
+DELETE FROM tb_estados where id_cliente=1;
 delete from tb_info where id_cliente=1;
 delete from tb_estudios where id_cliente=1;
 delete from tb_enlaces where id_cliente=1;
 delete from tb_clientes where id_usu_clie=1;
 delete from tb_usuario_cliente where id_usu_clie=1;
+
 
 
 create table tb_info(
@@ -262,4 +264,13 @@ BEGIN
 update tb_estados set nombre_estado=nombre_es, estatus_actual=estatus_act,
 fecha_colocacion=fecha,entrevista=entre,prueba_psico=prueba_p where id_cliente=id;
 END&&
+
+CREATE TABLE tb_pdf (
+  codigo_cliente int not null,
+  nombrepdf varchar(50),
+  archivopdf mediumblob,
+  PRIMARY KEY (codi_cliente)
+);
+
+
 

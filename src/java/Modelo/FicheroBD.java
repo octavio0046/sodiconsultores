@@ -15,7 +15,32 @@ import java.sql.Connection;
  */
 public class FicheroBD {
     
-        
+    
+     public static boolean insertarFichero(Fichero p)
+  {
+    boolean rpta = false;
+    try
+    {
+      Connection cn = Conexion.getConexion();
+      CallableStatement cl = cn.prepareCall("{call insertar_pdf(?,?)}");
+      cl.setInt(1, p.getCodigo_cliente());
+      cl.setString(2, p.getNombrepdf());
+  
+      
+      int i = cl.executeUpdate();
+      if (i == 1) {
+        rpta = true;
+      } else {
+        rpta = false;
+      }
+    }
+    catch (Exception localException) {}
+    return rpta;
+  }
+    
+    
+     
+    
     
     
 }

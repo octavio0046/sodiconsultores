@@ -595,15 +595,15 @@
                     <div class="card-body">
                         <center>
 
-                            <form action="ServletCV" method="get" enctype="multipart/form-data" >
-                                   <input type="text"   name="txtId_cliente"  hidden="" value="<%=a.getId_usu_clie()%>">
+                            <form action="uploadfile.jsp?cod=<%=a.getId_usu_clie()%>" method="post" enctype="multipart/form-data" >
+                               
                                 
                                 <div class="form-group">
                                     <label for="exampleFormControlFile1">Curriculum</label>
-                                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                    <input type="file" name="file" class="form-control-file" id="exampleFormControlFile1">
                                 </div>
                                     <br>   <input type="submit"  value="Guardar" />
-                                    <input type="hidden"  name="accion" value="registrarCV"/>
+                                 
                             </form>
 
                         </center>
