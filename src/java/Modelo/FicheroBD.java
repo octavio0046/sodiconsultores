@@ -8,6 +8,7 @@ package Modelo;
 import Utils.Conexion;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.ResultSet;
 
 /**
  *
@@ -16,13 +17,13 @@ import java.sql.Connection;
 public class FicheroBD {
     
     
-     public static boolean insertarFichero(Fichero p)
+     public static boolean actualizarFichero(Fichero p)
   {
     boolean rpta = false;
     try
     {
       Connection cn = Conexion.getConexion();
-      CallableStatement cl = cn.prepareCall("{call insertar_pdf(?,?)}");
+      CallableStatement cl = cn.prepareCall("{call actualizar_pdf(?,?)}");
       cl.setInt(1, p.getCodigo_cliente());
       cl.setString(2, p.getNombrepdf());
   
@@ -41,6 +42,20 @@ public class FicheroBD {
     
      
     
-    
+      //metoo para obtener el df del cliente
+          public static Fichero obtenerFichero(int codigo) {
+        Fichero f=null;
+        try {
+            CallableStatement  cl = Conexion.getConexion().prepareCall("select * from tb_pdf where id_cliente=?");
+            cl.setInt(1, codigo);
+  
+            ResultSet rs = cl.executeQuery();
+            while (rs.next()) {
+                f=new Fichero(rs.getInt(1), rs.getString(2));
+                        
+            }
+        }catch (Exception a) {}
+        return f;
+    } 
     
 }

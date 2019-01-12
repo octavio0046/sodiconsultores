@@ -4,6 +4,8 @@
     Author     : OCTAVIOH
 --%>
 
+<%@page import="Modelo.FicheroBD"%>
+<%@page import="Modelo.Fichero"%>
 <%@page import="Modelo.EstadoBD"%>
 <%@page import="Modelo.Estado"%>
 <%@page import="Modelo.EnlaceBD"%>
@@ -500,6 +502,8 @@
                     <div class="card-body">
 
 
+
+
                         <%
 
                             Estado es = EstadoBD.obtenerEstado(Integer.parseInt(request.getParameter("cod")));
@@ -558,10 +562,15 @@
                                         </select>
                                     </div>
                                 </div>  
+
+
                                 <input type="submit" class="btn btn-outline-success" value="ACTUALIZAR"  name="Registrarse" />
                                 <input type="hidden"  name="accion" value="actualizarEstado"/>
 
+
                             </form>
+
+
                         </center>
                     </div>
 
@@ -596,17 +605,40 @@
                         <center>
 
                             <form action="uploadfile.jsp?cod=<%=a.getId_usu_clie()%>" method="post" enctype="multipart/form-data" >
-                               
-                                
+
+
                                 <div class="form-group">
                                     <label for="exampleFormControlFile1">Curriculum</label>
                                     <input type="file" name="file" class="form-control-file" id="exampleFormControlFile1">
                                 </div>
-                                    <br>   <input type="submit"  value="Guardar" />
-                                 
+                                <br>   <input type="submit"  value="Guardar" />
+
                             </form>
 
+
+                            <%
+                                Fichero f = FicheroBD.obtenerFichero(Integer.parseInt(request.getParameter("cod")));
+                            %>
+
                         </center>
+
+
+                        <center>
+                            <div class="form-group">
+                                <label for="exampleFormControlFile1">VER CURRICULUM</label>
+                                
+             <%-- otro ejemplo <a href="CV/<%=f.getNombrepdf()%>" target="_blank" rel="nofollow noreferrer">ejemplo iframe</a>--%>     
+            
+               <a  href="CV/<%=f.getNombrepdf()%>" target="_blank"><img src="mpdf.png" target="_blank" rel="nofollow noreferrer" /></a>            
+                            </div>
+
+
+                            </form>     
+                        </center>
+
+
+
+
 
                     </div>
 

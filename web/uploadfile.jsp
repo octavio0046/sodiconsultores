@@ -41,7 +41,7 @@
                 
           Fichero p = new Fichero(codigo, nombre);
  
-           boolean rpta=FicheroBD.insertarFichero(p);
+           boolean rpta=FicheroBD.actualizarFichero(p);
           
           
     if (rpta) {
@@ -55,6 +55,8 @@
             }
         %>     
         
+
+
         
     </body>
 </html>

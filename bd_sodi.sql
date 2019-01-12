@@ -31,9 +31,10 @@ insert into tb_enlaces values(cod,'Instagram','');
 insert into tb_enlaces values(cod,'LinkIn','');
 insert into tb_enlaces values(cod,'otro','');
 insert into tb_estados values(cod,'','','','','');
+insert into tb_pdf values(cod,'');
 END&&
 
-
+drop procedure insertar_usuario_cliente;
 set @id:=0;
 call insertar_usuario_cliente(@id,'asdf','afsd');
 select @id;
@@ -201,13 +202,16 @@ select * from tb_usuario_cliente;
 select * from tb_info;
 select * from tb_enlaces;
 select * from tb_estados;
+select * from tb_pdf;
 
+delete from tb_pdf where id_cliente=1;
 DELETE FROM tb_estados where id_cliente=1;
 delete from tb_info where id_cliente=1;
 delete from tb_estudios where id_cliente=1;
 delete from tb_enlaces where id_cliente=1;
 delete from tb_clientes where id_usu_clie=1;
 delete from tb_usuario_cliente where id_usu_clie=1;
+
 
 
 
@@ -266,11 +270,20 @@ fecha_colocacion=fecha,entrevista=entre,prueba_psico=prueba_p where id_cliente=i
 END&&
 
 CREATE TABLE tb_pdf (
-  codigo_cliente int not null,
+  id_cliente int not null,
   nombrepdf varchar(50),
-  archivopdf mediumblob,
-  PRIMARY KEY (codi_cliente)
+  PRIMARY KEY (id_cliente)
 );
 
+DELIMITER &&
+CREATE PROCEDURE actualizar_pdf (cod int,nombre varchar(50))
+BEGIN
+update tb_pdf set  nombrepdf=nombre where id_cliente =cod;
+END&&
+
+drop procedure actualizar_pdf;
+
+select * from tb_pdf;
+select * from tb_pdf where codigo_cliente=1;
 
 
