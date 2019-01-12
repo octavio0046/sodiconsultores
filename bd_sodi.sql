@@ -3,8 +3,6 @@ USE BD_SODI_CONSULTORES;
 
 DROP DATABASE SODI_CONSULTORES;
 
-
-
 create table tb_usuario_cliente(
 id_usu_clie int ,
 correo  varchar(50),
@@ -243,7 +241,7 @@ foreign key (id_cliente) references tb_clientes (id_cliente)
 
 
 
-select * from tb_enlaces;
+
 DELIMITER &&
 CREATE PROCEDURE actualizar_enlace (id int,nombre varchar(50),lin varchar(250))
 BEGIN
@@ -281,9 +279,6 @@ BEGIN
 update tb_pdf set  nombrepdf=nombre where id_cliente =cod;
 END&&
 
-drop procedure actualizar_pdf;
 
-select * from tb_pdf;
-select * from tb_pdf where codigo_cliente=1;
 
 
