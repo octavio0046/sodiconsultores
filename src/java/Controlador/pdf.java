@@ -5,26 +5,25 @@
  */
 package Controlador;
 
-
-import Modelo.Fichero;
-import Modelo.FicheroBD;
+import Utils.Conexion;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 
 /**
  *
- * @author OCTAVIOH
+ * @author David
  */
-@WebServlet(name = "ServletCV", urlPatterns = {"/ServletCV"})
-@MultipartConfig(maxFileSize = 16177215)
-public class ServletCV extends HttpServlet {
+@WebServlet(name = "pdf", urlPatterns = {"/pdf"})
+public class pdf extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,11 +36,34 @@ public class ServletCV extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-  
-        
-        
-        
-        
+
+        response.setContentType("application/pdf");
+
+       
+     
+        byte[] b = null;
+
+        try {
+            int id = Integer.parseInt(request.getParameter("id"));
+             CallableStatement cl = Conexion.getConexion().prepareCall("select archivopdf from tb_pdf where id_cliente=? ");
+            cl.setInt(1, id);
+            ResultSet rs = cl.executeQuery();
+            while (rs.next()) {
+                b = rs.getBytes(1);
+            }
+            InputStream bos = new ByteArrayInputStream(b);
+
+            int tamanoInput = bos.available();
+            byte[] datosPDF = new byte[tamanoInput];
+            bos.read(datosPDF, 0, tamanoInput);
+
+            response.getOutputStream().write(datosPDF);
+            bos.close();
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -71,62 +93,8 @@ public class ServletCV extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
-        
-        String accion = request.getParameter("accion");
-    if  (accion.equals("actualizarCV")) {
-     actualizarCV(request, response);
-    } else if (accion.equals("BuscarUnCliente")) {
-    //  buscarUnCliente(request, response);
-    } else if (accion.equals("ActualizarCliente")) {
-     // actualizarCliente(request, response);
-    } else if (accion.equals("RegistrarUsuario")) {
-      //registrarUsuario(request, response);
-    
-    }else if (accion.equals("RegistrarCliente")) {
-      //registrarCliente(request, response);
-    
     }
-  }
-           
-    private void actualizarCV(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException
-  {
-   
-        int id_cliente = Integer.parseInt(request.getParameter("txtId_cliente"));
-        String nombre_archivo = request.getParameter("txtNombre");
-   
-          InputStream inputStream = null;
-        try {
-            Part filePart = request.getPart("fichero");
-            if (filePart.getSize() > 0) {
-                System.out.println(filePart.getName());
-                System.out.println(filePart.getSize());
-                System.out.println(filePart.getContentType());
-                inputStream = filePart.getInputStream();
-            }
-        } catch (Exception ex) {
-            System.out.println("fichero: "+ex.getMessage());
-        }
-
-    
-        
-        Fichero p = new Fichero(id_cliente, nombre_archivo, inputStream);
-      
-         boolean rpta = FicheroBD.actualizarFichero(p);
-    if (rpta) {
-      response.sendRedirect("formFichaUsuarioCliente.jsp?cod="+id_cliente+"");
-    } else {
-      response.sendRedirect("mensaje2.jsp?men=No se actualizo ");
-    }
-  }
-
-
-    
-    
-    
-        
-      
+    String a = "\"pdf?sancionId=\"";
 
     /**
      * Returns a short description of the servlet.

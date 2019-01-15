@@ -19,8 +19,12 @@
 <%@page import="Modelo.UsuarioClienteBD"%>
 <%@page import="Modelo.UsuarioCliente"%>
 <%@page import="java.util.ArrayList"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
+
 <html>
 
     <div class="encabezado">
@@ -603,49 +607,37 @@
                 <div id="collapseThreePDF" class ="collapse" aria-labelledby="headingThreePDF" data-parent="#accordionExample">
                     <div class="card-body">
                         <center>
-
-                            <form action="uploadfile.jsp?cod=<%=a.getId_usu_clie()%>" method="post" enctype="multipart/form-data" >
-
-
+                            <form action="ServletCV" method="post" enctype="multipart/form-data">
+                                <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_usu_clie()%>">
+                                <div class="form-group">
+                                    <label for="exampleFormControlFile1">Nombre Archivo</label>
+                                    <input type="text" name="txtNombre" class="form-control-file" id="exampleFormControlFile1">
+                                </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlFile1">Curriculum</label>
-                                    <input type="file" name="file" class="form-control-file" id="exampleFormControlFile1">
+                                    <input type="file" name="fichero" class="form-control-file" id="exampleFormControlFile1">
                                 </div>
-                                <br>   <input type="submit"  value="Guardar" />
-
+                                <input type="submit" class="btn btn-outline-success" value="enviar"  name="Registrarse" />
+                                <input type="hidden"  name="accion" value="actualizarCV"/>
                             </form>
+                    
+                    <%
+                        Fichero f = FicheroBD.obtenerCV(Integer.parseInt(request.getParameter("cod")));
+                       // if (f.getArchivopdf2() != null) {
+                    %>
 
-
-                            <%
-                                Fichero f = FicheroBD.obtenerFichero(Integer.parseInt(request.getParameter("cod")));
-                            %>
-
-                        </center>
-
-
-                        <center>
-                            <div class="form-group">
-                                <label for="exampleFormControlFile1">VER CURRICULUM</label>
-                                
-             <%-- otro ejemplo <a href="CV/<%=f.getNombrepdf()%>" target="_blank" rel="nofollow noreferrer">ejemplo iframe</a>--%>     
-            
-               <a  href="CV/<%=f.getNombrepdf()%>" target="_blank"><img src="mpdf.png" target="_blank" rel="nofollow noreferrer" /></a>            
-                            </div>
-
-
-                            </form>     
-                        </center>
-
-
-
-
-
-                    </div>
-
-
-
-
-                    <%------ TERMINA el formulario de estados----%>     
+                    
+                    
+                    
+                    <a href="pdf?id=<%=f.getCodigo_cliente()%>" target="_blank"><img src="Imagen/mpdf.png" title="pdf"/></a>
+                        //<%
+                          //  } else {
+                            //    out.print("Vacio");
+                            //}
+                        //%>
+                    </center>
+                     </div>
+                    <%------ TERMINA el formulario de CURRICULUM----%>     
                 </div>
 
                 <%------ termina el collapse de estados----%> 

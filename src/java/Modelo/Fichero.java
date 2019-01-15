@@ -20,13 +20,25 @@ public class Fichero {
 
     //para actualizar
 
-    public Fichero(int codigo_cliente, String nombrepdf) {
+    public Fichero(int codigo_cliente, String nombrepdf, InputStream archivopdf) {
         this.codigo_cliente = codigo_cliente;
         this.nombrepdf = nombrepdf;
-        
-        
-        
+        this.archivopdf = archivopdf;
     }
+
+    //para obtener
+
+    public Fichero(int codigo_cliente, String nombrepdf, byte[] archivopdf2) {
+        this.codigo_cliente = codigo_cliente;
+        this.nombrepdf = nombrepdf;
+        this.archivopdf2 = archivopdf2;
+    }
+    
+    
+     public Fichero() {
+     
+    }
+
 
     public int getCodigo_cliente() {
         return codigo_cliente;
