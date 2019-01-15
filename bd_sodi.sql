@@ -49,6 +49,7 @@ END&&
 INSERT INTO TB_USUARIOS VALUES (DEFAULT,'HERRERA','OCTAVIO','HUEHUE','EMPRESARIAL','OCTAVIO@GMAIL.COM','ABC','2018-09-24 21:55:34','ACTIVO');
 INSERT INTO TB_USUARIOS VALUES (DEFAULT,'HERRERA','OCTAVIO','HUEHUE','ADMIN','OCTAVIO@GMAIL.COM','ABC.123','2018-09-24 21:55:34','ACTIVO');
 
+SELECT * FROM TB_USUARIOS WHERE NOMBRE_USUARIO = 'OCTAVIO' AND CLAVE_USUARIO = 'ABC.123';
 
 create table tb_usuario_cliente(
 id_usu_clie int ,
@@ -76,7 +77,7 @@ insert into tb_enlaces values(cod,'Instagram','');
 insert into tb_enlaces values(cod,'LinkIn','');
 insert into tb_enlaces values(cod,'otro','');
 insert into tb_estados values(cod,'','','','','');
-insert into tb_pdf values(cod,'');
+insert into tb_pdf values(cod,'','');
 END&&
 
 drop procedure insertar_usuario_cliente;
@@ -273,15 +274,21 @@ END&&
 CREATE TABLE tb_pdf (
   id_cliente int not null,
   nombrepdf varchar(50),
+  archivopdf mediumblob,
   PRIMARY KEY (id_cliente)
 );
 
+
 DELIMITER &&
-CREATE PROCEDURE actualizar_pdf (cod int,nombre varchar(50))
+CREATE PROCEDURE actualizar_pdf (cod int,nombre varchar(50),archivo mediumblob)
 BEGIN
-update tb_pdf set  nombrepdf=nombre where id_cliente =cod;
+update tb_pdf set  nombrepdf=nombre, archivopdf=archivo where id_cliente =cod;
 END&&
 
+select * from tb_pdf;
+drop procedure actualizar_pdf;
+
+select archivopdf from tb_pdf where id_cliente=1;
 
 
 
