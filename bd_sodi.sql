@@ -67,15 +67,14 @@ correo varchar(50),contrasena varchar(50))
 BEGIN
 select ifnull(max(id_usu_clie),0)+1 into cod from tb_usuario_cliente;
 INSERT INTO tb_usuario_cliente VALUES(cod,correo,contrasena,now(),1);
-insert into tb_clientes values(cod,cod,'Primer Nombre','Segundo Nombre','Primer Apellido',
-'segundo apellido','Nacimiento',0,'pais'
-,'Departamento','recidencia','direccion',0,0,0,'correo',now(),'','',1);
-insert into tb_estudios values(cod,'NINGUNO','NINGUNO','NINGUNO');
+insert into tb_clientes values(cod,cod,'','','',
+'','',0,'','','','',0,0,0,'',now(),'','',1);
+insert into tb_estudios values(cod,'','','');
 insert into tb_info values(cod,0,0);
-insert into tb_enlaces values(cod,'Facebook','');
-insert into tb_enlaces values(cod,'Instagram','');
-insert into tb_enlaces values(cod,'LinkIn','');
-insert into tb_enlaces values(cod,'otro','');
+insert into tb_enlaces values(cod,'','');
+insert into tb_enlaces values(cod,'','');
+insert into tb_enlaces values(cod,'','');
+insert into tb_enlaces values(cod,'','');
 insert into tb_estados values(cod,'','','','','');
 insert into tb_pdf values(cod,'','');
 END&&
@@ -222,7 +221,7 @@ id_cliente int not null,
 num_empleos int,
 duracion_promedio int,
 foreign key (id_cliente) references tb_clientes(id_cliente)
-);
+);&&
   
  
  DELIMITER &&
@@ -241,7 +240,7 @@ id_cliente int not null,
 nombre_enlace varchar(50),
 link varchar(250),
 foreign key (id_cliente) references tb_clientes (id_cliente)
-);
+);&&
 
 
 
@@ -279,16 +278,10 @@ CREATE TABLE tb_pdf (
 );
 
 
-DELIMITER &&
-CREATE PROCEDURE actualizar_pdf (cod int,nombre varchar(50),archivo mediumblob)
-BEGIN
-update tb_pdf set  nombrepdf=nombre, archivopdf=archivo where id_cliente =cod;
-END&&
 
-select * from tb_pdf;
-drop procedure actualizar_pdf;
 
-select archivopdf from tb_pdf where id_cliente=1;
+
+
 
 
 

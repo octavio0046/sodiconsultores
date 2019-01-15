@@ -623,18 +623,15 @@
                     
                     <%
                         Fichero f = FicheroBD.obtenerCV(Integer.parseInt(request.getParameter("cod")));
-                       // if (f.getArchivopdf2() != null) {
+                      if (f.getArchivopdf2() != null) {
                     %>
 
-                    
-                    
-                    
                     <a href="pdf?id=<%=f.getCodigo_cliente()%>" target="_blank"><img src="Imagen/mpdf.png" title="pdf"/></a>
-                        //<%
-                          //  } else {
-                            //    out.print("Vacio");
-                            //}
-                        //%>
+                        <%
+                           } else {
+                              out.print("Vacio");
+                           }
+                        %>
                     </center>
                      </div>
                     <%------ TERMINA el formulario de CURRICULUM----%>     
