@@ -26,7 +26,6 @@ public class FicheroBD {
             cl.setInt(1, p.getCodigo_cliente());
             cl.setString(2, p.getNombrepdf());
             cl.setBlob(3, p.getArchivopdf());
-
             int i = cl.executeUpdate();
             if (i == 1) {
                 rpta = true;

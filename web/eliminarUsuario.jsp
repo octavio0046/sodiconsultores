@@ -4,7 +4,8 @@
     Author     : OctavioHerrera
 --%>
 
-<%@page import="Modelo.DetallePaciente"%>
+
+<%@page import="Modelo.UsuariosBD"%>
 <%@page import="Modelo.Usuarios"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.ArrayList"%>
@@ -13,25 +14,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page session="true"%>
 <!DOCTYPE html>
-
-<%
-  response.setHeader("Pragma", "no-cache");
-  response.addHeader("Cache-control", "must-revalidate");
-  response.addHeader("Cache-control", "no-cache");
-  response.addHeader("Cache-control", "no-store");
-  response.setDateHeader("Expires", 0);
-  try {
-           if(session.getAttribute("nom")==null){
-      
-
-      request.getRequestDispatcher("index.jsp").forward(request, response);
-      
-  }
-  }catch(Exception e){
-      
-    request.getRequestDispatcher("index.jsp").forward(request, response);  
-  }
-%>
 <html>
     <div class="cabecera">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -42,7 +24,7 @@
  
          <center>
                <%
-                ArrayList<Usuarios> lista = DetallePaciente.obtenerCodUsuario(Integer.parseInt(request.getParameter("cod")));
+                ArrayList<Usuarios> lista = UsuariosBD.obtenerCodUsuario(Integer.parseInt(request.getParameter("cod")));
 
                 for (int i = 0; i < lista.size(); i++) {
                     Usuarios d = lista.get(i);

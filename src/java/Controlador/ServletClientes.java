@@ -72,21 +72,7 @@ public class ServletClientes extends HttpServlet {
     request.getRequestDispatcher("formBuscarCliente.jsp").forward(request, response);
   }
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+ 
   
    private void actualizarCliente(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException
@@ -116,9 +102,9 @@ public class ServletClientes extends HttpServlet {
       
          boolean rpta = ClienteBD.actualizarCliente(p);
     if (rpta) {
-      response.sendRedirect("mensaje2.jsp?men=Se actualizo de manera correcta");
+      response.sendRedirect("formFichaUsuarioCliente.jsp?cod="+id_cliente+"");
     } else {
-      response.sendRedirect("mensaje2.jsp?men=No se actualizo ");
+      response.sendRedirect("mensaje2.jsp?men=Realize el procedimiento nuevamente ");
     }
   }
 

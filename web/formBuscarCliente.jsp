@@ -5,26 +5,16 @@
 --%>
 <%@page import="Modelo.Cliente"%>
 <%@page import="Modelo.ClienteBD"%>
-<%-- 
-    Document   : BuscarPaciente
-    Created on : 11/05/2018, 12:47:00 PM
-    Author     : Octavio Herrera
---%>
-
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page session="true"%>
 <!DOCTYPE html>
-
-
 <html>
     <div class="cabecera">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link rel="stylesheet" href="estilos22.css"/>
         <%@include file="template1.jsp" %>
-
-
     </div>               
 
     <div class="contenido">       
