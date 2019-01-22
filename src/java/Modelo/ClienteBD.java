@@ -28,7 +28,7 @@ public class ClienteBD {
     {
       Connection cn = Conexion.getConexion();
       
-      CallableStatement cl = cn.prepareCall("{call actualizar_cliente(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+      CallableStatement cl = cn.prepareCall("{call actualizar_cliente(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
       cl.setInt(1, p.getId_cliente());
       cl.setString(2, p.getNombre1());
       cl.setString(3, p.getNombre2());
@@ -46,6 +46,7 @@ public class ClienteBD {
       cl.setString(15, p.getCorreo());
       cl.setString(16, p.getNombre_usuario());
       cl.setInt(17, p.getEstado());
+      cl.setString(18, p.getGenero());
       int i = cl.executeUpdate();
       if (i == 1) {
         rpta = true;
@@ -94,7 +95,7 @@ public class ClienteBD {
             cl.setInt(1, codigo);
             ResultSet rs = cl.executeQuery();
             while (rs.next()) {
-                p=new Cliente(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getInt(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12),rs.getInt(13),rs.getInt(14),rs.getString(15),rs.getString(16),rs.getString(17),rs.getString(18),rs.getInt(19)); 
+                p=new Cliente(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getInt(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12),rs.getInt(13),rs.getInt(14),rs.getString(15),rs.getString(16),rs.getString(17),rs.getString(18),rs.getInt(19),rs.getString(20)); 
                         
             }
         }catch (Exception e) {}
@@ -116,7 +117,7 @@ public class ClienteBD {
       ResultSet rs = cl.executeQuery();
       while (rs.next())
       {
-        Cliente v = new Cliente(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getInt(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12),rs.getInt(13),rs.getInt(14),rs.getString(15),rs.getString(16),rs.getString(17),rs.getString(18),rs.getInt(19)); 
+        Cliente v = new Cliente(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getInt(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12),rs.getInt(13),rs.getInt(14),rs.getString(15),rs.getString(16),rs.getString(17),rs.getString(18),rs.getInt(19),rs.getString(20)); 
          lista2.add(v);
       }
     }
@@ -140,7 +141,7 @@ public class ClienteBD {
       ResultSet rs = cl.executeQuery();
       while (rs.next())
       {
-        Cliente v = new Cliente(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getInt(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12),rs.getInt(13),rs.getInt(14),rs.getString(15),rs.getString(16),rs.getString(17),rs.getString(18),rs.getInt(19)); 
+        Cliente v = new Cliente(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getInt(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12),rs.getInt(13),rs.getInt(14),rs.getString(15),rs.getString(16),rs.getString(17),rs.getString(18),rs.getInt(19),rs.getString(20)); 
         lista.add(v);
       }
     }

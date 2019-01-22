@@ -94,10 +94,11 @@ public class ServletClientes extends HttpServlet {
         String correo = request.getParameter("txtCorreo"); 
         String nombre_usuario = request.getParameter("txtNombreUsuario");
         int estado = Integer.parseInt(request.getParameter("txtEstado"));
+        String genero=request.getParameter("txtGenero");
         
         Cliente p = new Cliente(id_cliente, nombre1, nombre2, apellido1, 
                 apellido2, nacimiento, edad, pais, departamento, recidencia, direccion,
-                tel1, tel2, recidencial, correo, nombre_usuario,estado);
+                tel1, tel2, recidencial, correo, nombre_usuario,estado,genero);
       
          boolean rpta = ClienteBD.actualizarCliente(p);
     if (rpta) {

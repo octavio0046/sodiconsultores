@@ -24,22 +24,21 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page session="true"%>
 <%
-  response.setHeader("Pragma", "no-cache");
-  response.addHeader("Cache-control", "must-revalidate");
-  response.addHeader("Cache-control", "no-cache");
-  response.addHeader("Cache-control", "no-store");
-  response.setDateHeader("Expires", 0);
-  try {
-           if(session.getAttribute("nom")==null){
-      
+    response.setHeader("Pragma", "no-cache");
+    response.addHeader("Cache-control", "must-revalidate");
+    response.addHeader("Cache-control", "no-cache");
+    response.addHeader("Cache-control", "no-store");
+    response.setDateHeader("Expires", 0);
+    try {
+        if (session.getAttribute("nom") == null) {
 
-      request.getRequestDispatcher("index.jsp").forward(request, response);
-      
-  }
-  }catch(Exception e){
-      
-    request.getRequestDispatcher("index.jsp").forward(request, response);  
-  }
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+
+        }
+    } catch (Exception e) {
+
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+    }
 %>
 
 <!DOCTYPE html>
@@ -121,21 +120,21 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="exampleFormControlInput1">PRIMER NOMBRE</label>
-                                        <input type="text" name="txtNombre1" value="<%=p.getNombre1()%>"  style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="exampleFormControlInput1" >
+                                        <input type="text" name="txtNombre1" value="<%=p.getNombre1()%>"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" class="form-control" id="exampleFormControlInput1" >
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="exampleFormControlInput1">SEGUNDO NOMBRE</label>
-                                        <input type="text" name="txtNombre2" value="<%=p.getNombre2()%>"  style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"  class="form-control" id="exampleFormControlInput1" >
+                                        <input type="text" name="txtNombre2" value="<%=p.getNombre2()%>"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();"  class="form-control" id="exampleFormControlInput1" >
 
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="exampleFormControlInput1">PRIMER APELLIDO</label>
-                                        <input type="text" name="txtApellido1" value="<%=p.getApellido1()%>"  style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="exampleFormControlInput1" >
+                                        <input type="text" name="txtApellido1" value="<%=p.getApellido1()%>"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" class="form-control" id="exampleFormControlInput1" >
 
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="exampleFormControlInput1">SEGUNDO APELLIDO</label>
-                                        <input type="text" name="txtApellido2" value="<%=p.getApellido2()%>"  style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="exampleFormControlInput1" >
+                                        <input type="text" name="txtApellido2" value="<%=p.getApellido2()%>"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" class="form-control" id="exampleFormControlInput1" >
                                     </div>
 
                                 </div>
@@ -145,21 +144,16 @@
                                 </div>
 
                                 <div class="form-row">
-                                    <div class="form-group col-md-2">
-                                        <label for="exampleFormControlInput1">EDAD</label>
-                                        <input type="number" name="txtEdad" value="<%=p.getEdad()%>"  class="form-control" id="exampleFormControlInput1" >
 
-                                    </div>
-                                    <div class="form-group col-md-4">
+                                    <div class="form-group col-md-6">
                                         <label for="exampleFormControlSelect1">PAIS</label>
-                                        <select class="form-control" value="<%=p.getPais()%>"  style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" name="txtPais" id="exampleFormControlSelect1">
+                                        <select class="form-control" value="<%=p.getPais()%>"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" name="txtPais" id="exampleFormControlSelect1">
                                             <option>GUATEMALA</option>
                                         </select>
-
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="exampleFormControlSelect1">DEPARTAMENTO</label>
-                                        <select class="form-control"  value="<%=p.getDepartamento()%>"  style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" name="txtDepartamento" id="exampleFormControlSelect1">
+                                        <select class="form-control"  value="<%=p.getDepartamento()%>"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" name="txtDepartamento" id="exampleFormControlSelect1">
                                             <option>HUEHUETENANGO</option>
                                             <option>CHIQUIMULA</option>
                                             <option>CHIANTLA</option>
@@ -168,15 +162,28 @@
                                     </div>
                                 </div>
                                 <div class="form-row">
+
+                                    <div class="form-group col-md-6">
+                                        <label for="exampleFormControlSelect1">GENERO</label>
+                                        <select class="form-control" value="<%=p.getGenero()%>"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" name="txtGenero" id="exampleFormControlSelect1">
+                                            <option>MASCULINO</option>
+                                            <option>FEMENINO</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="exampleFormControlInput1">EDAD</label>
+                                        <input type="number" name="txtEdad" value="<%=p.getEdad()%>"  class="form-control" id="exampleFormControlInput1" >
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="exampleFormControlInput1">RECIDENCIA</label>
-                                        <input type="text" value="<%=p.getRecidencia()%>"  style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" name="txtRecidencia" class="form-control" id="exampleFormControlInput1">
-
-
+                                        <input type="text" value="<%=p.getRecidencia()%>"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" name="txtRecidencia" class="form-control" id="exampleFormControlInput1">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="exampleFormControlInput1">DIRECCION</label>
-                                        <input type="text" name="txtDireccion" value="<%=p.getDireccion()%>"  style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="exampleFormControlInput1">
+                                        <input type="text" name="txtDireccion" value="<%=p.getDireccion()%>"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" class="form-control" id="exampleFormControlInput1">
                                     </div>
                                 </div>
 
@@ -189,14 +196,10 @@
                                         <label for="exampleFormControlInput1">Telelefono Secundario</label>
                                         <input type="number" name="txtTelefono2" value="<%=p.getTel2()%>" class="form-control" id="exampleFormControlInput1">
 
-
-
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="exampleFormControlInput1">Telelefono Recidencial</label>
                                         <input type="number" name="txtRecidencial" value="<%=p.getRecidencial()%>" class="form-control" id="exampleFormControlInput1">
-
-
                                     </div>
                                 </div>
 
@@ -245,10 +248,11 @@
                                 %>  
                                 <label for="exampleFormControlSelect1">NIVEL DE ESTUDIO</label>
                                 <div class="form-group">    
-                                    <select name="txtNombre_nivel_estudio"  style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="exampleFormControlSelect1">
+                                    <select name="txtNombre_nivel_estudio"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" class="form-control" id="exampleFormControlSelect1">
                                         <option>PRIMARIA</option>
                                         <option>BÁSICO</option>
                                         <option>DIVERSIFICADO</option>
+                                        <option>UNIVERSITARIO</option>
                                         <option>DOCTORADO</option>
                                         <option>POST-GRADO</option>
                                     </select>
@@ -257,19 +261,27 @@
 
                                 <label for="exampleFormControlSelect1">CARRERA EN CURSO</label>
                                 <div class="form-group">    
-                                    <select name="txtNombre_formacion"  style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="exampleFormControlSelect1">
+                                    <select name="txtNombre_formacion"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" class="form-control" id="exampleFormControlSelect1">
                                         <option>INGENIERIA</option>
                                         <option>LICENCIATURA</option>
-                                        <option></option>
-                                        <option></option>
-                                        <option></option>
+                                        <option>ADMINISTRACION DE EMPRESAS</option>
+                                        <option>ODONTOLOGIA</option>
+                                        <option>PSICOLOGIA</option>
+                                        <option>CIENCIAS QUIMICAS</option>
+                                        <option>HOTELERIA Y TURISMO</option>
+                                        <option>NUTRICION</option>
+                                        <option>CIENCIAS ECONOCMICAS</option>
+                                        <option>ESCUELA DE MERCADOTECNIA</option>
+                                        <option>ESCUELA DE LINGUISTICA</option>
+                                        <option>TRABAJO SOCIAL</option>
+                                        <option>POST GRADO</option>
                                     </select>
                                 </div>   
 
 
                                 <label for="exampleFormControlSelect1">CAMPO DE ESTUDIO</label>
                                 <div class="form-group">    
-                                    <select name="txtNombre_campo_estudio"  style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="exampleFormControlSelect1">
+                                    <select name="txtNombre_campo_estudio"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" class="form-control" id="exampleFormControlSelect1">
                                         <option>INFORMATICA</option>
                                         <option>AGRICULA</option>
                                         <option></option>
@@ -285,14 +297,14 @@
                                 <br>
                                 <div class="form-group">
                                     <label for="exampleFormControlInput1">Nivel de estudio ACTUAL</label>
-                                    <input type="text" readonly=""  style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"  value="<%=e.getNombre_nivel_estudio()%>" class="form-control" id="exampleFormControlInput1" >
+                                    <input type="text" readonly=""  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();"  value="<%=e.getNombre_nivel_estudio()%>" class="form-control" id="exampleFormControlInput1" >
                                 </div>  
 
                                 <label for="exampleFormControlInput1">Formacion Academica ACTUAL</label>
-                                <input type="text" readonly="" name=""  style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" value="<%=e.getNombre_formacion()%>" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                                <input type="text" readonly="" name=""  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" value="<%=e.getNombre_formacion()%>" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
 
                                 <label for="exampleFormControlInput1">Campo de Estudio ACTUAL</label>
-                                <input type="text" readonly="" name=""  style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" value="<%=e.getNombre_campo_estudio()%>" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                                <input type="text" readonly="" name=""  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" value="<%=e.getNombre_campo_estudio()%>" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
 
 
 
@@ -327,7 +339,7 @@
 
                                 <div class="form-group">
                                     <label for="exampleFormControlInput1">Numbero de Empleos</label>
-                                    <input type="number" name="txtNumero"  style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" value="<%=i.getNumero()%>" class="form-control" id="exampleFormControlInput1" >
+                                    <input type="number" name="txtNumero"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" value="<%=i.getNumero()%>" class="form-control" id="exampleFormControlInput1" >
                                 </div>
 
                                 <div class="form-group">
@@ -540,7 +552,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="inputState">Estado de la Persona</label>
-                                        <select id="inputState"  style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" name="txtEstadoPersona" class="form-control">
+                                        <select id="inputState"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" name="txtEstadoPersona" class="form-control">
                                             <option selected><%=es.getNombre_estado()%></option>
                                             <option>DESEMPLEADO</option>
                                             <option>EMPLEADO</option>
@@ -548,7 +560,7 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputState">Status Actual</label>
-                                        <select id="inputState"  style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" name="txtEstatusActual" class="form-control">
+                                        <select id="inputState"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" name="txtEstatusActual" class="form-control">
                                             <option selected><%=es.getStaus_actual()%></option>
                                             <option>COLOCADO</option>
                                             <option>SIN COLOCAR</option>
@@ -569,7 +581,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="inputState">ENTREVISTA</label>
-                                        <select id="inputState"  style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" name="txtEntrevista" class="form-control">
+                                        <select id="inputState"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" name="txtEntrevista" class="form-control">
                                             <option selected><%=es.getEntrevista()%></option>
                                             <option>SI</option>
                                             <option>NO</option>
@@ -577,7 +589,7 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputState">PRUEBA PSICOMÉTRICA</label>
-                                        <select id="inputState"  style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" name="txtPruebaPsico" class="form-control">
+                                        <select id="inputState"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" name="txtPruebaPsico" class="form-control">
                                             <option selected><%=es.getPrueba_psico()%></option>
                                             <option>SI</option>
                                             <option>NO</option>
@@ -638,16 +650,16 @@
                                 <input type="submit" class="btn btn-outline-success" value="enviar"  name="Registrarse" />
                                 <input type="hidden"  name="accion" value="actualizarCV"/>
                             </form>
-                    
-                    <%
-                        Fichero f = FicheroBD.obtenerCV(Integer.parseInt(request.getParameter("cod")));
-                  
-                    %>
 
-                    <a href="pdf?id=<%=f.getCodigo_cliente()%>" target="_blank"><img src="Imagen/mpdf.png" title="pdf"/></a>
-                     
-                    </center>
-                     </div>
+                            <%
+                                Fichero f = FicheroBD.obtenerCV(Integer.parseInt(request.getParameter("cod")));
+
+                            %>
+
+                            <a href="pdf?id=<%=f.getCodigo_cliente()%>" target="_blank"><img src="Imagen/mpdf.png" title="pdf"/></a>
+
+                        </center>
+                    </div>
                     <%------ TERMINA el formulario de CURRICULUM----%>     
                 </div>
 

@@ -30,6 +30,7 @@ public class Cliente {
    private String nombre_usuario;
   //nuevo
    private int estado;
+   private String genero;
 
    
     public Cliente() {
@@ -63,7 +64,7 @@ public class Cliente {
 
     //este construcor sera para la actualizacion se usara en el metodo actualizar en servletClientes
 
-    public Cliente(int id_cliente, String nombre1, String nombre2, String apellido1, String apellido2, String nacimiento, int edad, String pais, String departamento, String recidencia, String direccion, int tel1, int tel2, int recidencial, String correo, String nombre_usuario, int estado) {
+    public Cliente(int id_cliente, String nombre1, String nombre2, String apellido1, String apellido2, String nacimiento, int edad, String pais, String departamento, String recidencia, String direccion, int tel1, int tel2, int recidencial, String correo, String nombre_usuario, int estado,String genero) {
         this.id_cliente = id_cliente;
         this.nombre1 = nombre1;
         this.nombre2 = nombre2;
@@ -81,11 +82,12 @@ public class Cliente {
         this.correo = correo;
         this.nombre_usuario = nombre_usuario;
         this.estado = estado;
+        this.genero = genero;
     }
 
     
     //construcor para obtner todos los campos de la tabla
-    public Cliente(int id_cliente, String nombre1, String nombre2, String apellido1, String apellido2, String nacimiento, int edad, String pais, String departamento, String recidencia, String direccion, int tel1, int tel2, int recidencial, String correo, String fechaIngreso, String fecha_final, String nombre_usuario, int estado) {
+    public Cliente(int id_cliente, String nombre1, String nombre2, String apellido1, String apellido2, String nacimiento, int edad, String pais, String departamento, String recidencia, String direccion, int tel1, int tel2, int recidencial, String correo, String fechaIngreso, String fecha_final, String nombre_usuario, int estado,String genero) {
         this.id_cliente = id_cliente; 
         this.nombre1 = nombre1;
         this.nombre2 = nombre2;
@@ -105,6 +107,15 @@ public class Cliente {
         this.fecha_final = fecha_final;
         this.nombre_usuario = nombre_usuario;
         this.estado = estado;
+        this.genero = genero;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
     }
 
   
