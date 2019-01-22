@@ -11,7 +11,6 @@ package Modelo;
  */
 public class Cliente {
    private int id_cliente;
-   private int id_usu_clie;
    private String nombre1;
    private String nombre2;
    private String apellido1;
@@ -33,14 +32,19 @@ public class Cliente {
    private int estado;
 
    
+    public Cliente() {
 
+    } 
+
+  
+    
+    
    //constructor para ingresar los datos del cliente en la tabla tb_clientes para la clase 
    //ClienteBD y para el sevlet Cliente
 
-    public Cliente(int id_cliente, String nombre_usuario, int id_usu_clie, String nombre1, String nombre2, String apellido1, String apellido2, String nacimiento, int edad, String pais, String departamento, String recidencia, String direccion, int tel1, int tel2, int recidencial, String correo) {
+    public Cliente(int id_cliente, String nombre_usuario, String nombre1, String nombre2, String apellido1, String apellido2, String nacimiento, int edad, String pais, String departamento, String recidencia, String direccion, int tel1, int tel2, int recidencial, String correo) {
         this.id_cliente = id_cliente;
         this.nombre_usuario = nombre_usuario;
-        this.id_usu_clie = id_usu_clie;
         this.nombre1 = nombre1;
         this.nombre2 = nombre2;
         this.apellido1 = apellido1;
@@ -81,9 +85,8 @@ public class Cliente {
 
     
     //construcor para obtner todos los campos de la tabla
-    public Cliente(int id_cliente, int id_usu_clie, String nombre1, String nombre2, String apellido1, String apellido2, String nacimiento, int edad, String pais, String departamento, String recidencia, String direccion, int tel1, int tel2, int recidencial, String correo, String fechaIngreso, String fecha_final, String nombre_usuario, int estado) {
-        this.id_cliente = id_cliente;
-        this.id_usu_clie = id_usu_clie;
+    public Cliente(int id_cliente, String nombre1, String nombre2, String apellido1, String apellido2, String nacimiento, int edad, String pais, String departamento, String recidencia, String direccion, int tel1, int tel2, int recidencial, String correo, String fechaIngreso, String fecha_final, String nombre_usuario, int estado) {
+        this.id_cliente = id_cliente; 
         this.nombre1 = nombre1;
         this.nombre2 = nombre2;
         this.apellido1 = apellido1;
@@ -142,13 +145,6 @@ public class Cliente {
         this.nombre_usuario = nombre_usuario;
     }
 
-    public int getId_usu_clie() {
-        return id_usu_clie;
-    }
-
-    public void setId_usu_clie(int id_usu_clie) {
-        this.id_usu_clie = id_usu_clie;
-    }
 
     public String getNombre1() {
         return nombre1;

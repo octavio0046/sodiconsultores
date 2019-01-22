@@ -52,7 +52,7 @@
     </div>
     <div class="contenido">
 
-        <%        UsuarioCliente a = UsuarioClienteBD.obtenerUsuarioCliente(Integer.parseInt(request.getParameter("cod")));
+        <%        Cliente a = ClienteBD.obtenerClientePrueba(Integer.parseInt(request.getParameter("cod")));
 
         %>  
 
@@ -68,9 +68,9 @@
 
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item" ><a href="#"><%=a.getId_usu_clie()%></a></li>
-                <li class="breadcrumb-item"><a href="#"> Bienvenido:    <%=a.getCorreo()%></a></li>
-                <li class="breadcrumb-item active" aria-current="page">Fecha Creacion: <%=a.getFecha_creacion()%></li>
+                <li class="breadcrumb-item" ><a href="#">#</a></li>
+                <li class="breadcrumb-item"><a href="#"> #</a></li>
+                <li class="breadcrumb-item active" aria-current="page">#</li>
             </ol>
         </nav>
 
@@ -101,7 +101,7 @@
                             <form action="ServletClientes" method="get">
 
 
-                                <input type="text"   name="txtId_cliente"  hidden="" value="<%=a.getId_usu_clie()%>">
+                                <input type="text"   name="txtId_cliente"  hidden="" value="<%=a.getId_cliente()%>">
                                 <%if (sesionOK.getAttribute("perfil") != null) {
                                         //si alguien ya inicio sesion entonces mostrar su nombre 
                                 %>
@@ -239,7 +239,7 @@
                         --%>
                         <center>
                             <form action="ServletEstudios" method="get">
-                                <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_usu_clie()%>">
+                                <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_cliente()%>">
                                 <%
                                     Estudio e = EstudioBD.obtenerEstudio(Integer.parseInt(request.getParameter("cod")));
                                 %>  
@@ -322,7 +322,7 @@
                                     Informacion i = InformacionBD.obtenerInformacion(Integer.parseInt(request.getParameter("cod")));
                                 %> 
 
-                                <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_usu_clie()%>">
+                                <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_cliente()%>">
 
 
                                 <div class="form-group">
@@ -398,7 +398,7 @@
 
                                     <form action="ServletEnlaces" method="get">
 
-                                        <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_usu_clie()%>">
+                                        <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_cliente()%>">
                                         <input type="text" hidden=""   name="txtNombre_enlace"   value="<%=variable%>">
                                         <div class="form-group">
                                             <label for="exampleFormControlInput1"><%=en.getNombre_enlace()%></label>
@@ -425,7 +425,7 @@
                                             Enlace en2 = EnlaceBD.obtenerEnlace(Integer.parseInt(request.getParameter("cod")), variable2);
                                         %>
 
-                                        <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_usu_clie()%>">
+                                        <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_cliente()%>">
                                         <input type="text" hidden=""  name="txtNombre_enlace"   value="<%=variable2%>">
 
                                         <div class="form-group">
@@ -451,7 +451,7 @@
                                             Enlace en3 = EnlaceBD.obtenerEnlace(Integer.parseInt(request.getParameter("cod")), variable3);
                                         %>
 
-                                        <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_usu_clie()%>">
+                                        <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_cliente()%>">
                                         <input type="text" hidden=""  name="txtNombre_enlace"   value="<%=variable3%>">
 
 
@@ -483,7 +483,7 @@
                                             Enlace en4 = EnlaceBD.obtenerEnlace(Integer.parseInt(request.getParameter("cod")), variable4);
                                         %>
 
-                                        <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_usu_clie()%>">
+                                        <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_cliente()%>">
                                         <input type="text" hidden=""  name="txtNombre_enlace"   value="<%=variable4%>">
 
 
@@ -535,7 +535,7 @@
                         <center>    
                             <form action="ServletEstados" method="get">
 
-                                <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_usu_clie()%>">
+                                <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_cliente()%>">
 
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
@@ -626,7 +626,7 @@
                     <div class="card-body">
                         <center>
                             <form action="ServletCV" method="post" enctype="multipart/form-data">
-                                <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_usu_clie()%>">
+                                <input type="text" hidden=""  name="txtId_cliente"   value="<%=a.getId_cliente()%>">
                                 <div class="form-group">
                                     <label for="exampleFormControlFile1">Nombre Archivo</label>
                                     <input type="text"   name="txtNombre" class="form-control-file" id="exampleFormControlFile1">

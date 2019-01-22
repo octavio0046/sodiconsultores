@@ -19,7 +19,7 @@ public class EstadoBD {
     
     
     
-     public static boolean actualizarEstado(Estado p)
+  public static boolean actualizarEstado(Estado p)
   {
     boolean rpta = false;
     try

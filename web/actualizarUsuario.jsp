@@ -6,7 +6,6 @@
 
 <%@page import="Modelo.UsuariosBD"%>
 <%@page import="Modelo.Usuarios"%>
-<%@page import="Modelo.Usuarios"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page session="true"%>

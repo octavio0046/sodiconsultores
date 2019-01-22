@@ -43,12 +43,12 @@
             <form action="ServletClientes" method="get">
                 <input type="hidden" name="accion" value="BuscarUnCliente" />
                 <label>Busque por Nombre</label>
-                <input type="text" placeholder="Nombre Paciente" name="txtNombre" style=" width: 250px; height: 50px;text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" >
+                <input type="text"  name="txtNombre" style=" width: 250px; height: 50px;text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" >
                 <br> <br>  <input type="submit"  class="btn btn-success"  value="Buscar" >    
             </form>
         </center>   
 
-        <h2 align="center">Lista de Pacientes</h2>  
+        <h2 align="center">Lista de Solicitantes</h2>  
 
         <div class="table-responsive-xl">
             <table class="table">
@@ -68,7 +68,7 @@
                 <tbody>
                  <%  ArrayList<Cliente> lista = (ArrayList<Cliente>) request.getAttribute("lista");
                         for (Cliente v : lista) {
-                    %>  
+                  %>  
 
                     <tr>
                         <td><%=v.getId_cliente()%></td>

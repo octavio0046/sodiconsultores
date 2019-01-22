@@ -14,7 +14,7 @@ CREATE TABLE TB_USUARIOS (
   FECHA_CREACION varchar(20) DEFAULT NULL,
   ESTADO varchar(10) DEFAULT NULL,
   PRIMARY KEY (COD_USUARIO)
-); 
+);&& 
 
 DELIMITER &&
 CREATE PROCEDURE INSERTAR_USUARIOS (
@@ -46,8 +46,7 @@ UPDATE TB_USUARIOS SET ESTADO='INACTIVO' WHERE COD_USUARIO=_COD_USUARIO;
 END&&
 
 
-INSERT INTO TB_USUARIOS VALUES (DEFAULT,'HERRERA','OCTAVIO','HUEHUE','EMPRESARIAL','OCTAVIO@GMAIL.COM','ABC','2018-09-24 21:55:34','ACTIVO');
-INSERT INTO TB_USUARIOS VALUES (DEFAULT,'HERRERA','OCTAVIO','HUEHUE','ADMIN','OCTAVIO@GMAIL.COM','ABC.123','2018-09-24 21:55:34','ACTIVO');
+INSERT INTO TB_USUARIOS VALUES (DEFAULT,'HERRERA','OCTAVIO','HUEHUE','ADMIN','OCTAVIO@GMAIL.COM','ABC.123','2018-09-24 21:55:34','ACTIVO');&&
 
 SELECT * FROM TB_USUARIOS WHERE NOMBRE_USUARIO = 'OCTAVIO' AND CLAVE_USUARIO = 'ABC.123';
 
@@ -58,7 +57,7 @@ contrasena varchar (50),
 fecha_creacion varchar(50),
 estado int ,
 primary key (id_usu_clie) 
-);
+);&&
 
 
 DELIMITER &&
@@ -67,14 +66,15 @@ correo varchar(50),contrasena varchar(50))
 BEGIN
 select ifnull(max(id_usu_clie),0)+1 into cod from tb_usuario_cliente;
 INSERT INTO tb_usuario_cliente VALUES(cod,correo,contrasena,now(),1);
-insert into tb_clientes values(cod,cod,'','','',
-'','',0,'','','','',0,0,0,'',now(),'','',1);
-insert into tb_estudios values(cod,'','','');
+insert into tb_clientes values(cod,cod,'Primer Nombre','Segundo Nombre','Primer Apellido',
+'segundo apellido','Nacimiento',0,'pais'
+,'Departamento','recidencia','direccion',0,0,0,'correo',now(),'','',1);
+insert into tb_estudios values(cod,'NINGUNO','NINGUNO','NINGUNO');
 insert into tb_info values(cod,0,0);
-insert into tb_enlaces values(cod,'','');
-insert into tb_enlaces values(cod,'','');
-insert into tb_enlaces values(cod,'','');
-insert into tb_enlaces values(cod,'','');
+insert into tb_enlaces values(cod,'Facebook','');
+insert into tb_enlaces values(cod,'Instagram','');
+insert into tb_enlaces values(cod,'LinkIn','');
+insert into tb_enlaces values(cod,'otro','');
 insert into tb_estados values(cod,'','','','','');
 insert into tb_pdf values(cod,'','');
 END&&
@@ -85,11 +85,8 @@ call insertar_usuario_cliente(@id,'asdf','afsd');
 select @id;
 
 
-
-
 create table tb_clientes(
 id_cliente int ,
-id_usu_clie int not null,
 nombre1 varchar(50),
 nombre2 varchar(50),
 apellido1 varchar(50),
@@ -108,34 +105,25 @@ fechaRegistro varchar(50),
 fecha_final varchar(50),
 nombre_usuario varchar(50),
 estado int,
-primary key (id_cliente),
-foreign key (id_usu_clie) references tb_usuario_cliente(id_usu_clie)
-);
+primary key (id_cliente)
+);&&
 
-
+drop table tb_clientes;
 
 DELIMITER &&
-CREATE PROCEDURE insertar_cliente (
-id_cliente int ,
-nombre_usuario varchar(50),
-id_usu_clie int,
-nombre1 varchar(50),
-nombre2 varchar(50),
-apellido1 varchar(50),
-apellido2 varchar(50),
-nacimiento varchar(50),
-edad varchar(50),
-pais varchar(50),
-departamento varchar(50),
-recidencia varchar(50),
-direccion varchar(50),
-tel1 int,tel2 int,recidencial int,
-correo varchar(50))
-BEGIN
-INSERT INTO tb_clientes VALUES(id_cliente,id_usu_clie,nombre1,nombre2 ,
-apellido1,apellido2,nacimiento,edad,pais,departamento,recidencia,direccion,
-tel1,tel2 ,recidencial ,correo,now(),'aun no',nombre_usuario,1);
+CREATE PROCEDURE insertar_cliente(inout id_cliente int)
+begin
+insert into tb_clientes values(id_cliente,'Primer Nombre','Segundo Nombre','Primer Apellido',
+'segundo apellido','Nacimiento',0,'pais'
+,'Departamento','recidencia','direccion',0,0,0,'correo',now(),'','',1);
 END&&
+
+set @id:=0;
+call insertar_cliente(@id,'Primer Nombre','Segundo Nombre','Primer Apellido',
+'segundo apellido','Nacimiento',0,'pais'
+,'Departamento','recidencia','direccion',0,0,0,'correo',now(),'','',1););
+select @id;
+
 
 DELIMITER &&
 CREATE PROCEDURE actualizar_cliente (
@@ -182,7 +170,7 @@ nombre_nivel_estudio varchar(50),
 nombre_formacion varchar(50),
 nombre_campo_estudio varchar(50),
 foreign key (id_cliente) references tb_clientes(id_cliente)
-);
+);&&
 
 
 DELIMITER &&
@@ -204,6 +192,14 @@ select * from tb_info;
 select * from tb_enlaces;
 select * from tb_estados;
 select * from tb_pdf;
+
+drop table tb_estudios;
+drop table tb_clientes;
+drop table tb_usuario_cliente;
+drop table tb_info;
+drop table tb_enlaces;
+drop table tb_estados;
+drop table tb_pdf;
 
 delete from tb_pdf where id_cliente=1;
 DELETE FROM tb_estados where id_cliente=1;
@@ -259,7 +255,7 @@ fecha_colocacion varchar(50),
 entrevista varchar(50),
 prueba_psico varchar(50),
 primary key (id_cliente)
-);
+);&&
 
 
 DELIMITER &&
@@ -275,13 +271,16 @@ CREATE TABLE tb_pdf (
   nombrepdf varchar(50),
   archivopdf mediumblob,
   PRIMARY KEY (id_cliente)
-);
+);&&
 
 
+DELIMITER &&
+CREATE PROCEDURE actualizar_pdf (cod int,nombre varchar(50),archivo mediumblob)
+BEGIN
+update tb_pdf set  nombrepdf=nombre, archivopdf=archivo where id_cliente =cod;
+END&&
 
 
-
-
-
+SELECT * FROM TB_USUARIOS;
 
 
