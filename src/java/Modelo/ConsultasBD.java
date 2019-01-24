@@ -18,22 +18,22 @@ public class ConsultasBD {
     
     
     
-     // metodo para realizar la consulta completa con 2 o mas campos 
-    public static ArrayList<Cliente> obtenerConsultaCompleja(String genero,int edad,String residencia)
+     // metodo para realizar la consulta de 8 parametros el resultado lo arroja en formbusquedaCompleja 
+    public static ArrayList<Consultas> obtenerConsultaCompleja(String genero,int edad,String residencia,String nivel)
   {
       
-        
-    ArrayList<Cliente> lista = new ArrayList();
+    ArrayList<Consultas> lista = new ArrayList();
     try
     {
-      CallableStatement cl = Conexion.getConexion().prepareCall("{call BusquedaCompleja(?,?,?)}");
+      CallableStatement cl = Conexion.getConexion().prepareCall("{call BusquedaCompleja(?,?,?,?)}");
       cl.setString(1, genero);
        cl.setInt(2, edad);
        cl.setString(3, residencia);
+       cl.setString(4, nivel);
       ResultSet rs = cl.executeQuery();
       while (rs.next())
       {
-        Cliente v = new Cliente(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getInt(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12),rs.getInt(13),rs.getInt(14),rs.getString(15),rs.getString(16),rs.getString(17),rs.getString(18),rs.getInt(19),rs.getString(20)); 
+        Consultas v = new Consultas(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
         lista.add(v);
       }
     }

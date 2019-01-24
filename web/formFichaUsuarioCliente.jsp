@@ -338,7 +338,7 @@
                                 <label for="exampleFormControlSelect1">CARRERA EN CURSO</label>
                                 <div class="form-group">    
                                     <select name="txtNombre_formacion"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" class="form-control" id="exampleFormControlSelect1">
-                                         <option><%=e.getNombre_formacion()%></option>
+                                        <option><%=e.getNombre_formacion()%></option>
                                        <option style="color: red;">LICENCIATURAS</option>
                                          <option>ADMINISTRACION DE EMPRESAS</option>
                                         <option>ANTROPOLOGIA</option>

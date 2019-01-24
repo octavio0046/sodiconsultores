@@ -267,7 +267,7 @@
                                 <div class="col">
                                     <label for="exampleFormControlSelect1">RESIDENCIA</label>
                                     <select class="form-control"    style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();"  name="txtResidencia" id="exampleFormControlSelect1">
-                                       <option></option>
+                                        <option></option>
                                         <option>HUEHUETENANGO</option>
                                         <option>ALTA VERAPAZ</option>
                                         <option>CHIMALTENANGO</option>
@@ -292,15 +292,88 @@
                                         <option>ZACAPA</option>
                                     </select>
 
+                                </div>
+                                <div class="col">
+                                    <label for="exampleFormControlSelect1">NIVEL ESTUDIO</label>
+                                    <select name="txtNombre_nivel_estudio"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" class="form-control" id="exampleFormControlSelect1">
+                                        <option></option>
+                                        <option>PRIMARIA</option>
+                                        <option>BÁSICO</option>
+                                        <option>DIVERSIFICADO</option>
+                                        <option>UNIVERSITARIO</option>
+                                        <option>DOCTORADO</option>
+                                        <option>POST-GRADO</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <label for="exampleFormControlSelect1">CARRERA</label>
+                                    <select name="txtNombre_formacion"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" class="form-control" id="exampleFormControlSelect1">
+                                        <option></option>
+                                        <option style="color: red;">LICENCIATURAS</option>
+                                        <option>ADMINISTRACION DE EMPRESAS</option>
+                                        <option>ANTROPOLOGIA</option>
+                                        <option>ARQUEOLOGIA</option>
+                                        <option>ARQUITECTURA</option>
+                                        <option>ARTE</option>
+                                        <option>BALLET CLASICO</option>
+                                        <option>BIOLOGIA</option>
+                                        <option>CIENCIAS JURIDICAS Y SOCIALES, ABOGADO Y NOTARIO</option>
+                                        <option>CIENCIAS LINGUISTICAS TRADUCCION E INTERPRETE</option>
+                                        <option>CONTADOR PUBLICO Y AUDITOR</option>
+                                        <option>DISEÑO GRAFICO</option>
+                                        <option>ECONOMIA</option>
+                                        <option>EDUCACION FISICA,DEPORTE Y RECREACION</option>
+                                        <option>ENFERMERIA</option>
+                                        <option>ENSEÑANZA DE MATEMATICA Y FISICA</option>
+                                        <option>FILOSOFIA</option>
+                                        <option>HISTORIA</option>
+                                        <option>MATEMATICAS</option>
+                                        <option>MEDICO VETERINARIO</option>
+                                        <option>MEDICO CIRUJARNO</option>
+                                        <option>MUSICA</option>
+                                        <option>NUTRICION</option>
+                                        <option>ODONTOLOGIA</option>
+                                        <option>PEDAGOGIA</option>
+                                        <option>QUIMICA</option>
+                                        <option>TRABAJO SOCIAL</option>
+                                        <option>ZOOTECNISTA</option>
+                                        <option style="color: red;">INGENIERIA</option>
+                                        <option>AGRONOMO EN RECURSOS NATURALES</option>
+                                        <option>AGRONOMO EN SISTEMAS DE PRODUCCION AGRICOLA</option>
+                                        <option>CIVIL</option>
+                                        <option>ELECTRICA</option>
+                                        <option>MECANICA</option>
+                                        <option>INDUSTRIAL</option>
+                                        <option>MECANICA ELECTRICA</option>
+                                        <option>INGENIERIA QUIMICA</option>
+                                        <option>SISTEMAS</option>
+                                        <option>ELECTRONICA</option>
+                                        <option>INDUSTRIAS AGROPECUARIAS Y FORESTALES</option>                                   
+                                        <option style="color: red;">MAESTRIAS</option>
+                                        <option>ANTROPOLOGIA</option>
+                                        <option>BUSINESS ANALYTICS</option>
+                                        <option>CONSERVACION DE MONUMENTOS</option>
+                                        <option>DISEÑO ARQUITECTONICO</option>
+                                        <option>GESTION PARA LA REUCCION DE LOS RIEGOS NATURALES</option>
+
+                                    </select>
+
 
 
 
                                 </div>
                                 <div class="col">
-                                    <label for="exampleFormControlSelect1">CAMPO VACIO</label>
-                                    <input type="number" name=""  value="0" class="form-control" >
+                                    <label for="exampleFormControlSelect1">VACIO</label>
+                                    <select name="txtNombre_nivel_estudio"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" class="form-control" id="exampleFormControlSelect1">
+                                        <option></option>
+
+                                    </select>
                                 </div>
                             </div>
+
                             <br> <br>  <input type="submit"  class="btn btn-success"  value="Buscar" >    
                         </form>
 

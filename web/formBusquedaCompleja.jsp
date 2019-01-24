@@ -4,6 +4,7 @@
     Author     : OCTAVIOH
 --%>
 
+<%@page import="Modelo.Consultas"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -25,24 +26,24 @@
                         <th scope="col">Edad</th>
                         <th scope="col">Residencia</th>
                         <th scope="col">Carrera en curso</th>
-                        <th scope="col">Correo </th>
+                        <th scope="col">Correo</th>
                         <th scope="col">Fecha Ingreso</th>
     </tr>
   </thead>
   <tbody>
-                 <%  ArrayList<Cliente> lista = (ArrayList<Cliente>) request.getAttribute("lista");
-                        for (Cliente v : lista) {
+                 <%  ArrayList<Consultas> lista = (ArrayList<Consultas>) request.getAttribute("lista");
+                        for (Consultas v : lista) {
                   %>  
 
                     <tr>
                         <td><%=v.getId_cliente()%></td>
                         <td><%=v.getNombre1()%></td>
-                        <td><%=v.getApellido2()%></td>
+                        <td><%=v.getApellido1()%></td>
                         <td><%=v.getEdad()%></td>
-                        <td><%=v.getRecidencia()%></td>
+                        <td><%=v.getResicencia()%></td>
+                        <td><%=v.getNivel()%></td>
                         <td><%=v.getCorreo()%></td>
-                        <td><%=v.getCorreo()%></td>
-                        <td><%=v.getFechaIngreso()%></td>
+                        <td><%=v.getFecha_registro()%></td>
                
                         <td>
                                <a href="formFichaUsuarioCliente.jsp?cod=<%=v.getId_cliente()%>">

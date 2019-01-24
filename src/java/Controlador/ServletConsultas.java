@@ -6,6 +6,7 @@
 package Controlador;
 
 import Modelo.Cliente;
+import Modelo.Consultas;
 import Modelo.ConsultasBD;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -57,14 +58,15 @@ public class ServletConsultas extends HttpServlet {
       String genero = request.getParameter("txtGenero");
       int edad= Integer.parseInt(request.getParameter("txtEdad"));
       String residencia = request.getParameter("txtResidencia");
+      String nivel = request.getParameter("txtNombre_nivel_estudio");
       
       //if(genero.equals("")||residencia.equals("")){
         //genero=null;
        // residencia=null; 
       //}else{
      //    }
-    ArrayList<Cliente> lista = new ArrayList();
-    lista = ConsultasBD.obtenerConsultaCompleja(genero, edad,residencia);
+    ArrayList<Consultas> lista = new ArrayList();
+    lista = ConsultasBD.obtenerConsultaCompleja(genero, edad, residencia, nivel);
     request.setAttribute("lista", lista);
     request.getRequestDispatcher("formBusquedaCompleja.jsp").forward(request, response);
           
