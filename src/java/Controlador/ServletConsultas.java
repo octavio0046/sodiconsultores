@@ -59,6 +59,7 @@ public class ServletConsultas extends HttpServlet {
       int edad= Integer.parseInt(request.getParameter("txtEdad"));
       String residencia = request.getParameter("txtResidencia");
       String nivel = request.getParameter("txtNombre_nivel_estudio");
+      String carrera = request.getParameter("txtNombre_formacion");
       
       //if(genero.equals("")||residencia.equals("")){
         //genero=null;
@@ -66,7 +67,7 @@ public class ServletConsultas extends HttpServlet {
       //}else{
      //    }
     ArrayList<Consultas> lista = new ArrayList();
-    lista = ConsultasBD.obtenerConsultaCompleja(genero, edad, residencia, nivel);
+    lista = ConsultasBD.obtenerConsultaCompleja(genero, edad, residencia, nivel,carrera);
     request.setAttribute("lista", lista);
     request.getRequestDispatcher("formBusquedaCompleja.jsp").forward(request, response);
           

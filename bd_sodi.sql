@@ -263,36 +263,59 @@ delete from tb_enlaces where id_cliente=1;
 delete from tb_clientes where id_cliente=1;
 
 
-DELIMITER &&
-CREATE PROCEDURE BusquedaCompleja(ge varchar(50),ed int,re varchar(50))
-BEGIN
-if (ge='' and ed=0) then
-select * from tb_clientes where recidencia=re order by id_cliente;
-elseif (ge='') and re='' then
-select * from tb_clientes where edad=ed  order by id_cliente;
-elseif (ed=0 and re='') then
-select * from tb_clientes where genero=ge order by id_cliente;
-elseif  (ed =0) then 
-select * from tb_clientes where genero=ge and recidencia=re order by id_cliente;
-elseif (ge='') then
-select * from tb_clientes where  edad=ed and recidencia=re order by id_cliente;
-elseif (re='') then
-select * from tb_clientes where  edad=ed and genero=ge order by id_cliente;
-else
-select * from tb_clientes where genero=ge and edad=ed and recidencia=re order by id_cliente;
-end if;
-END&&
 
 
 drop procedure BusquedaCompleja;
-call BusquedaCompleja('FEMENINO',26,'');
+call BusquedaCompleja('MASCULINO',0,'','HUEHUETENANGO','');
+
+
+select a.nombre1 ,a.apellido1,a.edad, a.recidencia,b.nombre_nivel_estudio,a.correo,a.fechaRegistro
+ from tb_clientes a,tb_estudios b
+where nombre_nivel_estudio='UNIVERSITARIO' and a.id_cliente=b.id_cliente;
+
+select * from tb_estudios;
 select * from tb_clientes;
+select * from tb_estados;
 
 
 
+DELIMITER &&
+CREATE PROCEDURE BusquedaCompleja(gene varchar(50),eda int,resi varchar(50),
+nivel varchar(50),carrera varchar(50),estado varchar(50))
+BEGIN
+if (gene='' and eda=0 and resi='' and nivel='' and carrera='') then
+select a.id_cliente,a.nombre1 ,a.apellido1,a.edad, a.recidencia,b.nombre_nivel_estudio,b.nombre_formacion,c.nombre_estado
+ from tb_clientes a,tb_estudios b, tb_estados c
+where  c.nombre_estado=estado and a.id_cliente=b.id_cliente and a.id_cliente=c.id_cliente;
+elseif (gene='' and eda=0 and resi='' and nivel='' and estado='') then
+select a.id_cliente,a.nombre1 ,a.apellido1,a.edad, a.recidencia,b.nombre_nivel_estudio,b.nombre_formacion,c.nombre_estado
+ from tb_clientes a,tb_estudios b, tb_estados c
+where  b.nombre_formacion=carrera and a.id_cliente=b.id_cliente and a.id_cliente=c.id_cliente;
+elseif (gene='' and eda=0 and resi='' and nivel='') then
+select a.id_cliente,a.nombre1 ,a.apellido1,a.edad, a.recidencia,b.nombre_nivel_estudio,b.nombre_formacion,c.nombre_estado
+ from tb_clientes a,tb_estudios b, tb_estados c
+where  b.nombre_formacion=carrera and c.nombre_estado=estado and a.id_cliente=b.id_cliente and a.id_cliente=c.id_cliente;
+elseif (gene='' and eda=0 and resi='' and carrera='') then
+select a.id_cliente,a.nombre1 ,a.apellido1,a.edad, a.recidencia,b.nombre_nivel_estudio,b.nombre_formacion,c.nombre_estado
+ from tb_clientes a,tb_estudios b, tb_estados c
+where  b.nombre_nivel_estudio=nivel and c.nombre_estado=estado and a.id_cliente=b.id_cliente and a.id_cliente=c.id_cliente;
+elseif (gene='' and eda=0 and resi='' and estado='') then
+select a.id_cliente,a.nombre1 ,a.apellido1,a.edad, a.recidencia,b.nombre_nivel_estudio,b.nombre_formacion,c.nombre_estado
+ from tb_clientes a,tb_estudios b, tb_estados c
+where b.nombre_formacion=carrera and b.nombre_nivel_estudio=nivel and a.id_cliente=b.id_cliente and a.id_cliente=c.id_cliente;
+elseif (gene='' and eda=0 and resi='' ) then
+select a.id_cliente,a.nombre1 ,a.apellido1,a.edad, a.recidencia,b.nombre_nivel_estudio,b.nombre_formacion,c.nombre_estado
+ from tb_clientes a,tb_estudios b, tb_estados c
+where b.nombre_formacion=carrera and b.nombre_nivel_estudio=nivel and c.nombre_estado=estado and a.id_cliente=b.id_cliente and a.id_cliente=c.id_cliente;
 
+else
+select a.id_cliente,a.nombre1 ,a.apellido1,a.edad, a.recidencia,b.nombre_nivel_estudio,c.nombre_estado
+ from tb_clientes a,tb_estudios b, tb_estados c
+where a.genero=gene and a.edad=eda and a.recidencia=resi and b.nombre_nivel_estudio=nivel 
+and b.nombre_formacion=carrera and c.nombre_estado=estado 
+and a.id_cliente=b.id_cliente and a.id_cliente=c.id_cliente;
+END IF;
+END&&
 
-
-
-
-
+drop procedure BusquedaCompleja;
+call BusquedaCompleja('',0,'','UNIVERSITARIO','SISTEMAS','DESEMPLEADO');

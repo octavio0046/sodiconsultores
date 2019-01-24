@@ -366,11 +366,7 @@
 
                                 </div>
                                 <div class="col">
-                                    <label for="exampleFormControlSelect1">VACIO</label>
-                                    <select name="txtNombre_nivel_estudio"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" class="form-control" id="exampleFormControlSelect1">
-                                        <option></option>
-
-                                    </select>
+                                  
                                 </div>
                             </div>
 

@@ -19,17 +19,18 @@ public class ConsultasBD {
     
     
      // metodo para realizar la consulta de 8 parametros el resultado lo arroja en formbusquedaCompleja 
-    public static ArrayList<Consultas> obtenerConsultaCompleja(String genero,int edad,String residencia,String nivel)
+    public static ArrayList<Consultas> obtenerConsultaCompleja(String genero,int edad,String residencia,String nivel,String carrera)
   {
       
     ArrayList<Consultas> lista = new ArrayList();
     try
     {
-      CallableStatement cl = Conexion.getConexion().prepareCall("{call BusquedaCompleja(?,?,?,?)}");
+      CallableStatement cl = Conexion.getConexion().prepareCall("{call BusquedaCompleja(?,?,?,?,?)}");
       cl.setString(1, genero);
        cl.setInt(2, edad);
        cl.setString(3, residencia);
        cl.setString(4, nivel);
+       cl.setString(5, carrera);
       ResultSet rs = cl.executeQuery();
       while (rs.next())
       {
