@@ -22,9 +22,9 @@
         <th scope="col">#</th>
                         <th scope="col">Primer Nombre</th>
                         <th scope="col">Segundo Apellido</th>
-                        <th scope="col">Fecha Nacimiento</th>
-                        <th scope="col">Pais</th>
-                        <th scope="col">Telefono Primario</th>
+                        <th scope="col">Edad</th>
+                        <th scope="col">Residencia</th>
+                        <th scope="col">Carrera en curso</th>
                         <th scope="col">Correo </th>
                         <th scope="col">Fecha Ingreso</th>
     </tr>
@@ -38,9 +38,9 @@
                         <td><%=v.getId_cliente()%></td>
                         <td><%=v.getNombre1()%></td>
                         <td><%=v.getApellido2()%></td>
-                        <td><%=v.getNacimiento()%></td>
-                        <td><%=v.getPais()%></td>
-                        <td><%=v.getTel1()%></td>
+                        <td><%=v.getEdad()%></td>
+                        <td><%=v.getRecidencia()%></td>
+                        <td><%=v.getCorreo()%></td>
                         <td><%=v.getCorreo()%></td>
                         <td><%=v.getFechaIngreso()%></td>
                

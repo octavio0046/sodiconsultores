@@ -138,21 +138,21 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="exampleFormControlInput1">PRIMER NOMBRE</label>
-                                        <input type="text" name="txtNombre1" value="<%=p.getNombre1()%>"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" class="form-control" id="exampleFormControlInput1" >
+                                        <input type="text" name="txtNombre1" value="<%=p.getNombre1()%>"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" class="form-control" id="exampleFormControlInput1" placeholder="NOMBRE" >
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="exampleFormControlInput1">SEGUNDO NOMBRE</label>
-                                        <input type="text" name="txtNombre2" value="<%=p.getNombre2()%>"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();"  class="form-control" id="exampleFormControlInput1" >
+                                        <input type="text" name="txtNombre2" value="<%=p.getNombre2()%>"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();"  class="form-control" id="exampleFormControlInput1" placeholder="NOMBRE" >
 
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="exampleFormControlInput1">PRIMER APELLIDO</label>
-                                        <input type="text" name="txtApellido1" value="<%=p.getApellido1()%>"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" class="form-control" id="exampleFormControlInput1" >
+                                        <input type="text" name="txtApellido1" value="<%=p.getApellido1()%>"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" class="form-control" id="exampleFormControlInput1" placeholder="NOMBRE" >
 
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="exampleFormControlInput1">SEGUNDO APELLIDO</label>
-                                        <input type="text" name="txtApellido2" value="<%=p.getApellido2()%>"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" class="form-control" id="exampleFormControlInput1" >
+                                        <input type="text" name="txtApellido2" value="<%=p.getApellido2()%>"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" class="form-control" id="exampleFormControlInput1" placeholder="NOMBRE" >
                                     </div>
 
                                 </div>
