@@ -105,15 +105,12 @@ public class ClienteBD {
     
  //metodo que servira como entrada para obtener todos los clientes en el formulario formBuscarUsuarioCliente.jsp
  
- 
- 
   public static ArrayList<Cliente> obtenerClientes()
   {
     ArrayList<Cliente> lista2 = new ArrayList();
     try
     {
-      CallableStatement cl = Conexion.getConexion().prepareCall(" select * from tb_clientes ");
-      
+      CallableStatement cl = Conexion.getConexion().prepareCall(" select * from tb_clientes "); 
       ResultSet rs = cl.executeQuery();
       while (rs.next())
       {
@@ -153,7 +150,7 @@ public class ClienteBD {
   }
  
  
- 
+  
 
     
    

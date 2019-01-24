@@ -57,14 +57,11 @@
                             CONSULTAS
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="obtenerPagosInter.jsp">Buscar Pagos en Intervalo</a>
-
+                            <a class="dropdown-item" data-toggle="modal" data-target="#BusquedaCompleja">Realizar Busqueda Personalizada</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">#</a>
                         </div>
                     </li>
-
-
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             CLIENTES
@@ -180,7 +177,7 @@
                                 <input type="hidden" name="accion" value="loguin"/>
 
                                 <label>Usuario:</label>
-                                <input type="text" placeholder="Usuario" name="txtUsu"  pattern="[A-Z]+"  required=""  title="SOLO MAYUSCULAS">
+                                <input type="text" placeholder="Usuario" name="txtUsu"    required=""  >
                                 <br><br>
                                 <label>Contraseña:</label>
                                 <input type="password" placeholder="Password" name="txtPas" required="">
@@ -213,14 +210,14 @@
 
                     <div class="modal-body">       
                         <center>
-                 
-                  
+
+
                             <form class="login" action="ServletClientes" method="get" >
                                 <input type="hidden" name="accion" value="RegistrarCliente"/>
                                 <label>CODIGO A GENERAR</label>
                                 <br><br> <input type="submit"  class="btn btn-success"  value="Generar" >  
                             </form>
-             
+
                         </center>
 
                     </div>
@@ -228,6 +225,89 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
 
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Button trigger modal -->
+
+
+        <!-- Modal para busqueda compleja boton realizar busqueda completa -->
+        <!-- Modal -->
+        <div class="modal fade" id="BusquedaCompleja" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="width: 500px; height: 500px; ">
+
+                        <form action="ServletConsultas" method="get" style="width: 400px; height:400px; ">
+                            <input type="hidden" name="accion" value="BusquedaCompleja" />
+                            <label>DATOS PERSONALES</label>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="exampleFormControlSelect1">GENERO</label>
+                                    <select class="form-control"  plasholder="Genero"  name="txtGenero" id="exampleFormControlSelect1">
+                                        <option></option>
+                                        <option>MASCULINO</option>
+                                        <option>FEMENINO</option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <label for="exampleFormControlSelect1">EDAD</label>
+                                    <input type="number" name="txtEdad" value="0" class="form-control" >
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="exampleFormControlSelect1">RESIDENCIA</label>
+                                    <select class="form-control"    style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();"  name="txtResidencia" id="exampleFormControlSelect1">
+                                       <option></option>
+                                        <option>HUEHUETENANGO</option>
+                                        <option>ALTA VERAPAZ</option>
+                                        <option>CHIMALTENANGO</option>
+                                        <option>EL PROGRESO</option>
+                                        <option>GUATEMALA</option>
+                                        <option>IZABAL</option>
+                                        <option>JUTIAPA</option>
+                                        <option>QUETZALTENANGO</option>
+                                        <option>RETALHULEU</option>
+                                        <option>SAN MARCOS</option>
+                                        <option>SOLOLÁ</option>
+                                        <option>TOTONICAPÁN</option>
+                                        <option>BAJA VERAPAZ</option>
+                                        <option>CHIQUIMULA</option>
+                                        <option>ESCUINTLA</option>
+                                        <option>JALAPA</option>
+                                        <option>PETÉN</option>
+                                        <option>QUICHÉ</option>
+                                        <option>SACATEPEQUEZ</option>
+                                        <option>SANTA ROSA</option>
+                                        <option>SUCHITEPEQUES</option>
+                                        <option>ZACAPA</option>
+                                    </select>
+
+
+
+
+                                </div>
+                                <div class="col">
+                                    <label for="exampleFormControlSelect1">CAMPO VACIO</label>
+                                    <input type="number" name=""  value="0" class="form-control" >
+                                </div>
+                            </div>
+                            <br> <br>  <input type="submit"  class="btn btn-success"  value="Buscar" >    
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
                     </div>
                 </div>
             </div>

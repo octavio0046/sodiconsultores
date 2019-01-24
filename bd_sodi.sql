@@ -48,36 +48,9 @@ END&&
 
 INSERT INTO TB_USUARIOS VALUES (DEFAULT,'HERRERA','OCTAVIO','HUEHUE','ADMIN','OCTAVIO@GMAIL.COM','ABC.123','2018-09-24 21:55:34','ACTIVO');&&
 
+INSERT INTO TB_USUARIOS VALUES (DEFAULT,'CONSULOR','sodi001','HUEHUE','ADMIN','sodiconsultores@gmail.com','sodi001','2018-09-24 21:55:34','ACTIVO');&&
+
 SELECT * FROM TB_USUARIOS WHERE NOMBRE_USUARIO = 'OCTAVIO' AND CLAVE_USUARIO = 'ABC.123';
-
-create table tb_usuario_cliente(
-id_usu_clie int ,
-correo  varchar(50),
-contrasena varchar (50),
-fecha_creacion varchar(50),
-estado int ,
-primary key (id_usu_clie) 
-);&&
-
-
-DELIMITER &&
-CREATE PROCEDURE insertar_usuario_cliente (inout cod int,
-correo varchar(50),contrasena varchar(50))
-BEGIN
-select ifnull(max(id_usu_clie),0)+1 into cod from tb_usuario_cliente;
-INSERT INTO tb_usuario_cliente VALUES(cod,correo,contrasena,now(),1);
-insert into tb_clientes values(cod,cod,'Primer Nombre','Segundo Nombre','Primer Apellido',
-'segundo apellido','Nacimiento',0,'pais'
-,'Departamento','recidencia','direccion',0,0,0,'correo',now(),'','',1);
-insert into tb_estudios values(cod,'NINGUNO','NINGUNO','NINGUNO');
-insert into tb_info values(cod,0,0);
-insert into tb_enlaces values(cod,'Facebook','');
-insert into tb_enlaces values(cod,'Instagram','');
-insert into tb_enlaces values(cod,'LinkIn','');
-insert into tb_enlaces values(cod,'otro','');
-insert into tb_estados values(cod,'','','','','');
-insert into tb_pdf values(cod,'','');
-END&&
 
 drop procedure insertar_usuario_cliente;
 set @id:=0;
@@ -105,25 +78,33 @@ fechaRegistro varchar(50),
 fecha_final varchar(50),
 nombre_usuario varchar(50),
 estado int,
+genero varchar(20),
 primary key (id_cliente)
-);&&
+);
 
 drop table tb_clientes;
 
 DELIMITER &&
-CREATE PROCEDURE insertar_cliente(inout id_cliente int)
+CREATE PROCEDURE insertar_cliente(inout cod int)
 begin
-insert into tb_clientes values(id_cliente,'Primer Nombre','Segundo Nombre','Primer Apellido',
+select ifnull(max(id_cliente),0)+1 into cod from tb_clientes;
+insert into tb_clientes values(cod,'Primer Nombre','Segundo Nombre','Primer Apellido',
 'segundo apellido','Nacimiento',0,'pais'
-,'Departamento','recidencia','direccion',0,0,0,'correo',now(),'','',1);
+,'Departamento','recidencia','direccion',0,0,0,'correo',now(),'','',1,'');
+insert into tb_estudios values(cod,'NINGUNO','NINGUNO','NINGUNO');
+insert into tb_info values(cod,0,0);
+insert into tb_enlaces values(cod,'Facebook','');
+insert into tb_enlaces values(cod,'Instagram','');
+insert into tb_enlaces values(cod,'LinkIn','');
+insert into tb_enlaces values(cod,'otro','');
+insert into tb_estados values(cod,'','','','','');
+insert into tb_pdf values(cod,'','');
 END&&
 
-set @id:=0;
-call insertar_cliente(@id,'Primer Nombre','Segundo Nombre','Primer Apellido',
-'segundo apellido','Nacimiento',0,'pais'
-,'Departamento','recidencia','direccion',0,0,0,'correo',now(),'','',1););
-select @id;
 
+drop procedure insertar_cliente;
+drop procedure actualizar_cliente;
+select * from tb_clientes;
 
 DELIMITER &&
 CREATE PROCEDURE actualizar_cliente (
@@ -141,7 +122,8 @@ dire varchar(50),
 te1 int,te2 int,recide int,
 corre varchar(50),
 nombre_usu varchar(50),
-es int)
+es int,
+gen varchar(20))
 BEGIN
 update tb_clientes set 
 nombre1=nom1,
@@ -159,6 +141,7 @@ tel2=te2 ,
 recidencial=recide ,
 correo=corre,
 nombre_usuario=nombre_usu,
+genero=gen,
 estado=es where id_cliente=id;
 END&&
 
@@ -170,7 +153,7 @@ nombre_nivel_estudio varchar(50),
 nombre_formacion varchar(50),
 nombre_campo_estudio varchar(50),
 foreign key (id_cliente) references tb_clientes(id_cliente)
-);&&
+);
 
 
 DELIMITER &&
@@ -185,29 +168,6 @@ where id_cliente=id;
 END&&
 
 
-select * from tb_estudios;
-select * from tb_clientes;
-select * from tb_usuario_cliente;
-select * from tb_info;
-select * from tb_enlaces;
-select * from tb_estados;
-select * from tb_pdf;
-
-drop table tb_estudios;
-drop table tb_clientes;
-drop table tb_usuario_cliente;
-drop table tb_info;
-drop table tb_enlaces;
-drop table tb_estados;
-drop table tb_pdf;
-
-delete from tb_pdf where id_cliente=1;
-DELETE FROM tb_estados where id_cliente=1;
-delete from tb_info where id_cliente=1;
-delete from tb_estudios where id_cliente=1;
-delete from tb_enlaces where id_cliente=1;
-delete from tb_clientes where id_usu_clie=1;
-delete from tb_usuario_cliente where id_usu_clie=1;
 
 
 
@@ -281,6 +241,58 @@ update tb_pdf set  nombrepdf=nombre, archivopdf=archivo where id_cliente =cod;
 END&&
 
 
-SELECT * FROM TB_USUARIOS;
+select * from tb_estudios;
+select * from tb_clientes;
+select * from tb_info;
+select * from tb_enlaces;
+select * from tb_estados;
+select * from tb_pdf;
+
+drop table tb_estudios;
+drop table tb_clientes;
+drop table tb_info;
+drop table tb_enlaces;
+drop table tb_estados;
+drop table tb_pdf;
+
+delete from tb_pdf where id_cliente=1;
+DELETE FROM tb_estados where id_cliente=1;
+delete from tb_info where id_cliente=1;
+delete from tb_estudios where id_cliente=1;
+delete from tb_enlaces where id_cliente=1;
+delete from tb_clientes where id_cliente=1;
+
+
+DELIMITER &&
+CREATE PROCEDURE BusquedaCompleja(ge varchar(50),ed int,re varchar(50))
+BEGIN
+if (ge='' and ed=0) then
+select * from tb_clientes where recidencia=re order by id_cliente;
+elseif (ge='') and re='' then
+select * from tb_clientes where edad=ed  order by id_cliente;
+elseif (ed=0 and re='') then
+select * from tb_clientes where genero=ge order by id_cliente;
+elseif  (ed =0) then 
+select * from tb_clientes where genero=ge and recidencia=re order by id_cliente;
+elseif (ge='') then
+select * from tb_clientes where  edad=ed and recidencia=re order by id_cliente;
+elseif (re='') then
+select * from tb_clientes where  edad=ed and genero=ge order by id_cliente;
+else
+select * from tb_clientes where genero=ge and edad=ed and recidencia=re order by id_cliente;
+end if;
+END&&
+
+
+drop procedure BusquedaCompleja;
+call BusquedaCompleja('FEMENINO',26,'');
+select * from tb_clientes;
+
+
+
+
+
+
+
 
 

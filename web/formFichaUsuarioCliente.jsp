@@ -63,24 +63,44 @@
                 UsuarioCliente d = lista.get(i);
      %> 
         --%>
-
-
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item" ><a href="#">#</a></li>
-                <li class="breadcrumb-item"><a href="#"> #</a></li>
-                <li class="breadcrumb-item active" aria-current="page">#</li>
+                <li class="breadcrumb-item" ><a href="#"><%=a.getId_cliente()%></a></li>
+                <li class="breadcrumb-item"><a href="#"> <%=a.getCorreo()%></a></li>
+                <li class="breadcrumb-item active" aria-current="page" ></li>
+                <input value="<%=a.getFechaIngreso()%>" id="datepicker_3" style="width: 200px; height: 50px;" hidden="" />
             </ol>
         </nav>
 
-
-
+        <script>
+            //Hacemos una función para hacer las operaciones
+            function textoFecha(fecha) {
+                var numDiaSem = fecha.getDay(); //getDay() devuelve el dia de la semana.(0-6).
+                //Creamos un Array para los nombres de los días    
+                var diasSemana = new Array("Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado");
+                var diaLetras = diasSemana[fecha.getDay()];   //El día de la semana en letras. getDay() devuelve el dia de la semana.(0-6).
+                //Otro Array para los nombres de los meses    
+                var meses = new Array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
+                var mesLetras = meses[fecha.getMonth()];  //El mes en letras
+                var diaMes = (fecha.getDate());   //getDate() devuelve el dia(1-31).
+                var anho = fecha.getFullYear();  //getFullYear() devuelve el año(4 dígitos).
+                var hora = fecha.getHours();    //getHours() devuelve la hora(0-23).
+                var min = fecha.getMinutes();   //getMinutes() devuelve los minutos(0-59).
+                if ((min >= 0) && (min < 10)) {    //Algoritmo para añadir un cero cuando el min tiene 1 cifra.
+                    min = "0" + min;
+                }
+                var devolver = "Hoy es " + diaLetras + ", " + diaMes + " de " + mesLetras + " de " + anho + " y son las " + hora + ":" + min + " horas.";
+                return devolver;
+            }
+            var fecha = new Date();  //Declaramos el objeto fecha actual
+            document.write(textoFecha(fecha));  //Imprimir llamando a la función textoFecha()
+        </script>
 
 
         <%-- 
      aqui empiezan los menus desplegables
         --%>
-        Información Personal
+     
         <div class="accordion" id="accordionExample">
             <div class="card">
                 <div class="card-header" id="headingOne">
@@ -115,8 +135,6 @@
                                 %>
 
 
-
-
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="exampleFormControlInput1">PRIMER NOMBRE</label>
@@ -140,8 +158,9 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlInput1">FECHA NACIMIENTO</label>
-                                    <input type="date" name="txtNacimiento" value="<%=p.getNacimiento()%>"  class="form-control" id="exampleFormControlInput1" >
+                                    <input type="date" id="fecha" name="txtNacimiento" value="<%=p.getNacimiento()%>"  class="form-control" id="exampleFormControlInput1" >
                                 </div>
+                           
 
                                 <div class="form-row">
 
@@ -155,8 +174,27 @@
                                         <label for="exampleFormControlSelect1">DEPARTAMENTO</label>
                                         <select class="form-control"  value="<%=p.getDepartamento()%>"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" name="txtDepartamento" id="exampleFormControlSelect1">
                                             <option>HUEHUETENANGO</option>
+                                            <option>ALTA VERAPAZ</option>
+                                            <option>CHIMALTENANGO</option>
+                                            <option>EL PROGRESO</option>
+                                            <option>GUATEMALA</option>
+                                            <option>IZABAL</option>
+                                            <option>JUTIAPA</option>
+                                            <option>QUETZALTENANGO</option>
+                                            <option>RETALHULEU</option>
+                                            <option>SAN MARCOS</option>
+                                            <option>SOLOLÁ</option>
+                                            <option>TOTONICAPÁN</option>
+                                            <option>BAJA VERAPAZ</option>
                                             <option>CHIQUIMULA</option>
-                                            <option>CHIANTLA</option>
+                                            <option>ESCUINTLA</option>
+                                            <option>JALAPA</option>
+                                            <option>PETÉN</option>
+                                            <option>QUICHÉ</option>
+                                            <option>SACATEPEQUEZ</option>
+                                            <option>SANTA ROSA</option>
+                                            <option>SUCHITEPEQUES</option>
+                                            <option>ZACAPA</option>
                                         </select>
 
                                     </div>
@@ -165,21 +203,58 @@
 
                                     <div class="form-group col-md-6">
                                         <label for="exampleFormControlSelect1">GENERO</label>
-                                        <select class="form-control" value="<%=p.getGenero()%>"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" name="txtGenero" id="exampleFormControlSelect1">
+                                        <select class="form-control"   style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" name="txtGenero" id="exampleFormControlSelect1">
+                                              <option><%=p.getGenero()%></option>
                                             <option>MASCULINO</option>
                                             <option>FEMENINO</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="exampleFormControlInput1">EDAD</label>
-                                        <input type="number" name="txtEdad" value="<%=p.getEdad()%>"  class="form-control" id="exampleFormControlInput1" >
+                                             <script>
+                                             
+                                  <%
+                                  String fecha = p.getNacimiento();
+                                  
+                                 /// <%out.println(fecha);%>
+                                  %>
+                                </script>
+                                        <input type="text" name="txtEdad" value="<%=p.getEdad()%>"  class="form-control" id="exampleFormControlInput1" >
+                                    
                                     </div>
                                 </div>
 
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="exampleFormControlInput1">RECIDENCIA</label>
-                                        <input type="text" value="<%=p.getRecidencia()%>"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" name="txtRecidencia" class="form-control" id="exampleFormControlInput1">
+                                        
+                                        <label for="exampleFormControlSelect1">RESIDENCIA</label>
+                                        <select class="form-control"  value="<%=p.getRecidencia()%>"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();"  name="txtRecidencia" id="exampleFormControlSelect1">
+                                            <option>HUEHUETENANGO</option>
+                                            <option>ALTA VERAPAZ</option>
+                                            <option>CHIMALTENANGO</option>
+                                            <option>EL PROGRESO</option>
+                                            <option>GUATEMALA</option>
+                                            <option>IZABAL</option>
+                                            <option>JUTIAPA</option>
+                                            <option>QUETZALTENANGO</option>
+                                            <option>RETALHULEU</option>
+                                            <option>SAN MARCOS</option>
+                                            <option>SOLOLÁ</option>
+                                            <option>TOTONICAPÁN</option>
+                                            <option>BAJA VERAPAZ</option>
+                                            <option>CHIQUIMULA</option>
+                                            <option>ESCUINTLA</option>
+                                            <option>JALAPA</option>
+                                            <option>PETÉN</option>
+                                            <option>QUICHÉ</option>
+                                            <option>SACATEPEQUEZ</option>
+                                            <option>SANTA ROSA</option>
+                                            <option>SUCHITEPEQUES</option>
+                                            <option>ZACAPA</option>
+                                        </select>
+
+          
+                     
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="exampleFormControlInput1">DIRECCION</label>
@@ -205,11 +280,11 @@
 
                                 <div class="form-group">
                                     <label for="exampleFormControlInput1">Email address</label>
-                                    <input type="email" name="txtCorreo" value="<%=p.getCorreo()%>" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                                    <input type="email" name="txtCorreo" value="<%=p.getCorreo()%>" class="form-control" id="exampleFormControlInput1">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlInput1">Estado</label>
-                                    <input type="number" readonly="" name="txtEstado"  value="<%=p.getEstado()%>" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                                    <input type="number" readonly="" name="txtEstado" hidden="" value="<%=p.getEstado()%>" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
                                 </div>          
 
 
@@ -249,6 +324,7 @@
                                 <label for="exampleFormControlSelect1">NIVEL DE ESTUDIO</label>
                                 <div class="form-group">    
                                     <select name="txtNombre_nivel_estudio"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" class="form-control" id="exampleFormControlSelect1">
+                                        <option><%=e.getNombre_nivel_estudio()%></option>
                                         <option>PRIMARIA</option>
                                         <option>BÁSICO</option>
                                         <option>DIVERSIFICADO</option>
@@ -262,19 +338,56 @@
                                 <label for="exampleFormControlSelect1">CARRERA EN CURSO</label>
                                 <div class="form-group">    
                                     <select name="txtNombre_formacion"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" class="form-control" id="exampleFormControlSelect1">
-                                        <option>INGENIERIA</option>
-                                        <option>LICENCIATURA</option>
-                                        <option>ADMINISTRACION DE EMPRESAS</option>
-                                        <option>ODONTOLOGIA</option>
-                                        <option>PSICOLOGIA</option>
-                                        <option>CIENCIAS QUIMICAS</option>
-                                        <option>HOTELERIA Y TURISMO</option>
+                                         <option><%=e.getNombre_formacion()%></option>
+                                       <option style="color: red;">LICENCIATURAS</option>
+                                         <option>ADMINISTRACION DE EMPRESAS</option>
+                                        <option>ANTROPOLOGIA</option>
+                                        <option>ARQUEOLOGIA</option>
+                                        <option>ARQUITECTURA</option>
+                                        <option>ARTE</option>
+                                        <option>BALLET CLASICO</option>
+                                        <option>BIOLOGIA</option>
+                                        <option>CIENCIAS JURIDICAS Y SOCIALES, ABOGADO Y NOTARIO</option>
+                                        <option>CIENCIAS LINGUISTICAS TRADUCCION E INTERPRETE</option>
+                                        <option>CONTADOR PUBLICO Y AUDITOR</option>
+                                        <option>DISEÑO GRAFICO</option>
+                                        <option>ECONOMIA</option>
+                                        <option>EDUCACION FISICA,DEPORTE Y RECREACION</option>
+                                        <option>ENFERMERIA</option>
+                                        <option>ENSEÑANZA DE MATEMATICA Y FISICA</option>
+                                        <option>FILOSOFIA</option>
+                                        <option>HISTORIA</option>
+                                        <option>MATEMATICAS</option>
+                                        <option>MEDICO VETERINARIO</option>
+                                        <option>MEDICO CIRUJARNO</option>
+                                        <option>MUSICA</option>
                                         <option>NUTRICION</option>
-                                        <option>CIENCIAS ECONOCMICAS</option>
-                                        <option>ESCUELA DE MERCADOTECNIA</option>
-                                        <option>ESCUELA DE LINGUISTICA</option>
-                                        <option>TRABAJO SOCIAL</option>
-                                        <option>POST GRADO</option>
+                                        <option>ODONTOLOGIA</option>
+                                      <option>PEDAGOGIA</option>
+                                      <option>QUIMICA</option>
+                                      <option>TRABAJO SOCIAL</option>
+                                      <option>ZOOTECNISTA</option>
+                                      <option style="color: red;">INGENIERIA</option>
+                                      <option>AGRONOMO EN RECURSOS NATURALES</option>
+                                      <option>AGRONOMO EN SISTEMAS DE PRODUCCION AGRICOLA</option>
+                                      <option>CIVIL</option>
+                                      <option>ELECTRICA</option>
+                                      <option>MECANICA</option>
+                                      <option>INDUSTRIAL</option>
+                                      <option>MECANICA ELECTRICA</option>
+                                      <option>INGENIERIA QUIMICA</option>
+                                      <option>SISTEMAS</option>
+                                      <option>ELECTRONICA</option>
+                                      <option>INDUSTRIAS AGROPECUARIAS Y FORESTALES</option>                                   
+                                        <option style="color: red;">MAESTRIAS</option>
+                                       <option>ANTROPOLOGIA</option>
+                                        <option>BUSINESS ANALYTICS</option>
+                                         <option>CONSERVACION DE MONUMENTOS</option>
+                                          <option>DISEÑO ARQUITECTONICO</option>
+                                           <option>GESTION PARA LA REUCCION DE LOS RIEGOS NATURALES</option>
+  
+
+
                                     </select>
                                 </div>   
 
@@ -282,11 +395,21 @@
                                 <label for="exampleFormControlSelect1">CAMPO DE ESTUDIO</label>
                                 <div class="form-group">    
                                     <select name="txtNombre_campo_estudio"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" class="form-control" id="exampleFormControlSelect1">
+                                        <option><%=e.getNombre_campo_estudio()%></option>
                                         <option>INFORMATICA</option>
                                         <option>AGRICULA</option>
-                                        <option></option>
-                                        <option></option>
-                                        <option></option>
+                                        <option>PILITICO</option>
+                                        <option>MILITAR</option>
+                                        <option>RELIGIOSO</option>
+                                        <option>SOCIAL</option>
+                                        <option>CULTURAL</option>
+                                        <option>DIPLOMATICO</option>
+                                        <option>ECONOMICO</option>
+                                        <option>AMBIENTAL</option>
+                                        <option>MUNDIAL</option>
+                                        <option>INTELECTUAL</option>
+                                        <option>PUBLICO</option>
+
                                     </select>
                                 </div>   
 
@@ -343,7 +466,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="exampleFormControlInput1">Duracion Promedio en Empleos EN MESES</label>
+                                    <label for="exampleFormControlInput1">Duración promedio duracion en años</label>
                                     <input type="number" name="txtDuracion" value="<%=i.getDuracion_promedio()%>" class="form-control" id="exampleFormControlInput1" >
                                 </div>
 
