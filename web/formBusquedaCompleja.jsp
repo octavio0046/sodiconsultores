@@ -14,72 +14,73 @@
         <title>JSP Page</title>
     </div>
     <div class="contenido">
-       
-        
-     <%---tabla para muestra de resultados-----%>   
-     <table class="table table-sm">
-  <thead>
-    <tr>
-        <th scope="col">#</th>
-                        <th scope="col">Primer Nombre</th>
-                        <th scope="col">Segundo Apellido</th>
-                        <th scope="col">Edad</th>
-                        <th scope="col">Residencia</th>
-                        <th scope="col">Carrera en curso</th>
-                        <th scope="col">Correo</th>
-                        <th scope="col">Fecha Ingreso</th>
-    </tr>
-  </thead>
-  <tbody>
-                 <%  ArrayList<Consultas> lista = (ArrayList<Consultas>) request.getAttribute("lista");
-                        for (Consultas v : lista) {
-                  %>  
-
-                    <tr>
-                        <td><%=v.getId_cliente()%></td>
-                        <td><%=v.getNombre1()%></td>
-                        <td><%=v.getApellido1()%></td>
-                        <td><%=v.getEdad()%></td>
-                        <td><%=v.getResicencia()%></td>
-                        <td><%=v.getNivel()%></td>
-                        <td><%=v.getCorreo()%></td>
-                        <td><%=v.getFecha_registro()%></td>
-               
-                        <td>
-                               <a href="formFichaUsuarioCliente.jsp?cod=<%=v.getId_cliente()%>">
-                                <img src="ficha.png" whit="30" height="30">
-                            </a>
-                        </td>
-
-                        <%        if (sesionOK.getAttribute("perfil") != null && sesionOK.getAttribute("perfil").equals("ADMIN")) {
 
 
-                        %>
+        <%---tabla para muestra de resultados-----%>   
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    
+                    <th scope="col">Primer Nombre</th>
+                    <th scope="col">Segundo Apellido</th>
+                    <th scope="col">Edad</th>
+                    <th scope="col">Residencia</th>
+                    <th scope="col">Nivel de estudio</th>
+                    <th scope="col">Carrera</th>
+                    <th scope="col">Estado laboral</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%  ArrayList<Consultas> lista = (ArrayList<Consultas>) request.getAttribute("lista");
+                    for (Consultas v : lista) {
+                %>  
 
-                        <td><a href="eliminarPaciente.jsp?cod=<%=v.getId_cliente()%>">
-                                <img src="eliminar.jpg" whit="30" height="30">
-                            </a>
-                        
-                        
-                        <a href="actualizarPaciente.jsp?cod=<%=v.getId_cliente()%>">
-                                <img src="actualizar.png" whit="30" height="30">
-                            </a>
-                        
-                        </td>
+                <tr>
+                    <td><%=v.getId_cliente()%></td>
+                    <td><%=v.getNombre1()%></td>
+                    <td><%=v.getApellido1()%></td>
+                    <td><%=v.getEdad()%></td>
+                    <td><%=v.getResicencia()%></td>
+                    <td><%=v.getNivel()%></td>
+                    <td><%=v.getCarrera()%></td>
+                    <td><%=v.getEstado()%></td>
 
-                            <%                    }
+                    <td>
+                        <a href="formFichaUsuarioCliente.jsp?cod=<%=v.getId_cliente()%>">
+                            <img src="ficha.png" whit="30" height="30">
+                        </a>
+                    </td>
 
-                            %>
-                    </tr>
-                    <%                  }
+                    <%        if (sesionOK.getAttribute("perfil") != null && sesionOK.getAttribute("perfil").equals("ADMIN")) {
 
 
                     %>
 
-                </tbody>
+                    <td><a href="eliminarPaciente.jsp?cod=<%=v.getId_cliente()%>">
+                            <img src="eliminar.jpg" whit="30" height="30">
+                        </a>
 
-</table>
-        
-        
+
+                        <a href="actualizarPaciente.jsp?cod=<%=v.getId_cliente()%>">
+                            <img src="actualizar.png" whit="30" height="30">
+                        </a>
+
+                    </td>
+
+                    <%                    }
+
+                    %>
+                </tr>
+                <%                  }
+
+
+                %>
+
+            </tbody>
+
+        </table>
+
+
     </div>
 </html>

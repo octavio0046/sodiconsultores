@@ -17,18 +17,18 @@ public class Consultas {
    private int edad;
    private String resicencia;
    private String nivel;
-   private String correo;
-   private String fecha_registro;
+   private String carrera;
+   private String estado;
 
-    public Consultas(int id_cliente, String nombre1, String apellido1, int edad, String resicencia, String nivel, String correo, String fecha_registro) {
+    public Consultas(int id_cliente, String nombre1, String apellido1, int edad, String resicencia, String nivel, String carrera, String estado) {
         this.id_cliente = id_cliente;
         this.nombre1 = nombre1;
         this.apellido1 = apellido1;
         this.edad = edad;
         this.resicencia = resicencia;
         this.nivel = nivel;
-        this.correo = correo;
-        this.fecha_registro = fecha_registro;
+        this.carrera = carrera;
+        this.estado = estado;
     }
 
     public int getId_cliente() {
@@ -79,23 +79,24 @@ public class Consultas {
         this.nivel = nivel;
     }
 
-    public String getCorreo() {
-        return correo;
+    public String getCarrera() {
+        return carrera;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setCarrera(String carrera) {
+        this.carrera = carrera;
     }
 
-    public String getFecha_registro() {
-        return fecha_registro;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setFecha_registro(String fecha_registro) {
-        this.fecha_registro = fecha_registro;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
-   
-   
+
+  
+
    
    
 }

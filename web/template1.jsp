@@ -358,15 +358,14 @@
                                         <option>CONSERVACION DE MONUMENTOS</option>
                                         <option>DISEÑO ARQUITECTONICO</option>
                                         <option>GESTION PARA LA REUCCION DE LOS RIEGOS NATURALES</option>
-
                                     </select>
-
-
-
-
                                 </div>
                                 <div class="col">
-                                  
+                                  <select id="inputState"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" name="txtEstadoPersona" class="form-control">
+                                            <option selected></option>
+                                            <option>DESEMPLEADO</option>
+                                            <option>EMPLEADO</option>
+                                        </select>
                                 </div>
                             </div>
 

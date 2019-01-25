@@ -287,6 +287,22 @@ if (gene='' and eda=0 and resi='' and nivel='' and carrera='') then
 select a.id_cliente,a.nombre1 ,a.apellido1,a.edad, a.recidencia,b.nombre_nivel_estudio,b.nombre_formacion,c.nombre_estado
  from tb_clientes a,tb_estudios b, tb_estados c
 where  c.nombre_estado=estado and a.id_cliente=b.id_cliente and a.id_cliente=c.id_cliente;
+elseif ( eda=0 and resi='' and nivel='' and carrera='' and estado='') then
+select a.id_cliente,a.nombre1 ,a.apellido1,a.edad, a.recidencia,b.nombre_nivel_estudio,b.nombre_formacion,c.nombre_estado
+ from tb_clientes a,tb_estudios b, tb_estados c
+where  a.genero=gene  and a.id_cliente=b.id_cliente and a.id_cliente=c.id_cliente;
+elseif ( gene='' and resi='' and nivel='' and carrera='' and estado='') then
+select a.id_cliente,a.nombre1 ,a.apellido1,a.edad, a.recidencia,b.nombre_nivel_estudio,b.nombre_formacion,c.nombre_estado
+ from tb_clientes a,tb_estudios b, tb_estados c
+where a.edad=eda and a.id_cliente=b.id_cliente and a.id_cliente=c.id_cliente;
+elseif ( gene='' and eda=0 and nivel='' and carrera='' and estado='') then
+select a.id_cliente,a.nombre1 ,a.apellido1,a.edad, a.recidencia,b.nombre_nivel_estudio,b.nombre_formacion,c.nombre_estado
+ from tb_clientes a,tb_estudios b, tb_estados c
+where a.recidencia=resi  and a.id_cliente=b.id_cliente and a.id_cliente=c.id_cliente;
+elseif ( gene='' and eda=0 and resi='' and carrera='' and estado='') then
+select a.id_cliente,a.nombre1 ,a.apellido1,a.edad, a.recidencia,b.nombre_nivel_estudio,b.nombre_formacion,c.nombre_estado
+ from tb_clientes a,tb_estudios b, tb_estados c
+where  b.nombre_nivel_estudio=nivel and a.id_cliente=b.id_cliente and a.id_cliente=c.id_cliente;
 elseif (gene='' and eda=0 and resi='' and nivel='' and estado='') then
 select a.id_cliente,a.nombre1 ,a.apellido1,a.edad, a.recidencia,b.nombre_nivel_estudio,b.nombre_formacion,c.nombre_estado
  from tb_clientes a,tb_estudios b, tb_estados c
@@ -413,14 +429,12 @@ select a.id_cliente,a.nombre1 ,a.apellido1,a.edad, a.recidencia,b.nombre_nivel_e
  from tb_clientes a,tb_estudios b, tb_estados c
 where a.genero=gene and a.edad=eda and a.recidencia=resi and b.nombre_nivel_estudio=nivel and c.nombre_estado=estado 
  and a.id_cliente=b.id_cliente and a.id_cliente=c.id_cliente;
- 
 elseif (estado='' ) then
 select a.id_cliente,a.nombre1 ,a.apellido1,a.edad, a.recidencia,b.nombre_nivel_estudio,b.nombre_formacion,c.nombre_estado
  from tb_clientes a,tb_estudios b, tb_estados c
 where a.genero=gene and a.edad=eda and a.recidencia=resi and b.nombre_nivel_estudio=nivel 
 and b.nombre_formacion=carrera
  and a.id_cliente=b.id_cliente and a.id_cliente=c.id_cliente;
-
 else
 select a.id_cliente,a.nombre1 ,a.apellido1,a.edad, a.recidencia,b.nombre_nivel_estudio,c.nombre_estado
  from tb_clientes a,tb_estudios b, tb_estados c
@@ -431,6 +445,6 @@ END IF;
 END&&
 
 drop procedure BusquedaCompleja;
-call BusquedaCompleja('MASCULINO',24,'HUEHUETENANGO','UNIVERSITARIO','','DESEMPLEADO');
+call BusquedaCompleja('',24,'','','','');
 
 SELECT * FROM tb_clientes;
