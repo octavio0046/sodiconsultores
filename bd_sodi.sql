@@ -88,22 +88,28 @@ select id_cliente , dpi from tb_clientes where dpi=2430792571301 and estado=1;
 select * from tb_clientes;
 drop table tb_clientes;
 
+
 DELIMITER &&
 CREATE PROCEDURE insertar_cliente(inout cod int,dpi varchar(50))
 begin
 select ifnull(max(id_cliente),0)+1 into cod from tb_clientes;
-insert into tb_clientes values(cod,dpi,'','','',
-'','',0,''
-,'','','',0,0,0,'',now(),'','',1,'');
+insert into tb_clientes values(cod,dpi,'NOMBRE','NOMBRE','APELLIDO',
+'APELLIDO','NACIMIENTO',0,'-'
+,'-','-','-',0,0,0,'-',now(),'-','-',1,'-');
 insert into tb_estudios values(cod,'NINGUNO','NINGUNO','NINGUNO');
 insert into tb_info values(cod,0,0);
 insert into tb_enlaces values(cod,'Facebook','');
 insert into tb_enlaces values(cod,'Instagram','');
 insert into tb_enlaces values(cod,'LinkIn','');
 insert into tb_enlaces values(cod,'otro','');
-insert into tb_estados values(cod,'','','','','');
-insert into tb_pdf values(cod,'','');
+insert into tb_estados values(cod,'-','-','-','-','-');
+insert into tb_pdf values(cod,'-','-');
 END&&
+
+set @id:=0;
+call insertar_cliente(@id,'2430792571301');
+select @id;
+
 
 drop procedure insertar_cliente;
 
@@ -259,12 +265,12 @@ drop table tb_enlaces;
 drop table tb_estados;
 drop table tb_pdf;
 
-delete from tb_pdf where id_cliente=4;
-DELETE FROM tb_estados where id_cliente=4;
-delete from tb_info where id_cliente=4;
-delete from tb_estudios where id_cliente=4;
-delete from tb_enlaces where id_cliente=4;
-delete from tb_clientes where id_cliente=4;
+delete from tb_pdf where id_cliente=1;
+DELETE FROM tb_estados where id_cliente=1;
+delete from tb_info where id_cliente=1;
+delete from tb_estudios where id_cliente=1;
+delete from tb_enlaces where id_cliente=1;
+delete from tb_clientes where id_cliente=1;
 
 
 
