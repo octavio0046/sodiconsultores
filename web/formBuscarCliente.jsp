@@ -54,12 +54,13 @@
             <table class="table">
                 <thead class="thead-light" >
                     <tr>
+                        <th scope="col">#</th>
                         <th scope="col">Primer Nombre</th>
                         <th scope="col">Segundo Apellido</th>
                         <th scope="col">Edad</th>
                         <th scope="col">Residencia</th>
-                        <th scope="col">Carrera en curso</th>
-                        <th scope="col">Correo </th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Sexo </th>
                         <th scope="col">Fecha Ingreso</th>
 
                     </tr>
@@ -76,7 +77,7 @@
                         <td><%=v.getEdad()%></td>
                         <td><%=v.getRecidencia()%></td>
                         <td><%=v.getCorreo()%></td>
-                        <td><%=v.getCorreo()%></td>
+                        <td><%=v.getGenero()%></td>
                         <td><%=v.getFechaIngreso()%></td>
                
                         <td>

@@ -11,6 +11,7 @@ package Modelo;
  */
 public class Cliente {
    private int id_cliente;
+   private String dpi;
    private String nombre1;
    private String nombre2;
    private String apellido1;
@@ -33,18 +34,22 @@ public class Cliente {
    private String genero;
 
    
-    public Cliente() {
-
-    } 
-
+public Cliente(){
+    
+}
+public Cliente(int id_cliente,String dpi){
+    this.id_cliente=id_cliente;
+    this.dpi=dpi;
+}
   
     
     
    //constructor para ingresar los datos del cliente en la tabla tb_clientes para la clase 
    //ClienteBD y para el sevlet Cliente
 
-    public Cliente(int id_cliente, String nombre_usuario, String nombre1, String nombre2, String apellido1, String apellido2, String nacimiento, int edad, String pais, String departamento, String recidencia, String direccion, int tel1, int tel2, int recidencial, String correo) {
+    public Cliente(int id_cliente,String dpi, String nombre_usuario, String nombre1, String nombre2, String apellido1, String apellido2, String nacimiento, int edad, String pais, String departamento, String recidencia, String direccion, int tel1, int tel2, int recidencial, String correo) {
         this.id_cliente = id_cliente;
+        this.dpi = dpi;
         this.nombre_usuario = nombre_usuario;
         this.nombre1 = nombre1;
         this.nombre2 = nombre2;
@@ -64,8 +69,9 @@ public class Cliente {
 
     //este construcor sera para la actualizacion se usara en el metodo actualizar en servletClientes
 
-    public Cliente(int id_cliente, String nombre1, String nombre2, String apellido1, String apellido2, String nacimiento, int edad, String pais, String departamento, String recidencia, String direccion, int tel1, int tel2, int recidencial, String correo, String nombre_usuario, int estado,String genero) {
+    public Cliente(int id_cliente,String dpi, String nombre1, String nombre2, String apellido1, String apellido2, String nacimiento, int edad, String pais, String departamento, String recidencia, String direccion, int tel1, int tel2, int recidencial, String correo, String nombre_usuario, int estado,String genero) {
         this.id_cliente = id_cliente;
+        this.dpi=dpi;
         this.nombre1 = nombre1;
         this.nombre2 = nombre2;
         this.apellido1 = apellido1;
@@ -87,8 +93,9 @@ public class Cliente {
 
     
     //construcor para obtner todos los campos de la tabla
-    public Cliente(int id_cliente, String nombre1, String nombre2, String apellido1, String apellido2, String nacimiento, int edad, String pais, String departamento, String recidencia, String direccion, int tel1, int tel2, int recidencial, String correo, String fechaIngreso, String fecha_final, String nombre_usuario, int estado,String genero) {
-        this.id_cliente = id_cliente; 
+    public Cliente(int id_cliente,String dpi, String nombre1, String nombre2, String apellido1, String apellido2, String nacimiento, int edad, String pais, String departamento, String recidencia, String direccion, int tel1, int tel2, int recidencial, String correo, String fechaIngreso, String fecha_final, String nombre_usuario, int estado,String genero) {
+        this.id_cliente = id_cliente;
+        this.dpi = dpi;
         this.nombre1 = nombre1;
         this.nombre2 = nombre2;
         this.apellido1 = apellido1;
@@ -116,6 +123,14 @@ public class Cliente {
 
     public void setGenero(String genero) {
         this.genero = genero;
+    }
+
+    public String getDpi() {
+        return dpi;
+    }
+
+    public void setDpi(String dpi) {
+        this.dpi = dpi;
     }
 
   

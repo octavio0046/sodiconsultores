@@ -31,12 +31,9 @@
     response.setDateHeader("Expires", 0);
     try {
         if (session.getAttribute("nom") == null) {
-
             request.getRequestDispatcher("index.jsp").forward(request, response);
-
         }
     } catch (Exception e) {
-
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 %>
@@ -52,20 +49,18 @@
     <div class="contenido">
 
         <%        Cliente a = ClienteBD.obtenerClientePrueba(Integer.parseInt(request.getParameter("cod")));
-
         %>  
 
 
         <%-- 
     <%   ArrayList<UsuarioCliente> lista = UsuarioClienteBD.obtenerUsuarioCliente(Integer.parseInt(request.getParameter("cod")));
-
        for (int i = 0; i < lista.size(); i++) {
                 UsuarioCliente d = lista.get(i);
      %> 
         --%>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item" ><a href="#"><%=a.getId_cliente()%></a></li>
+                <li class="breadcrumb-item" ><a href="#"><%=a.getDpi()%></a></li>
                 <li class="breadcrumb-item"><a href="#"> <%=a.getCorreo()%></a></li>
                 <li class="breadcrumb-item active" aria-current="page" ></li>
                 <input value="<%=a.getFechaIngreso()%>" id="datepicker_3" style="width: 200px; height: 50px;" hidden="" />
@@ -662,7 +657,6 @@
 
 
                         <%
-
                             Estado es = EstadoBD.obtenerEstado(Integer.parseInt(request.getParameter("cod")));
                         %>
 
@@ -776,7 +770,6 @@
 
                             <%
                                 Fichero f = FicheroBD.obtenerCV(Integer.parseInt(request.getParameter("cod")));
-
                             %>
 
                             <a href="pdf?id=<%=f.getCodigo_cliente()%>" target="_blank"><img src="Imagen/mpdf.png" title="pdf"/></a>
@@ -799,4 +792,3 @@
 
         </div>
 </html>
-

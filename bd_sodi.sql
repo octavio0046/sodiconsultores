@@ -59,38 +59,42 @@ select @id;
 
 
 create table tb_clientes(
-id_cliente int ,
-nombre1 varchar(50),
-nombre2 varchar(50),
-apellido1 varchar(50),
-apellido2 varchar(50),
-nacimiento varchar(50),
-edad varchar(50),
-pais varchar(50),
-departamento varchar(50),
-recidencia varchar(50),
-direccion varchar(50),
-tel1 int,
-tel2 int,
-recidencial int,
-correo varchar(50),
-fechaRegistro varchar(50),
-fecha_final varchar(50),
-nombre_usuario varchar(50),
-estado int,
-genero varchar(20),
+id_cliente int,
+dpi varchar(20),
+nombre1 varchar(50) default null,
+nombre2 varchar(50) default null,
+apellido1 varchar(50) default  null,
+apellido2 varchar(50) default  null,
+nacimiento varchar(50) default  null,
+edad varchar(50) default  null,
+pais varchar(50) default  null,
+departamento varchar(50) default  null,
+recidencia varchar(50) default  null,
+direccion varchar(50) default  null,
+tel1 int default  null,
+tel2 int default  null,
+recidencial int default  null,
+correo varchar(50) default  null,
+fechaRegistro varchar(50) default  null,
+fecha_final varchar(50) default  null,
+nombre_usuario varchar(50) default  null,
+estado int default  null,
+genero varchar(20) default null,
 primary key (id_cliente)
 );
-
+insert into tb_clientes values(1,'2430792571301','OCTAVIO','ISAAC','HERRERA','VASQUEZ','jj',24,'GUATEMALA',
+'HUEHUETENANGO','HUEHUETENANGO','ZONA1',2,2,7,'GMAI','hh','jjj','HERRERA',1,'MASCULINO');
+select id_cliente , dpi from tb_clientes where dpi=2430792571301 and estado=1;
+select * from tb_clientes;
 drop table tb_clientes;
 
 DELIMITER &&
-CREATE PROCEDURE insertar_cliente(inout cod int)
+CREATE PROCEDURE insertar_cliente(inout cod int,dpi varchar(50))
 begin
 select ifnull(max(id_cliente),0)+1 into cod from tb_clientes;
-insert into tb_clientes values(cod,'Primer Nombre','Segundo Nombre','Primer Apellido',
-'segundo apellido','Nacimiento',0,'pais'
-,'Departamento','recidencia','direccion',0,0,0,'correo',now(),'','',1,'');
+insert into tb_clientes values(cod,dpi,'','','',
+'','',0,''
+,'','','',0,0,0,'',now(),'','',1,'');
 insert into tb_estudios values(cod,'NINGUNO','NINGUNO','NINGUNO');
 insert into tb_info values(cod,0,0);
 insert into tb_enlaces values(cod,'Facebook','');
@@ -101,9 +105,8 @@ insert into tb_estados values(cod,'','','','','');
 insert into tb_pdf values(cod,'','');
 END&&
 
-
 drop procedure insertar_cliente;
-drop procedure actualizar_cliente;
+
 select * from tb_clientes;
 
 DELIMITER &&
@@ -248,19 +251,20 @@ select * from tb_enlaces;
 select * from tb_estados;
 select * from tb_pdf;
 
-drop table tb_estudios;
+
 drop table tb_clientes;
+drop table tb_estudios;
 drop table tb_info;
 drop table tb_enlaces;
 drop table tb_estados;
 drop table tb_pdf;
 
-delete from tb_pdf where id_cliente=1;
-DELETE FROM tb_estados where id_cliente=1;
-delete from tb_info where id_cliente=1;
-delete from tb_estudios where id_cliente=1;
-delete from tb_enlaces where id_cliente=1;
-delete from tb_clientes where id_cliente=1;
+delete from tb_pdf where id_cliente=4;
+DELETE FROM tb_estados where id_cliente=4;
+delete from tb_info where id_cliente=4;
+delete from tb_estudios where id_cliente=4;
+delete from tb_enlaces where id_cliente=4;
+delete from tb_clientes where id_cliente=4;
 
 
 

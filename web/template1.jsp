@@ -197,41 +197,35 @@
 
 
 
-        <!-- Modal para registro de cliente -->
+        <!-- iinicio Modal para validar Cliente -->
         <div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5  class="modal-title" id="exampleModalLongTitle">REGISTRO DE CLIENTE</h5>
+                        <h5  class="modal-title" id="exampleModalLongTitle">VALIDACION DE CLIENTE</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
 
-                    <div class="modal-body">       
+                    <div class="modal-body">
                         <center>
-
-
-                            <form class="login" action="ServletClientes" method="get" >
-                                <input type="hidden" name="accion" value="RegistrarCliente"/>
-                                <label>CODIGO A GENERAR</label>
-                                <br><br> <input type="submit"  class="btn btn-success"  value="Generar" >  
+                            <form class="login" action="ServletClientes" method="post" >
+                                <input type="hidden" name="accion" value="ValidarCliente"/>
+                                <label>DPI</label>
+                                <input type="text"  name="txtDpi">
+                                <br><br>
+                                <input type="submit"  class="btn btn-success"  value="VALIDAR" data-toggle="modal" data-target="#exampleModalLong2" >  
                             </form>
-
                         </center>
-
                     </div>
-
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Button trigger modal -->
-
+        <!-- FIN Modal para validar un cliente -->   
 
         <!-- Modal para busqueda compleja boton realizar busqueda completa -->
         <!-- Modal -->
@@ -361,11 +355,12 @@
                                     </select>
                                 </div>
                                 <div class="col">
-                                  <select id="inputState"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" name="txtEstadoPersona" class="form-control">
-                                            <option selected></option>
-                                            <option>DESEMPLEADO</option>
-                                            <option>EMPLEADO</option>
-                                        </select>
+                                    <label for="exampleFormControlSelect1">ESTADO</label>
+                                    <select id="inputState"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" name="txtEstadoPersona" class="form-control">
+                                        <option selected></option>
+                                        <option>DESEMPLEADO</option>
+                                        <option>EMPLEADO</option>
+                                    </select>
                                 </div>
                             </div>
 

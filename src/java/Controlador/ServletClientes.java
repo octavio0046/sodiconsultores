@@ -7,14 +7,18 @@ package Controlador;
 
 import Modelo.Cliente;
 import Modelo.ClienteBD;
+import Utils.Conexion;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.CallableStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -43,12 +47,35 @@ public class ServletClientes extends HttpServlet {
       buscarUnCliente(request, response);
     } else if (accion.equals("ActualizarCliente")) {
       actualizarCliente(request, response);
-    } else if (accion.equals("RegistrarUsuario")) {
-      //registrarUsuario(request, response);
+    } else if (accion.equals("ValidarCliente")) {
+      ValidarCliente(request, response);
     }else if (accion.equals("RegistrarCliente")) {
       RegistrarCliente(request, response);
     
     }
+  }
+  
+  
+  private void ValidarCliente(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException
+  {
+    String dpi = request.getParameter("txtDpi");  
+   
+    
+
+         Cliente e = ClienteBD.validarCliente(dpi);
+    if (e!=null) {
+      response.sendRedirect("formFichaUsuarioCliente.jsp?cod="+e.getId_cliente()+"");
+    } else {
+      response.sendRedirect("formRegistrarCliente.jsp?dpi="+dpi+"");
+    }
+    
+    
+    
+         //request.setAttribute("msg", "no existe la persona");
+          //request.getRequestDispatcher("formRegistrarCliente.jsp?dpi="+dpi+"").forward(request, response);
+      
+    
   }
   
   
@@ -78,6 +105,7 @@ public class ServletClientes extends HttpServlet {
   {
    
         int id_cliente = Integer.parseInt(request.getParameter("txtId_cliente"));
+         String dpi = request.getParameter("txtDpi");
         String nombre1 = request.getParameter("txtNombre1");
         String nombre2 = request.getParameter("txtNombre2");
         String apellido1 = request.getParameter("txtApellido1");
@@ -96,7 +124,7 @@ public class ServletClientes extends HttpServlet {
         int estado = Integer.parseInt(request.getParameter("txtEstado"));
         String genero=request.getParameter("txtGenero");
         
-        Cliente p = new Cliente(id_cliente, nombre1, nombre2, apellido1, 
+        Cliente p = new Cliente(id_cliente,dpi, nombre1, nombre2, apellido1, 
                 apellido2, nacimiento, edad, pais, departamento, recidencia, direccion,
                 tel1, tel2, recidencial, correo, nombre_usuario,estado,genero);
       
@@ -111,7 +139,9 @@ public class ServletClientes extends HttpServlet {
     private void RegistrarCliente(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException
   {   
-         int variable = ClienteBD.insertarCliente();
+           String dpi = request.getParameter("txtDpi");  
+          
+         int variable = ClienteBD.insertarCliente(dpi);
     if (variable!=0) {
      response.sendRedirect("formFichaUsuarioCliente.jsp?cod="+variable+"");
     } else {
