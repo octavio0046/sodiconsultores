@@ -65,7 +65,6 @@
                 <li class="breadcrumb-item" ><a href="#">DPI: <%=a.getDpi()%></a></li>
                 <li class="breadcrumb-item"><a href="#">CORREO: <%=a.getCorreo()%></a></li>
                 <li class="breadcrumb-item active" aria-current="page">FECHA INGRESO: <%=a.getFechaIngreso()%></li>
-
             </ol>
         </nav>
         <center>
@@ -188,7 +187,7 @@
                                     <div class="form-group col-md-6">
                                         <label for="exampleFormControlInput1">EDAD</label>
 
-                                
+
                                         <input type="text" name="txtEdad" value="<%=p.getEdad()%>" readonly="" class="form-control" id="exampleFormControlInput1" >
 
                                     </div>
@@ -688,16 +687,19 @@
                                         </select>
                                     </div>
                                 </div>  
-
-
                                 <input type="submit" class="btn btn-outline-success" value="ACTUALIZAR"  name="Registrarse" />
                                 <input type="hidden"  name="accion" value="actualizarEstado"/>
-
-
                             </form>
-
-
                         </center>
+
+                        <form action="formResultado.jsp" method="post">
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">Email address</label>
+                                <input type="text" name="txtPara" value="<%=p.getCorreo()%>" class="form-control" id="exampleFormControlInput1">
+                            </div>
+                            <input type="submit" class="btn btn-outline-success" value="ACTUALIZAR"  name="Registrarse" />
+                        </form>                   
+
                     </div>
 
 
