@@ -37,7 +37,7 @@
 
         <nav class="navbar navbar-expand-lg navbar navbar-light" style="background-color: orange; " >
             <a class="navbar-brand" href="#">
-                <img src="logo.png" width="40" height="40" alt="">
+              <%--<img src="logo.png" width="40" height="40" alt="">--%>  
             </a>
             <a class="navbar-brand" href="index.jsp">INICIO</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,15 +74,12 @@
 
                         </div>
                     </li>
-
-
-
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             USUARIOS
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="registrarUsuario.jsp">Registrar Usuario</a>
+                            <a class="dropdown-item"  href="registrarUsuario.jsp">Registrar Usuario</a>
                             <a class="dropdown-item" href="ServletUsuarios?accion=MostrarUsuarios">Mostrar Usuarios</a>
 
                         </div>
@@ -211,7 +208,7 @@
                     <div class="modal-body">
                         <center>
                             <form class="login" action="ServletClientes" method="post" >
-                                <input type="hidden" name="accion" value="ValidarCliente"/>
+                                <input type="hidden" required="" name="accion" value="ValidarCliente"/>
                                 <label>DPI</label>
                                 <input type="text"  name="txtDpi">
                                 <br><br>

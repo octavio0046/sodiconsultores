@@ -86,22 +86,22 @@ primary key (id_cliente)
 
 
 
-
+drop procedure insertar_cliente;
 DELIMITER &&
 CREATE PROCEDURE insertar_cliente(inout cod int,dpi varchar(50))
 begin
 select ifnull(max(id_cliente),0)+1 into cod from tb_clientes;
-insert into tb_clientes values(cod,dpi,'NOMBRE','NOMBRE','APELLIDO',
-'APELLIDO','NACIMIENTO',0,'-'
-,'-','-','-',0,0,0,'-',now(),now(),'-',1,'-');
+insert into tb_clientes values(cod,dpi,'','','',
+'','',0,''
+,'','','',0,0,0,'',now(),now(),'',1,'');
 insert into tb_estudios values(cod,'NINGUNO','NINGUNO','NINGUNO');
 insert into tb_info values(cod,0,0);
 insert into tb_enlaces values(cod,'Facebook','');
 insert into tb_enlaces values(cod,'Instagram','');
 insert into tb_enlaces values(cod,'LinkIn','');
 insert into tb_enlaces values(cod,'otro','');
-insert into tb_estados values(cod,'-','-','-','-','-');
-insert into tb_pdf values(cod,'-','-');
+insert into tb_estados values(cod,'','','','','');
+insert into tb_pdf values(cod,'','');
 END&&
 
 set @id:=0;
@@ -276,12 +276,12 @@ drop table tb_enlaces;
 drop table tb_estados;
 drop table tb_pdf;
 
-delete from tb_pdf where id_cliente=2;
-DELETE FROM tb_estados where id_cliente=2;
-delete from tb_info where id_cliente=2;
-delete from tb_estudios where id_cliente=2;
-delete from tb_enlaces where id_cliente=2;
-delete from tb_clientes where id_cliente=2;
+delete from tb_pdf where id_cliente=1;
+DELETE FROM tb_estados where id_cliente=1;
+delete from tb_info where id_cliente=1;
+delete from tb_estudios where id_cliente=1;
+delete from tb_enlaces where id_cliente=1;
+delete from tb_clientes where id_cliente=1;
 
 
 

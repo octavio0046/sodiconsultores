@@ -250,7 +250,7 @@
 
                                 <div class="form-group">
                                     <label for="exampleFormControlInput1">Email address</label>
-                                    <input type="email" name="txtCorreo" value="<%=p.getCorreo()%>" class="form-control" id="exampleFormControlInput1">
+                                    <input type="text" name="txtCorreo" value="<%=p.getCorreo()%>" class="form-control" id="exampleFormControlInput1">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlInput1">Estado</label>
