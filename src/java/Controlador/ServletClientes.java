@@ -111,7 +111,6 @@ public class ServletClientes extends HttpServlet {
         String apellido1 = request.getParameter("txtApellido1");
         String apellido2 = request.getParameter("txtApellido2");
         String nacimiento = request.getParameter("txtNacimiento");
-        int edad = Integer.parseInt(request.getParameter("txtEdad"));
         String pais = request.getParameter("txtPais");
         String departamento = request.getParameter("txtDepartamento");
         String recidencia = request.getParameter("txtRecidencia");
@@ -125,7 +124,7 @@ public class ServletClientes extends HttpServlet {
         String genero=request.getParameter("txtGenero");
         
         Cliente p = new Cliente(id_cliente,dpi, nombre1, nombre2, apellido1, 
-                apellido2, nacimiento, edad, pais, departamento, recidencia, direccion,
+                apellido2, nacimiento, pais, departamento, recidencia, direccion,
                 tel1, tel2, recidencial, correo, nombre_usuario,estado,genero);
       
          boolean rpta = ClienteBD.actualizarCliente(p);

@@ -4,6 +4,7 @@
     Author     : OCTAVIOH
 --%>
 
+<%@page import="Modelo.ConsultasBD"%>
 <%@page import="Modelo.FicheroBD"%>
 <%@page import="Modelo.Fichero"%>
 <%@page import="Modelo.EstadoBD"%>
@@ -51,51 +52,31 @@
         <%        Cliente a = ClienteBD.obtenerClientePrueba(Integer.parseInt(request.getParameter("cod")));
         %>  
 
+        <%
+            ConsultasBD nuevo = new ConsultasBD();
+            int Total = nuevo.obtenerTotalDias(Integer.parseInt(request.getParameter("cod")));
+            // int totals=Integer.parseInt(request.getParameter("cod"));
+            //String Final= String.valueOf(Total.getInt(1));
 
-        <%-- 
-    <%   ArrayList<UsuarioCliente> lista = UsuarioClienteBD.obtenerUsuarioCliente(Integer.parseInt(request.getParameter("cod")));
-       for (int i = 0; i < lista.size(); i++) {
-                UsuarioCliente d = lista.get(i);
-     %> 
-        --%>
+        %>
+
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item" ><a href="#"><%=a.getDpi()%></a></li>
-                <li class="breadcrumb-item"><a href="#"> <%=a.getCorreo()%></a></li>
-                <li class="breadcrumb-item active" aria-current="page" ></li>
-                <input value="<%=a.getFechaIngreso()%>" id="datepicker_3" style="width: 200px; height: 50px;" hidden="" />
+                <li class="breadcrumb-item" ><a href="#">DPI: <%=a.getDpi()%></a></li>
+                <li class="breadcrumb-item"><a href="#">CORREO: <%=a.getCorreo()%></a></li>
+                <li class="breadcrumb-item active" aria-current="page">FECHA INGRESO: <%=a.getFechaIngreso()%></li>
+
             </ol>
         </nav>
-
-        <script>
-            //Hacemos una función para hacer las operaciones
-            function textoFecha(fecha) {
-                var numDiaSem = fecha.getDay(); //getDay() devuelve el dia de la semana.(0-6).
-                //Creamos un Array para los nombres de los días    
-                var diasSemana = new Array("Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado");
-                var diaLetras = diasSemana[fecha.getDay()];   //El día de la semana en letras. getDay() devuelve el dia de la semana.(0-6).
-                //Otro Array para los nombres de los meses    
-                var meses = new Array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
-                var mesLetras = meses[fecha.getMonth()];  //El mes en letras
-                var diaMes = (fecha.getDate());   //getDate() devuelve el dia(1-31).
-                var anho = fecha.getFullYear();  //getFullYear() devuelve el año(4 dígitos).
-                var hora = fecha.getHours();    //getHours() devuelve la hora(0-23).
-                var min = fecha.getMinutes();   //getMinutes() devuelve los minutos(0-59).
-                if ((min >= 0) && (min < 10)) {    //Algoritmo para añadir un cero cuando el min tiene 1 cifra.
-                    min = "0" + min;
-                }
-                var devolver = "Hoy es " + diaLetras + ", " + diaMes + " de " + mesLetras + " de " + anho + " y son las " + hora + ":" + min + " horas.";
-                return devolver;
-            }
-            var fecha = new Date();  //Declaramos el objeto fecha actual
-            document.write(textoFecha(fecha));  //Imprimir llamando a la función textoFecha()
-        </script>
-
+        <center>
+            <h9>Dias Transcurridos</h9>
+            <h1><%out.println(Total);%></h1>  
+        </center>
 
         <%-- 
      aqui empiezan los menus desplegables
         --%>
-     
+
         <div class="accordion" id="accordionExample">
             <div class="card">
                 <div class="card-header" id="headingOne">
@@ -155,7 +136,7 @@
                                     <label for="exampleFormControlInput1">FECHA NACIMIENTO</label>
                                     <input type="date" id="fecha" name="txtNacimiento" value="<%=p.getNacimiento()%>"  class="form-control" id="exampleFormControlInput1" >
                                 </div>
-                           
+
 
                                 <div class="form-row">
 
@@ -199,29 +180,23 @@
                                     <div class="form-group col-md-6">
                                         <label for="exampleFormControlSelect1">GENERO</label>
                                         <select class="form-control"   style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" name="txtGenero" id="exampleFormControlSelect1">
-                                              <option><%=p.getGenero()%></option>
+                                            <option><%=p.getGenero()%></option>
                                             <option>MASCULINO</option>
                                             <option>FEMENINO</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="exampleFormControlInput1">EDAD</label>
-                                             <script>
-                                             
-                                  <%
-                                  String fecha = p.getNacimiento();
-                                  
-                                 /// <%out.println(fecha);%>
-                                  %>
-                                </script>
-                                        <input type="text" name="txtEdad" value="<%=p.getEdad()%>"  class="form-control" id="exampleFormControlInput1" >
-                                    
+
+                                
+                                        <input type="text" name="txtEdad" value="<%=p.getEdad()%>" readonly="" class="form-control" id="exampleFormControlInput1" >
+
                                     </div>
                                 </div>
 
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        
+
                                         <label for="exampleFormControlSelect1">RESIDENCIA</label>
                                         <select class="form-control"  value="<%=p.getRecidencia()%>"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();"  name="txtRecidencia" id="exampleFormControlSelect1">
                                             <option>HUEHUETENANGO</option>
@@ -248,8 +223,8 @@
                                             <option>ZACAPA</option>
                                         </select>
 
-          
-                     
+
+
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="exampleFormControlInput1">DIRECCION</label>
@@ -334,8 +309,8 @@
                                 <div class="form-group">    
                                     <select name="txtNombre_formacion"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" class="form-control" id="exampleFormControlSelect1">
                                         <option><%=e.getNombre_formacion()%></option>
-                                       <option style="color: red;">LICENCIATURAS</option>
-                                         <option>ADMINISTRACION DE EMPRESAS</option>
+                                        <option style="color: red;">LICENCIATURAS</option>
+                                        <option>ADMINISTRACION DE EMPRESAS</option>
                                         <option>ANTROPOLOGIA</option>
                                         <option>ARQUEOLOGIA</option>
                                         <option>ARQUITECTURA</option>
@@ -358,29 +333,29 @@
                                         <option>MUSICA</option>
                                         <option>NUTRICION</option>
                                         <option>ODONTOLOGIA</option>
-                                      <option>PEDAGOGIA</option>
-                                      <option>QUIMICA</option>
-                                      <option>TRABAJO SOCIAL</option>
-                                      <option>ZOOTECNISTA</option>
-                                      <option style="color: red;">INGENIERIA</option>
-                                      <option>AGRONOMO EN RECURSOS NATURALES</option>
-                                      <option>AGRONOMO EN SISTEMAS DE PRODUCCION AGRICOLA</option>
-                                      <option>CIVIL</option>
-                                      <option>ELECTRICA</option>
-                                      <option>MECANICA</option>
-                                      <option>INDUSTRIAL</option>
-                                      <option>MECANICA ELECTRICA</option>
-                                      <option>INGENIERIA QUIMICA</option>
-                                      <option>SISTEMAS</option>
-                                      <option>ELECTRONICA</option>
-                                      <option>INDUSTRIAS AGROPECUARIAS Y FORESTALES</option>                                   
+                                        <option>PEDAGOGIA</option>
+                                        <option>QUIMICA</option>
+                                        <option>TRABAJO SOCIAL</option>
+                                        <option>ZOOTECNISTA</option>
+                                        <option style="color: red;">INGENIERIA</option>
+                                        <option>AGRONOMO EN RECURSOS NATURALES</option>
+                                        <option>AGRONOMO EN SISTEMAS DE PRODUCCION AGRICOLA</option>
+                                        <option>CIVIL</option>
+                                        <option>ELECTRICA</option>
+                                        <option>MECANICA</option>
+                                        <option>INDUSTRIAL</option>
+                                        <option>MECANICA ELECTRICA</option>
+                                        <option>INGENIERIA QUIMICA</option>
+                                        <option>SISTEMAS</option>
+                                        <option>ELECTRONICA</option>
+                                        <option>INDUSTRIAS AGROPECUARIAS Y FORESTALES</option>                                   
                                         <option style="color: red;">MAESTRIAS</option>
-                                       <option>ANTROPOLOGIA</option>
+                                        <option>ANTROPOLOGIA</option>
                                         <option>BUSINESS ANALYTICS</option>
-                                         <option>CONSERVACION DE MONUMENTOS</option>
-                                          <option>DISEÑO ARQUITECTONICO</option>
-                                           <option>GESTION PARA LA REUCCION DE LOS RIEGOS NATURALES</option>
-  
+                                        <option>CONSERVACION DE MONUMENTOS</option>
+                                        <option>DISEÑO ARQUITECTONICO</option>
+                                        <option>GESTION PARA LA REUCCION DE LOS RIEGOS NATURALES</option>
+
 
 
                                     </select>

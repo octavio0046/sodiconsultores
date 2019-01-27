@@ -17,6 +17,33 @@ import java.util.ArrayList;
 public class ConsultasBD {
     
     
+    ////consulta de dias desde el registro
+    
+      public static int obtenerTotalDias(int id)
+  {
+    try
+    {
+      CallableStatement c2 = Conexion.getConexion().prepareCall("select DATEDIFF( now(),fechaRegistro) from tb_clientes where id_cliente=?");
+      c2.setInt(1, id);
+      ResultSet rs = c2.executeQuery();
+      
+      rs.next();
+      int Total;
+      return Total = rs.getInt(1);
+    }
+    catch (Exception e)
+    {
+      System.out.println(e);
+      int Total;
+      return Total = 10;
+    }
+  }
+    
+    
+    
+    
+    
+    
     
      // metodo para realizar la consulta de 8 parametros el resultado lo arroja en formbusquedaCompleja 
     public static ArrayList<Consultas> obtenerConsultaCompleja(String genero,int edad,String residencia,String nivel,String carrera,String estado)

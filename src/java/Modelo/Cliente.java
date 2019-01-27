@@ -69,7 +69,7 @@ public Cliente(int id_cliente,String dpi){
 
     //este construcor sera para la actualizacion se usara en el metodo actualizar en servletClientes
 
-    public Cliente(int id_cliente,String dpi, String nombre1, String nombre2, String apellido1, String apellido2, String nacimiento, int edad, String pais, String departamento, String recidencia, String direccion, int tel1, int tel2, int recidencial, String correo, String nombre_usuario, int estado,String genero) {
+    public Cliente(int id_cliente,String dpi, String nombre1, String nombre2, String apellido1, String apellido2, String nacimiento, String pais, String departamento, String recidencia, String direccion, int tel1, int tel2, int recidencial, String correo, String nombre_usuario, int estado,String genero) {
         this.id_cliente = id_cliente;
         this.dpi=dpi;
         this.nombre1 = nombre1;
@@ -77,7 +77,6 @@ public Cliente(int id_cliente,String dpi){
         this.apellido1 = apellido1;
         this.apellido2 = apellido2;
         this.nacimiento = nacimiento;
-        this.edad = edad;
         this.pais = pais;
         this.departamento = departamento;
         this.recidencia = recidencia;

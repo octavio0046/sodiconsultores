@@ -36,25 +36,24 @@ public class ClienteBD {
         try {
             Connection cn = Conexion.getConexion();
 
-            CallableStatement cl = cn.prepareCall("{call actualizar_cliente(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+            CallableStatement cl = cn.prepareCall("{call actualizar_cliente(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
             cl.setInt(1, p.getId_cliente());
             cl.setString(2, p.getNombre1());
             cl.setString(3, p.getNombre2());
             cl.setString(4, p.getApellido1());
             cl.setString(5, p.getApellido2());
             cl.setString(6, p.getNacimiento());
-            cl.setInt(7, p.getEdad());
-            cl.setString(8, p.getPais());
-            cl.setString(9, p.getDepartamento());
-            cl.setString(10, p.getRecidencia());
-            cl.setString(11, p.getDireccion());
-            cl.setInt(12, p.getTel1());
-            cl.setInt(13, p.getTel2());
-            cl.setInt(14, p.getRecidencial());
-            cl.setString(15, p.getCorreo());
-            cl.setString(16, p.getNombre_usuario());
-            cl.setInt(17, p.getEstado());
-            cl.setString(18, p.getGenero());
+            cl.setString(7, p.getPais());
+            cl.setString(8, p.getDepartamento());
+            cl.setString(9, p.getRecidencia());
+            cl.setString(10, p.getDireccion());
+            cl.setInt(11, p.getTel1());
+            cl.setInt(12, p.getTel2());
+            cl.setInt(13, p.getRecidencial());
+            cl.setString(14, p.getCorreo());
+            cl.setString(15, p.getNombre_usuario());
+            cl.setInt(16, p.getEstado());
+            cl.setString(17, p.getGenero());
             int i = cl.executeUpdate();
             if (i == 1) {
                 rpta = true;

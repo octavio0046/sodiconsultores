@@ -75,18 +75,16 @@ tel1 int default  null,
 tel2 int default  null,
 recidencial int default  null,
 correo varchar(50) default  null,
-fechaRegistro varchar(50) default  null,
-fecha_final varchar(50) default  null,
+fechaRegistro date,
+fecha_final date,
 nombre_usuario varchar(50) default  null,
 estado int default  null,
 genero varchar(20) default null,
 primary key (id_cliente)
 );
-insert into tb_clientes values(1,'2430792571301','OCTAVIO','ISAAC','HERRERA','VASQUEZ','jj',24,'GUATEMALA',
-'HUEHUETENANGO','HUEHUETENANGO','ZONA1',2,2,7,'GMAI','hh','jjj','HERRERA',1,'MASCULINO');
-select id_cliente , dpi from tb_clientes where dpi=2430792571301 and estado=1;
-select * from tb_clientes;
-drop table tb_clientes;
+
+
+
 
 
 DELIMITER &&
@@ -95,7 +93,7 @@ begin
 select ifnull(max(id_cliente),0)+1 into cod from tb_clientes;
 insert into tb_clientes values(cod,dpi,'NOMBRE','NOMBRE','APELLIDO',
 'APELLIDO','NACIMIENTO',0,'-'
-,'-','-','-',0,0,0,'-',now(),'-','-',1,'-');
+,'-','-','-',0,0,0,'-',now(),now(),'-',1,'-');
 insert into tb_estudios values(cod,'NINGUNO','NINGUNO','NINGUNO');
 insert into tb_info values(cod,0,0);
 insert into tb_enlaces values(cod,'Facebook','');
@@ -110,10 +108,22 @@ set @id:=0;
 call insertar_cliente(@id,'2430792571301');
 select @id;
 
+DELIMITER &&
+create procedure prueba(inout fe int,id int)
+begin
+declare naci varchar(50);
+set naci='1994-04-06';
+select DATEDIFF( now(),naci)/360 into fe from tb_clientes where id_cliente=id;
+END &&
+drop procedure prueba;
 
-drop procedure insertar_cliente;
+set @fe:=0;
+call prueba(@fe,1);
+select @fe;
 
 select * from tb_clientes;
+select DATEDIFF( now(),nacimiento)/360 from tb_clientes where id_cliente=1;
+drop procedure actualizar_cliente;
 
 DELIMITER &&
 CREATE PROCEDURE actualizar_cliente (
@@ -123,7 +133,6 @@ nom2 varchar(50),
 ape1 varchar(50),
 ape2 varchar(50),
 naci varchar(50),
-ed varchar(50),
 pa varchar(50),
 dep varchar(50),
 reci varchar(50),
@@ -134,13 +143,15 @@ nombre_usu varchar(50),
 es int,
 gen varchar(20))
 BEGIN
+declare na int;
+select DATEDIFF(now(),naci)/360 into na from tb_clientes where id_cliente=id;
 update tb_clientes set 
 nombre1=nom1,
 nombre2=nom2 ,
 apellido1=ape1,
 apellido2=ape2,
 nacimiento=naci,
-edad=ed,
+edad=na,
 pais=pa,
 departamento=dep,
 recidencia=reci,
@@ -265,12 +276,12 @@ drop table tb_enlaces;
 drop table tb_estados;
 drop table tb_pdf;
 
-delete from tb_pdf where id_cliente=1;
-DELETE FROM tb_estados where id_cliente=1;
-delete from tb_info where id_cliente=1;
-delete from tb_estudios where id_cliente=1;
-delete from tb_enlaces where id_cliente=1;
-delete from tb_clientes where id_cliente=1;
+delete from tb_pdf where id_cliente=2;
+DELETE FROM tb_estados where id_cliente=2;
+delete from tb_info where id_cliente=2;
+delete from tb_estudios where id_cliente=2;
+delete from tb_enlaces where id_cliente=2;
+delete from tb_clientes where id_cliente=2;
 
 
 
