@@ -6,18 +6,23 @@
 package Modelo;
 
 import Utils.Conexion;
+import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
  * @author OCTAVIOH
  */
+
 public class ImagenBD {
     
-    /**
+  
       public static ArrayList<Imagen> obtenerImaPerfil (int id) {
         ArrayList<Imagen> lista = new ArrayList();
         try {
@@ -26,7 +31,7 @@ public class ImagenBD {
 
             ResultSet rs = cl.executeQuery();
             while (rs.next()) {
-                Imagen v = new Imagen(rs.getInt(1),);
+                Imagen v = new Imagen(rs.getInt(1),rs.getBytes(2));
                 lista.add(v);
             }
         } catch (Exception e) {
@@ -34,7 +39,7 @@ public class ImagenBD {
         }
         return lista;
     }  
-    */ 
+
       
     public static boolean actualizarImagen(Imagen p) {
         boolean rpta = false;
@@ -42,7 +47,7 @@ public class ImagenBD {
             Connection cn = Conexion.getConexion();
             CallableStatement cl = cn.prepareCall("{call actualizar_imagen(?,?)}");
             cl.setInt(1, p.getCodigo_cliente());
-            cl.setBlob(3, p.getArchivopdf());
+            cl.setBlob(2, p.getArchivopdf());
             int i = cl.executeUpdate();
             if (i == 1) {
                 rpta = true;

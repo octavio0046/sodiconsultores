@@ -14,8 +14,22 @@ import java.io.InputStream;
 public class Imagen {
     
     private int codigo_cliente;
-   private  InputStream archivopdf;
+    private  InputStream archivopdf;
     private byte[] archivopdf2;
+
+    
+    
+     public Imagen() {
+
+    }
+    
+    
+    ///metodo para listar
+    public Imagen(int codigo_cliente, byte[] archivopdf2) {
+        this.codigo_cliente = codigo_cliente;
+        this.archivopdf2 = archivopdf2;
+    }
+ 
     
    //para actualizar
 
