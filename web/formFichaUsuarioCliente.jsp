@@ -4,6 +4,8 @@
     Author     : OCTAVIOH
 --%>
 
+<%@page import="Modelo.Imagen"%>
+<%@page import="Modelo.ImagenBD"%>
 <%@page import="Modelo.ConsultasBD"%>
 <%@page import="Modelo.FicheroBD"%>
 <%@page import="Modelo.Fichero"%>
@@ -60,6 +62,8 @@
 
         %>
 
+        <center>
+            
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item" ><a href="#">DPI: <%=a.getDpi()%></a></li>
@@ -72,6 +76,32 @@
             <h1><%out.println(Total);%></h1>  
         </center>
 
+        <center>
+       <%---
+       <%
+       ArrayList<Imagen> lista=ImagenBD.obtenerImaPerfil(Integer.parseInt(request.getParameter("cod")));
+       for(Imagen p: lista){
+       %> 
+       ----%>
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="Imagen/" >
+            <div class="card-body">
+                <p class="card-text">Nombre:  <%=a.getNombre1()%>     <%=a.getApellido1()%></p>
+            </div>
+        </div>
+              <form action="ServletImagen" method="post" enctype="multipart/form-data">
+                  <input type="file" name="fichero"/>  
+                  <input type="number" name="txtId_cliente" value="<%=a.getId_cliente()%>" hidden=""/>
+                    <input type="submit" class="btn btn-outline-success" value="enviar"  name="Registrarse" />
+                    <input type="hidden"  name="accion" value="actualizarImagen"/>
+                </form>
+<%---
+            <%
+}
+%>
+ ----%>
+       </center>
+       
         <%-- 
      aqui empiezan los menus desplegables
         --%>
@@ -679,7 +709,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="inputState">PRUEBA PSICOMÉTRICA</label>
+                                        <label for="inputState">PSICOMÉTRICA</label>
                                         <select id="inputState"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" name="txtPruebaPsico" class="form-control">
                                             <option selected><%=es.getPrueba_psico()%></option>
                                             <option>SI</option>
@@ -691,15 +721,15 @@
                                 <input type="hidden"  name="accion" value="actualizarEstado"/>
                             </form>
                         </center>
-
-                        <form action="formResultado.jsp" method="post">
-                            <div class="form-group">
-                                <label for="exampleFormControlInput1">Email address</label>
-                                <input type="text" name="txtPara" value="<%=p.getCorreo()%>" class="form-control" id="exampleFormControlInput1">
-                            </div>
-                            <input type="submit" class="btn btn-outline-success" value="ACTUALIZAR"  name="Registrarse" />
-                        </form>                   
-
+                        <center>
+                            <form  action="formResultado.jsp" method="post">
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">ENVIAR CORREO DE RECIBIDO</label>
+                                    <input type="text" name="txtPara" value="<%=p.getCorreo()%>" class="form-control" id="exampleFormControlInput1">
+                                </div>
+                                <input type="submit" class="btn btn-outline-success" value="ENVIAR"  name="Registrarse" />
+                            </form>                   
+                        </center>
                     </div>
 
 

@@ -86,7 +86,7 @@ primary key (id_cliente)
 
 
 
-drop procedure insertar_cliente;
+
 DELIMITER &&
 CREATE PROCEDURE insertar_cliente(inout cod int,dpi varchar(50))
 begin
@@ -102,6 +102,7 @@ insert into tb_enlaces values(cod,'LinkIn','');
 insert into tb_enlaces values(cod,'otro','');
 insert into tb_estados values(cod,'','','','','');
 insert into tb_pdf values(cod,'','');
+insert into tb_pdf values(cod,'');
 END&&
 
 set @id:=0;
@@ -116,6 +117,7 @@ set naci='1994-04-06';
 select DATEDIFF( now(),naci)/360 into fe from tb_clientes where id_cliente=id;
 END &&
 drop procedure prueba;
+
 
 set @fe:=0;
 call prueba(@fe,1);
@@ -217,8 +219,6 @@ nombre_enlace varchar(50),
 link varchar(250),
 foreign key (id_cliente) references tb_clientes (id_cliente)
 );&&
-
-
 
 
 DELIMITER &&
@@ -465,7 +465,15 @@ and a.id_cliente=b.id_cliente and a.id_cliente=c.id_cliente;
 END IF;
 END&&
 
-drop procedure BusquedaCompleja;
-call BusquedaCompleja('',24,'','','','');
 
-SELECT * FROM tb_clientes;
+CREATE TABLE tb_imagen (
+  id_cliente int not null,
+  imagen mediumblob,
+  FOREIGN KEY (id_cliente) references tb_clientes (id_cliente)
+);&&
+
+
+drop table tb_imagen;
+select * from tb_imagen where id_cliente=1;
+insert into tb_imagen values(1,'octavio.jpg');
+delete from tb_imagen  where id_cliente=1;
